@@ -1,0 +1,74 @@
+.header
+  background: $section-bg-grey
+  padding: 15px 0
+  &-top
+    display: flex
+    align-items: center
+    justify-content: space-between
+    flex-wrap: wrap
+    &_logo
+      display: flex
+      flex-basis: 30%
+      &-name
+        font: 18px 'P22UndergroundCYPro-Demi', sans-serif
+        color: $color-green
+        text-transform: uppercase
+        span
+          color: $color-red
+      &-info
+        font: 14px 'P22UndergroundCYPro-Light', sans-serif
+        line-height: 21px
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        span
+          position: relative
+          color: #9ea1a3
+          margin-left: 20px
+          cursor: pointer
+          &::before
+            position: absolute
+            font-family: 'FontAwesome'
+            content: '\f041'
+            left: -20px
+            top: -2px
+            font-size: 16px
+    &_search-form
+      flex-basis: 30%
+
+    &_icons
+      flex-basis: 15%
+      display: flex
+      justify-content: space-around
+      a
+        color: $color-red
+        font-size: 25px
+        &:focus
+          outline: 1px
+
+    &_callback
+
+      p
+        position: relative
+        font: 21px 'Circe-Regulal',sans-serif
+        color: $text-color
+        margin-left: 25px
+        &::before
+          position: absolute
+          font-family: 'FontAwesome'
+          content: '\f095'
+          left: -25px
+          top: 2px
+          color: #9ea1a3
+      span
+        margin-left: 25px
+        font: 12px 'P22UndergroundCYPro-Book',sans-serif
+        color: $color-green
+        cursor: pointer
+        text-decoration: underline
+        text-underline-color: $color-green
+        text-transform: uppercase
+        letter-spacing: 2px
+
+.main-nav
+  background: $color-red

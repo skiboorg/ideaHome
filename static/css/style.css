@@ -1,0 +1,387 @@
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+menu {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset,
+img,
+abbr {
+  border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ul li,
+menu li {
+  list-style: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+legend {
+  color: #000;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'MuseoSansCyrl-300';
+  src: url("../font/MuseoSansCyrl-300.eot");
+  src: local("MuseoSansCyrl-300"), local("MuseoSansCyrl-300"), url("../font/MuseoSansCyrl-300.eot?#iefix") format("embedded-opentype"), url("../font/MuseoSansCyrl-300.woff") format("woff"), url("../font/MuseoSansCyrl-300.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MuseoSansCyrl-700';
+  src: url("../font/MuseoSansCyrl-700.eot");
+  src: local("MuseoSansCyrl-700"), local("MuseoSansCyrl-700"), url("../font/MuseoSansCyrl-700.eot?#iefix") format("embedded-opentype"), url("../font/MuseoSansCyrl-700.woff") format("woff"), url("../font/MuseoSansCyrl-700.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham Regular';
+  src: url("../font/GothamPro.eot");
+  src: local("GothamPro"), local("GothamPro"), url("../font/GothamPro.eot?#iefix") format("embedded-opentype"), url("../font/GothamPro.woff") format("woff"), url("../font/GothamPro.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prata Regular';
+  src: url("../font/ofont.ru_Prata.ttf") format("truetype");
+  src: local("Prata Regular"), local("Prata Regular");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22UndergroundCYPro-Medium';
+  src: url("../font/P22UndergroundCYPro-Medium.eot");
+  src: url("../font/P22UndergroundCYPro-Medium.eot?#iefix") format("embedded-opentype"), url("../font/P22UndergroundCYPro-Medium.woff2") format("woff2"), url("../font/P22UndergroundCYPro-Medium.woff") format("woff"), url("../font/P22UndergroundCYPro-Medium.svg#P22UndergroundCYPro-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-style-font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22UndergroundCYPro-Book';
+  src: url("../font/P22UndergroundCYPro-Book.eot");
+  src: url("../font/P22UndergroundCYPro-Book.eot?#iefix") format("embedded-opentype"), url("../font/P22UndergroundCYPro-Book.woff2") format("woff2"), url("../font/P22UndergroundCYPro-Book.woff") format("woff"), url("../font/P22UndergroundCYPro-Book.svg#P22UndergroundCYPro-Book") format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-style-font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22UndergroundCYPro-Thin';
+  src: url("../font/P22UndergroundCYPro-Thin.eot");
+  src: url("../font/P22UndergroundCYPro-Thin.eot?#iefix") format("embedded-opentype"), url("../font/P22UndergroundCYPro-Thin.woff2") format("woff2"), url("../font/P22UndergroundCYPro-Thin.woff") format("woff"), url("../font/P22UndergroundCYPro-Thin.svg#P22UndergroundCYPro-Thin") format("svg");
+  font-weight: 100;
+  font-style: normal;
+  font-style-font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22UndergroundCYPro-Demi';
+  src: url("../font/P22UndergroundCYPro-Demi.eot");
+  src: url("../font/P22UndergroundCYPro-Demi.eot?#iefix") format("embedded-opentype"), url("../font/P22UndergroundCYPro-Demi.woff2") format("woff2"), url("../font/P22UndergroundCYPro-Demi.woff") format("woff"), url("../font/P22UndergroundCYPro-Demi.svg#P22UndergroundCYPro-Demi") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-style-font-display: swap;
+}
+
+@font-face {
+  font-family: 'P22 Underground';
+  src: local("P22 Underground CY Pro Light"), local("P22-Underground-CY-Pro-Light"), url("../font/P22UndergroundCYProLight.woff2") format("woff2"), url("../font/P22UndergroundCYProLight.woff") format("woff"), url("../font/P22UndergroundCYProLight.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Circe-Regulal';
+  src: url("../font/Circe-Regular.eot");
+  src: local("Circe"), local("Circe-Regular"), url("../font/Circe-Regular.eot?#iefix") format("embedded-opentype"), url("../font/Circe-Regular.woff") format("woff"), url("../font/Circe-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-style-font-display: swap;
+}
+
+@font-face {
+  font-family: 'Circe-Light';
+  src: url("../font/Circe-Light.eot");
+  src: local("Circe Light"), local("Circe-Light"), url("../font/Circe-Light.eot?#iefix") format("embedded-opentype"), url("../font/Circe-Light.woff") format("woff"), url("../font/Circe-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-style-font-display: swap;
+}
+
+@font-face {
+  font-family: 'Circe-Bold';
+  src: url("../font/Circe-Bold.eot");
+  src: local("Circe Bold"), local("Circe-Bold"), url("../font/Circe-Bold.eot?#iefix") format("embedded-opentype"), url("../font/Circe-Bold.woff") format("woff"), url("../font/Circe-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-style-font-display: swap;
+}
+
+body {
+  font: 16px 'P22 Underground', sans-serif;
+  color: #000000;
+}
+
+.container {
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.header {
+  background: #f5f6f7;
+  padding: 15px 0;
+}
+
+.header-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.header-top_logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 30%;
+  flex-basis: 30%;
+}
+
+.header-top_logo-name {
+  font: 18px 'P22UndergroundCYPro-Demi', sans-serif;
+  color: #90b95c;
+  text-transform: uppercase;
+}
+
+.header-top_logo-name span {
+  color: #d83138;
+}
+
+.header-top_logo-info {
+  font: 14px 'P22UndergroundCYPro-Light', sans-serif;
+  line-height: 21px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.header-top_logo-info span {
+  position: relative;
+  color: #9ea1a3;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.header-top_logo-info span::before {
+  position: absolute;
+  font-family: 'FontAwesome';
+  content: '\f041';
+  left: -20px;
+  top: -2px;
+  font-size: 16px;
+}
+
+.header-top_search-form {
+  -ms-flex-preferred-size: 30%;
+  flex-basis: 30%;
+}
+
+.header-top_icons {
+  -ms-flex-preferred-size: 15%;
+  flex-basis: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.header-top_icons a {
+  color: #d83138;
+  font-size: 25px;
+}
+
+.header-top_icons a:focus {
+  outline: 1px;
+}
+
+.header-top_callback p {
+  position: relative;
+  font: 21px 'Circe-Regulal',sans-serif;
+  color: #000000;
+  margin-left: 25px;
+}
+
+.header-top_callback p::before {
+  position: absolute;
+  font-family: 'FontAwesome';
+  content: '\f095';
+  left: -25px;
+  top: 2px;
+  color: #9ea1a3;
+}
+
+.header-top_callback span {
+  margin-left: 25px;
+  font: 12px 'P22UndergroundCYPro-Book',sans-serif;
+  color: #90b95c;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-color: #90b95c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.main-nav {
+  background: #d83138;
+}
+
+.form-control {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.form-control.input {
+  border: none;
+  background: #e8eaeb;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0, 1, 5, 0.02);
+  box-shadow: inset 0px 0px 8px 0px rgba(0, 1, 5, 0.02);
+  padding: 0 30px;
+}
+
+.form-control.input:focus {
+  outline: 1px;
+}

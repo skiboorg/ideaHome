@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- SKIBORG WAS HERE -->
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header ">
+    <div class="container">
+        <div class="header-top">
+            <div class="header-top_logo">
+                <p class="header-top_logo-name"><span>идеи</span> для дома</p>
+                <div class="header-top_logo-info">
+                    <p>Декоративные и отделочные материалы по Челябинской области</p>
+                    <span>Адреса всех магазинов</span>
+                </div>
+            </div>
+            <div class="header-top_search-form">
+                <form>
+                    <div class="form-row">
+                        <input type="text" class="form-control input" placeholder="Поиск по сайту">
+                    </div>
+
+                </form>
+            </div>
+            <div class="header-top_icons">
+                <a href=""><i class="fa fa-user"></i></a>
+                <a href=""><i class="fa fa-shopping-cart"></i></a>
+                <a href=""><i class="fa fa-heart"></i></a>
+            </div>
+            <div class="header-top_callback">
+                <p>8 351 215 55 07</p>
+                <span>обратный звонок</span>
+            </div>
+        </div><!-- //header-top-->
+    </div><!-- //container-->
+
+</header>
+<div class="main-nav">
+        <div class="container">
+            <div class="header-menu-wrapper">
+                <ul class="nav">
+                    <li>Каталог материалов</li>
+                </ul>
+            </div><!-- //header-menu-wrappe-->
+        </div><!-- //container-->
+    </div><!-- //header-menu-->
+<div class="main">
+
+
+</div><!--//main-->
+
+<footer class="footer">
+
+</footer>
+
+
+
+
+
+</body>
+<script>
+    let mobile_button = document.getElementsByClassName('mobile-toggle')[0]
+    let mobile_menu = document.getElementsByClassName('header-nav__nav-wrapper')[0]
+
+    mobile_button.onclick = function () {
+        this.classList.toggle('mobile-toggle-active')
+
+        mobile_menu.classList.toggle('mobile-active')
+    }
+
+
+    let labels = document.getElementsByClassName('tab-content-group__radio-label'),
+        cur_tab = 1
+
+    for (x of labels){
+        x.addEventListener('click',function () {
+            changeTab()
+        })
+    }
+    function changeTab(id) {
+        if (id){
+            cur_tab = id
+        }else{
+            document.getElementById(`tab${cur_tab}`).checked = false
+            cur_tab +=1
+            document.getElementById(`tab${cur_tab}`).checked = true
+
+        }
+    }
+
+
+</script>
+</html>
