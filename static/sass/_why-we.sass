@@ -1,0 +1,76 @@
+.why-we
+  &-wrapper
+    display: grid
+    grid-template-columns: repeat(auto-fill,minmax(33%,1fr))
+  &-item
+    display: flex
+    flex-direction: column
+    align-items: center
+    img
+      border-radius: 50%
+      box-shadow: 0px 30px 80px 0px rgba(255, 255, 255, 0.004),24.575px 17.207px 80px 0px rgba(75, 85, 116, 0.35)
+      margin-bottom: 40px
+    h4
+      font: 24px 'P22UndergroundCYPro-Medium',sans-serif
+      color: $text-color
+      margin-bottom: 20px
+    p
+      font: 16px 'P22UndergroundCYPro-Light',sans-serif
+      color: $text-color
+      max-width: 295px
+      text-align: center
+      span
+        color: $color-red
+
+.features
+  &-wrapper
+  &-left
+    h3
+      margin-bottom: 140px
+    ul
+      display: inline-block
+      position: relative
+      &::after
+        position: absolute
+        content: url(../img/listitem.png)
+        right: -290px
+        top: -10px
+        z-index: -1
+      li
+        position: relative
+        font: 16px 'P22UndergroundCYPro-Light',sans-serif
+        color: #525457
+        margin: 0 0 50px 35px
+        &::before
+          position: absolute
+          content: ''
+          height: 8px
+          width: 8px
+          top: 0
+          border-radius: 50%
+          background: #d83138
+          bottom: 0
+          margin: auto
+          left: -35px
+        &:nth-child(1):after
+          position: absolute
+          content: url(../img/line1.png)
+          left: -37px
+          top: -26px
+        &:nth-child(2):after
+          position: absolute
+          content: url(../img/line2.png)
+          left: -37px
+          top: -26px
+        &:nth-child(3):after
+          position: absolute
+          content: url(../img/line3.png)
+          left: -37px
+          top: 11px
+        &:nth-child(4):after
+          position: absolute
+          content: url(../img/line4.png)
+          left: -37px
+          top: 18px
+        &:last-child
+          margin-bottom: 0
