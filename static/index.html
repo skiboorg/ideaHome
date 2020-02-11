@@ -177,8 +177,8 @@
                 </div>
                 <p class="info-text mb-30">Оббегав кучу магазина я так и не нашёл нужного мне материала с достойным качеством и по выгодной цене.</p>
                 <p class="info-text ">Выбор заняться данным бизнесом пал из-за очень малого процента конкурентов на рынке на тот момент
-И вот, уже на протяжении семи лет наш состав остается неизменным. Каждый сотрудник — настоящий практик в своей специальности, который живет ею.</p>
-           </div>
+                    И вот, уже на протяжении семи лет наш состав остается неизменным. Каждый сотрудник — настоящий практик в своей специальности, который живет ею.</p>
+            </div>
             <div class="lets-meet-about">
                 <p><span>Представитель</span><br/>магазина "Идеи для дома"<br/><span>Дмитрий Петров</span></p>
             </div>
@@ -189,19 +189,77 @@
             <div class="features-wrapper">
                 <div class="features-left">
                     <h3>Европейское качество</h3>
+                    <ul>
+                        <li>Звукоизоляций от соседей</li>
+                        <li>Идеальная геометрия и простой монтаж</li>
+                        <li>Окраска в любой цвет под ваш интерьер</li>
+                        <li>Монолитная конструкция<br> абсолютно без швов</li>
+                    </ul>
+                </div>
+                <div class="shadow-box">
+                    <div class="shadow-box-inner">
+                        <h5 class="mb-40">Хотите узнать подробнее
+                            <span>или убедиться в качестве?</span>
+                        </h5>
 
-                        <ul>
-                            <li>Звукоизоляций от соседей</li>
-                            <li>Идеальная геометрия и простой монтаж</li>
-                            <li>Окраска в любой цвет под ваш интерьер</li>
-                            <li>Монолитная конструкция<br> абсолютно без швов</li>
-                        </ul>
+                        <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
+                        <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
+                        <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
 
+                        <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
 
+                        <input style="display: none" name="agree" type="checkbox">
+                    </div>
                 </div>
             </div>
         </div>
 
+    </section>
+    <section class="dont-risk">
+        <div class="container">
+            <div class="dont-risk-wrapper">
+                <div class="dont-risk-left">
+                    <h3>Не рискуйте!</h3>
+                    <p class="dont-risk-left-text1"><span class="green-underline">Посетите наш салон, чтобы убедиться</span><br>в качестве материала</p>
+                    <p class="dont-risk-left-text2">Там вы сможете пообщаться с консультантом, обсудить детали будущего ремонта и посмотреть все материалы</p>
+                    <a   class="btn mb-40" href="#" >Адреса салонов</a>
+                </div>
+                <div class="dont-risk-right">
+                    <img src="http://placehold.it/650x370" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="reviews">
+        <div class="reviews-container">
+            <h3 class="text-center">Посмотрите реальные отзывы</h3>
+            <div class="reviews-wrapper">
+                <div class="reviews-video">
+                    <iframe id="youtube" width="590" height="460" src="https://www.youtube.com/embed/RYDpE0SgXOw" frameborder="0" allowfullscreen></iframe>
+
+                </div>
+                <div class="reviews-slider">
+                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                    </div>
+                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                    </div>
+
+                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                    </div>
+                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                    </div>
+                </div>
+                <div class="slider-arrows">
+                    <div class="up-arrow">
+                        <a href="">d</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
 </div><!--//main-->
@@ -211,6 +269,11 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 <script>
+    function changeVideo(videoId) {
+        var ytString = "https://www.youtube.com/embed/" + videoId;
+        document.getElementById('youtube').src = ytString;
+    }
+
     var slider = tns({
         container: '.offer-slider',
         items: 1,
@@ -229,8 +292,19 @@
         nav: false,
         controls:false,
         mouseDrag:true,
+    });
 
 
+
+    var slider3 = tns({
+        container: '.reviews-slider',
+        items: 3,
+        axis: 'vertical' ,
+        gutter:15,
+        autoplay: false,
+        nav: false,
+        controls:false,
+        mouseDrag:true,
     });
 </script>
 

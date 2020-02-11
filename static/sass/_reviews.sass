@@ -1,0 +1,31 @@
+.reviews
+  &-container
+    max-width:  950px
+    margin: 0 auto
+  &-wrapper
+    display: grid
+    grid-template-columns: 2fr 1fr
+
+
+  &-video
+    iframe
+      box-shadow: 0 0 29px rgba(60, 66, 91, 0.39)
+      border: none
+      border-radius: 10px
+  &-slider
+    &-item
+      display: flex
+      align-items: center
+      justify-content: center
+      position: relative
+      //box-shadow: 0 0 29px rgba(60, 66, 91, 0.22)
+      border-radius: 10px
+      height: 145px
+      width: 260px
+      img
+        opacity: .7
+        cursor: pointer
+        &:hover
+          opacity: 1
+
+

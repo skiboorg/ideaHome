@@ -20,9 +20,31 @@ body
 
 .text-center
   text-align: center
-
+.mb-10
+  margin-bottom: 10px
+.mb-20
+  margin-bottom: 20px
 .mb-30
   margin-bottom: 30px
+.mb-40
+  margin-bottom: 40px
+.mb-50
+  margin-bottom: 50px
+.l-h-30
+  line-height: 30px
+
+.green-underline
+  position: relative
+  z-index: 1
+  &::after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 3px
+    background: $color-green
+    bottom: 2px
+    left: 0
+    z-index: -1
 
 h3
   font: 48px 'Prata', sans-serif
@@ -33,3 +55,28 @@ h3
 
 section
   margin-bottom: 115px
+
+.shadow-box
+  box-sizing: border-box
+  border-radius: 10px
+  background-color: #fff
+  box-shadow: 0 0 51px rgba(0, 0, 0, 0.1)
+  padding: 9px
+  &-inner
+    box-sizing: border-box
+    border-radius: 10px
+    min-height: 100%
+    height: fit-content
+    border: 1px dashed $border-color
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 45px
+    justify-content: center
+    h5
+      font: 21px 'P22UndergroundCYPro-Medium',sans-Serif
+      color: $header-text-color
+      font-weight: 500
+      span
+        display: block
+        font-family: 'P22UndergroundCYPro-Light',sans-serif

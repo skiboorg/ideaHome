@@ -24,9 +24,15 @@
 
 .features
   &-wrapper
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-wrap: wrap
+  & .shadow-box
+    margin-top: 65px
   &-left
     h3
-      margin-bottom: 140px
+      margin-bottom: 110px
     ul
       display: inline-block
       position: relative
@@ -74,3 +80,26 @@
           top: 18px
         &:last-child
           margin-bottom: 0
+
+.dont-risk
+  padding: 120px 0
+  background: $section-bg-grey
+  &-wrapper
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: center
+  &-left
+    max-width: 350px
+    &-text1
+      line-height: 30px
+      font: 18px 'P22UndergroundCYPro-Medium',Sans-Serif
+      margin-bottom: 30px
+    &-text2
+      line-height: 24px
+      color: #73767a
+      font: 16px 'P22UndergroundCYPro-Medium',Sans-Serif
+      margin-bottom: 65px
+  &-right
+    img
+      border-radius: 10px
