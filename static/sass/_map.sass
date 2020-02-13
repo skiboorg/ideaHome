@@ -1,0 +1,40 @@
+.map
+  background: url(../img/map.jpg)
+  height: 600px
+  &-inner
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    //& .shadow-box
+    //  flex-basis: 33.33%
+    //  box-shadow: 0 0 54px 0 rgba(0, 0, 0, 0.2)
+    //
+    & .shadow-box-inner
+      align-items: flex-start
+
+    h5
+      font: 22px 'P22UndergroundCYPro-Medium',Sans-Serif
+      color: $text-color
+      margin-bottom: 10px
+    p
+      font: 18px 'P22UndergroundCYPro-Medium',Sans-Serif
+      color: #a0a0a0
+      margin-bottom: 10px
+      span
+        color: #5ca1e9
+
+
+@media (max-width: 1024px)
+  .map
+     &-inner
+       & .shadow-box
+         min-width: 320px
+
+@media (max-width: 768px)
+  .map
+     &-inner
+       justify-content: center
+
+
+

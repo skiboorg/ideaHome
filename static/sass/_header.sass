@@ -82,18 +82,23 @@
   align-items: center
   justify-content: space-between
   font: 16px 'P22UndergroundCYPro-Demi',sans-serif
+  li
+    flex-grow: 1
   &-item
+    display: block
     color: #ffffff
     text-align: center
     line-height: 60px
+
     &:hover
-        border-bottom: 1px solid #ffffff
+        //border-bottom: 1px solid #ffffff
+        background: $color-red-hover
   &-catalog-toggle
 
     position: relative
-    padding: 0 55px 0 35px
+
     cursor: pointer
-    background: $color-red-hover
+    //background: $color-red-hover
     &::before
       font-family: 'FontAwesome'
       content: '\f0ca'
