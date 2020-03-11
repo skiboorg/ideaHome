@@ -22,6 +22,9 @@
 .catalog-menu
   width: 100%
   z-index: 99
+  &.mobile-catalog
+    height: 0
+    overflow: hidden
   &-link
     font: 16px 'P22UndergroundCYPro-Demi',sans-serif
     background: #ffffff
@@ -64,17 +67,19 @@
   &-list
     width: 100%
     padding: 10px
+    box-sizing: border-box
     &-item
       background: #ffffff
-      margin-bottom: 10px
+      margin: 15px 0
       &:last-child
-        margin-bottom: 0
+        margin-bottom: 15px
       a
         font: 16px 'P22UndergroundCYPro-Light',sans-serif
         color: $text-color
         line-height: 16px
         &:hover
-          font-family: 'P22UndergroundCYPro-Demi',sans-serif
+          color: $color-red-hover
+          //font-family: 'P22UndergroundCYPro-Demi',sans-serif
   &.panel-active
     border-bottom: 1px solid $border-color
 

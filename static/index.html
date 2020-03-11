@@ -14,14 +14,19 @@
 <header class="header ">
     <div class="container">
         <div class="header-top">
+
+            <div class="mobile-menu-toggle">
+                <span><i class="fa fa-list"></i></span>
+            </div>
             <div class="header-top_logo">
+
                 <p class="header-top_logo-name"><span>идеи</span> для дома</p>
-                <div class="header-top_logo-info">
+                <div class="header-top_logo-info mobile-hide-800">
                     <p>Декоративные и отделочные материалы по Челябинской области</p>
                     <span>Адреса всех магазинов</span>
                 </div>
             </div>
-            <div class="header-top_search-form">
+            <div class="header-top_search-form mobile-hide-800">
                 <form>
                     <div class="form-row">
                         <input type="text" class="form-control input" placeholder="Поиск по сайту">
@@ -31,19 +36,126 @@
             </div>
             <div class="header-top_icons">
                 <a href=""><i class="fa fa-user"></i></a>
-                <a href=""><i class="fa fa-shopping-cart"></i></a>
+                <div class="header-cart-toggle">
+                    <a  href="#"><i class="fa fa-shopping-cart"></i></a>
+                    <div style="display: none" class="header-cart">
+                        <div id="HeaderCart">
+                            <header-cart-items
+                                    v-for="(item,index) in headerCartItems"
+                                    v-bind:item="item"
+                                    v-bind:key="item.id"
+                                    v-bind:index="index"
+                                    v-on:userdelete="remove"
+                            ></header-cart-items>
+
+
+                            <!--div class="header-cart-items">
+                                <div class="header-cart-item">
+                                    <img src="http://placehold.it/50" alt="">
+                                    <div class="header-cart-item-info">
+                                        <p>Lorem ipsum dolor.</p>
+                                        <span class="header-cart-item-info-num">4</span>
+                                        x
+                                        <span class="header-cart-item-info-price">400</span>
+                                        =
+                                        <span class="header-cart-item-info-total">10000</span>
+                                    </div>
+                                    <div class="header-cart-item-remove">
+                                        <a href="">X</a>
+                                    </div>
+
+                                </div>
+                                <div class="header-cart-item">
+                                    <img src="http://placehold.it/50" alt="">
+                                    <div class="header-cart-item-info">
+                                        <p>Lorem ipsum Lorem ipsumLorem ipsum dolor.</p>
+                                        <span class="header-cart-item-info-num">4</span>
+                                        x
+                                        <span class="header-cart-item-info-price">400</span>
+                                        =
+                                        <span class="header-cart-item-info-total">1044000</span>
+                                    </div>
+                                    <div class="header-cart-item-remove">
+                                        <a href="">X</a>
+                                    </div>
+
+                                </div>
+                            </div-->
+                            <div class="header-cart-bottom">
+                                <div class="header-cart-bottom-total">
+                                    <p>Итого</p>
+                                    <p>[[cartTotal]]</p>
+                                </div>
+                                <div class="header-cart-bottom-buttons">
+                                    <a href="" class="btn">Корзина</a>
+                                    <a href="" class="btn">Оформить</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
                 <a href=""><i class="fa fa-heart"></i></a>
             </div>
-            <div class="header-top_callback">
+            <div class="header-top_callback mobile-hide-800">
                 <p>8 351 215 55 07</p>
                 <span>обратный звонок</span>
             </div>
         </div><!-- //header-top-->
     </div><!-- //container-->
+    <div class="side-panel">
 
+        <div class="side-panel-top">
+            <span class="side-panel-top-toggle"><i class="fa fa-times"></i></span>
+            <p class="side-panel-top-logo">идеи для дома</p>
+        </div>
+
+
+        <div class="side-panel-menu">
+            <a href=""><p class="side-panel-menu-item">Каталог материалов</p></a>
+            <div class="catalog-menu mobile-catalog">
+
+                <button class="accordion">3D панели</button>
+                <div class="panel">
+                    <ul class="panel-list">
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                    </ul>
+                </div>
+                <a class="catalog-menu-link" href="#">ССылка</a>
+                <button class="accordion">Section 2</button>
+                <div class="panel">
+                    <ul class="panel-list">
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                    </ul>
+                </div>
+
+                <button class="accordion">Section 3</button>
+                <div class="panel">
+                    <ul class="panel-list">
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                    </ul>
+                </div>
+                <a class="catalog-menu-link" href="#">ССылка</a>
+
+
+            </div><!--//catalog-menu-->
+            <a href=""><p class="side-panel-menu-item">Доставка</p></a>
+            <a href=""><p class="side-panel-menu-item">Производители</p></a>
+            <a href=""><p class="side-panel-menu-item">Партнерам</p></a>
+            <a href=""><p class="side-panel-menu-item">Статьи</p></a>
+            <a href=""><p class="side-panel-menu-item">Контакты</p></a>
+            <a href=""><p class="side-panel-menu-item">О нас</p></a>
+        </div>
+    </div>
 </header>
-
-<div class="main-nav">
+<div class="main-nav mobile-hide-800">
     <div class="container">
         <ul class="nav">
             <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
@@ -55,67 +167,36 @@
             <li><a class="nav-item" href="#">Контакты</a></li>
             <li><a class="nav-item" href="#">О нас</a></li>
         </ul>
+
     </div><!-- //container-->
-  <div class="nav-catalog ">
-                    <button class="accordion">3D панели</button>
-                    <div class="panel">
-                        <ul class="panel-list">
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        </ul>
-                    </div>
-                    <a class="nav-catalog-link" href="#">ССылка</a>
-                    <button class="accordion">Section 2</button>
-                    <div class="panel">
-                        <ul class="panel-list">
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        </ul>
-                    </div>
-
-                    <button class="accordion">Section 3</button>
-                    <div class="panel">
-                        <ul class="panel-list">
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        </ul>
-                    </div>
-                    <a class="nav-catalog-link" href="#">ССылка</a>
-
-                </div>
 </div><!-- //header-menu-->
-
 <div class="main">
     <section class="offer">
         <div class="container ">
             <div class="offer-wrapper">
-
                 <div class="offer-banner">
-                    <div class="offer-banner-menu">
+                    <div class="offer-banner-menu mobile-hide-800">
                         <ul class="offer-banner-menu-wrapper">
                             <li class="offer-banner-menu-item" >Lorem ipsum.
                                 <div  class="offer-banner-menu-inner">
                                     <ul class="offer-banner-menu-wrapper">
                                         <li class="offer-banner-menu-inner-item">1
-                                        <div  class="offer-banner-menu-inner">
-                                    <ul class="offer-banner-menu-wrapper">
-                                        <li class="offer-banner-menu-inner-item">1</li>
-                                        <li class="offer-banner-menu-inner-item">2</li>
-                                    </ul>
-                                </div>
+                                            <div  class="offer-banner-menu-inner">
+                                                <ul class="offer-banner-menu-wrapper">
+                                                    <li class="offer-banner-menu-inner-item">1</li>
+                                                    <li class="offer-banner-menu-inner-item">2</li>
+                                                </ul>
+                                            </div>
                                         </li>
                                         <li class="offer-banner-menu-inner-item">2</li>
                                     </ul>
                                 </div>
                             </li>
-                             <li class="offer-banner-menu-item" >Lorem ipsum.
+                            <li class="offer-banner-menu-item" >Lorem ipsum.
                                 <div class="offer-banner-menu-inner">
                                     <ul class="offer-banner-menu-wrapper">
                                         <li class="offer-banner-menu-inner-item">33</li>
-                                            <li class="offer-banner-menu-inner-item">444</li>
+                                        <li class="offer-banner-menu-inner-item">444</li>
                                         <li class="offer-banner-menu-inner-item link-item"><a href="#">Lorem ipsum.</a></li>
                                     </ul>
                                 </div>
@@ -280,19 +361,19 @@
 </div><!--//main-->
 <section class="map">
     <div class="container map-inner">
-             <div class="shadow-box">
-                <div class="shadow-box-inner">
-                    <h5>Номер телефона:</h5>
-                    <p class="mb-30"><span>8 (982) 333-78-88</span></p>
-                    <h5>Email адрес:</h5>
-                    <p class="mb-30"><span>ideahome@mail.ru</span></p>
-                    <h5>Адреса магазинов:</h5>
-                    <p>Челябинск, <span>название улицы, №36</span></p>
-                    <p>Челябинск, <span>название улицы, №36</span></p>
-                    <p>Челябинск, <span>название улицы, №36</span></p>
+        <div class="shadow-box">
+            <div class="shadow-box-inner">
+                <h5>Номер телефона:</h5>
+                <p class="mb-30"><span>8 (982) 333-78-88</span></p>
+                <h5>Email адрес:</h5>
+                <p class="mb-30"><span>ideahome@mail.ru</span></p>
+                <h5>Адреса магазинов:</h5>
+                <p>Челябинск, <span>название улицы, №36</span></p>
+                <p>Челябинск, <span>название улицы, №36</span></p>
+                <p>Челябинск, <span>название улицы, №36</span></p>
 
-                </div>
             </div>
+        </div>
     </div>
 </section>
 <footer class="footer">
@@ -338,7 +419,11 @@
 
     </div>
 </footer>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
 <script>
     function changeVideo(videoId) {
         var ytString = "https://www.youtube.com/embed/" + videoId;
@@ -358,6 +443,7 @@
         mouseDrag:true,
     });
 </script>
+
 
 <script>
     let acc = document.getElementsByClassName("accordion");
@@ -390,38 +476,6 @@
 </script>
 
 
-
 </body>
-<script>
-    let mobile_button = document.getElementsByClassName('mobile-toggle')[0]
-    let mobile_menu = document.getElementsByClassName('header-nav__nav-wrapper')[0]
 
-    mobile_button.onclick = function () {
-        this.classList.toggle('mobile-toggle-active')
-
-        mobile_menu.classList.toggle('mobile-active')
-    }
-
-
-    let labels = document.getElementsByClassName('tab-content-group__radio-label'),
-        cur_tab = 1
-
-    for (x of labels){
-        x.addEventListener('click',function () {
-            changeTab()
-        })
-    }
-    function changeTab(id) {
-        if (id){
-            cur_tab = id
-        }else{
-            document.getElementById(`tab${cur_tab}`).checked = false
-            cur_tab +=1
-            document.getElementById(`tab${cur_tab}`).checked = true
-
-        }
-    }
-
-
-</script>
 </html>

@@ -1,0 +1,36 @@
+.side-panel
+  transform: translateX(-100%)
+  position: absolute
+  background: $color-red
+  top: 0
+  height: 100vh
+  overflow: auto
+  width: 320px
+  transition: all .1s linear
+  &.panel-active
+    transform: translateX(0)
+    transition: all .1s linear
+    
+  &-top
+
+    display: flex
+    align-items: center
+    padding: 20px 15px
+    box-sizing: border-box
+
+    &-toggle
+      margin-right: 15px
+      font-size: 25px
+      color: #ffffff
+    &-logo
+      color: #ffffff
+      text-transform: uppercase
+      font: 15px 'P22UndergroundCYPro-Demi', sans-serif
+      flex-basis: 10%
+
+.side-panel-menu
+  &-item
+    font: 16px 'P22UndergroundCYPro-Light', sans-serif
+    padding: 0 15px
+    margin-bottom: 20px
+    color: #ffffff

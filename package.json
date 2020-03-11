@@ -15,7 +15,8 @@
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-image": "^5.1.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.0.2",
+    "gulp-vueify": "0.0.3"
   },
   "dependencies": {
     "gulp-autoprefixer": "^6.1.0"
