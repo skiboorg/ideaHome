@@ -33,6 +33,8 @@ class Category(models.Model):
     page_keywords = models.TextField('Keywords', blank=True, null=True)
     short_description = models.TextField('Краткое описание для главной', blank=True,)
     description = RichTextUploadingField('Описание категории', blank=True, null=True)
+    is_active = models.BooleanField('Отображать ?', default=True, db_index=True)
+    is_in_index_catalog = models.BooleanField('Показывать в каталоге на главной ?', default=False, db_index=True)
     views = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -50,12 +52,14 @@ class Category(models.Model):
 
     def get_all_manufactors(self):
         all_manufactors = []
-        result = list()
+        #result = list()
         for subcat in self.subcategory.all():
-            all_manufactors.append(Manufactor.objects.filter(subcategory=subcat))
-        for i in all_manufactors:
-            result = list(chain(result, i))
-        return result
+            for m in Manufactor.objects.filter(subcategory=subcat):
+                if m not in all_manufactors:
+                    all_manufactors.append(m)
+        # for i in all_manufactors:
+        #     result = list(chain(result, i))
+        return all_manufactors
 
     def __str__(self):
         return f'{self.name}'
@@ -154,7 +158,7 @@ class Tag(models.Model):
 
 class Item(models.Model):
     # collection = models.ManyToManyField(Collection, blank=True, verbose_name='Коллекция',db_index=True)
-    tag = models.ManyToManyField(Tag, db_index=True, verbose_name='Теги')
+    tag = models.ManyToManyField(Tag, blank=True, db_index=True, verbose_name='Теги')
     manufactor = models.ForeignKey(Manufactor, blank=True, null=True, verbose_name='Производитель',
                                  on_delete=models.SET_NULL, db_index=True)
     category = models.ManyToManyField(Category,verbose_name='Категории', db_index=True)
@@ -195,11 +199,16 @@ class Item(models.Model):
         super(Item, self).save(*args, **kwargs)
 
     def get_small_image(self):
-        return self.itemimage_set.first().image_small
+        if self.itemimage_set.first().image_small:
+            return self.itemimage_set.first().image_small
+        else:
+            return 'http://placehold.it/200'
 
     def get_full_image(self):
-        return self.itemimage_set.first().image.url
-
+        if self.itemimage_set.first().image.url:
+            return self.itemimage_set.first().image.url
+        else:
+            return 'http://placehold.it/700'
     def image_tag(self):
         # used in the admin site model as a "thumbnail"
         if self.get_small_image():
@@ -241,7 +250,7 @@ class ItemImage(models.Model):
         return self.upload_to % (self.item.id, filename)
 
     item = models.ForeignKey(Item, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Товар')
-    image = models.ImageField('Изображение товара', upload_to=upload_to, blank=True)
+    image = models.ImageField('Изображение товара', upload_to='items/', blank=True)
     image_small = models.CharField(max_length=255, blank=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -278,7 +287,7 @@ class ItemImage(models.Model):
         #     image.save(small_name, 'JPEG', quality=100)
         # else:
         os.makedirs(BASE_DIR + '/media/items/{}'.format(self.item.id), exist_ok=True)
-        image.save(BASE_DIR + small_name, 'JPEG', quality=100)
+        image.save(BASE_DIR + '/' + small_name, 'JPEG', quality=100)
         self.image_small = '/' + small_name
 
 

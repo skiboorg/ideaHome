@@ -96,6 +96,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customuser',
     'item',
+    'page',
     'order',
     'cart',
     'ckeditor',
