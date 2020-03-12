@@ -68,18 +68,32 @@
 
 //item start
 .item
-  padding-top: 40px
+  h1, h3
+    font: 24px 'P22UndergroundCYPro-Demi',sans-serif
+    color: $text-color
+    margin-bottom: 20px
+
   &-wrapper
     display: grid
     grid-template-columns: 2fr 4fr
     grid-gap: 70px
+    margin-bottom: 40px
+
 
 .item-image
-
+  &-list
+    display: flex
+    flex-wrap: wrap
+    &-item
+      &.thumb
+        margin-right: 5px
+.item-tabs
+  margin-bottom: 40px
 .item-info
-  h1
-    font: 24px 'P22UndergroundCYPro-Demi',sans-serif
-    color: $text-color
+
+
+  &-articul
+    font: 14px 'P22UndergroundCYPro-Book',sans-serif
     margin-bottom: 10px
   &-presence
     font: 14px 'P22UndergroundCYPro-Book',sans-serif
@@ -87,6 +101,22 @@
     padding-bottom: 20px
     border-bottom: 1px solid $border-color
     margin-bottom: 40px
+    &.present
+      color: $color-green
+      &::before
+        font-family: FontAwesome
+        content: '\f05d'
+        color: $color-green
+        margin-right: 10px
+    &.not-present
+      color: $color-red
+      &::before
+        font-family: FontAwesome
+        content: '\f00d'
+        color: $color-red
+        margin-right: 10px
+
+
   &-group
     display: grid
     grid-template-columns: 1fr 1fr
@@ -112,6 +142,7 @@
 .item-info-price
   padding: 20px 25px
   border: 1px solid $border-color
+  height: fit-content
   &-delivery
     font: 14px 'P22UndergroundCYPro-Book',sans-serif
     color: $text-color
@@ -120,6 +151,41 @@
     display: flex
     justify-content:  flex-start
     align-items: center
+  &-quantity
+    margin-bottom: 10px
+    display: flex
+    align-items: center
+    p
+      font-weight: 600
+      cursor: pointer
+      flex-basis: 20px
+      transition: all .1s linear
+      text-align: center
+      color: $text-color
+      border: 1px solid $border-color
+      user-select: none
+      font: 16px 'P22UndergroundCYPro-Demi',sans-serif
+
+      &:hover
+        border-color: $text-color
+        transform: scale(1.5)
+    input
+      width: 40px
+      border: none
+      text-align: center
+      font: 16px 'P22UndergroundCYPro-Demi',sans-serif
+      color: $color-green
+      user-select: none
+      outline: none
+    span
+      font: 16px 'P22UndergroundCYPro-Demi',sans-serif
+  &-buttons
+    display: flex
+    justify-content: space-between
+    & .btn
+      height: 50px
+      font-size: 13px
+      flex-basis: 49%
 
 .current-price
   font: 34px 'P22UndergroundCYPro-Demi',sans-serif
@@ -137,12 +203,6 @@
     top: 11px
     height: 3px
     background: $color-red
-.item-info-description
-  h3
-    font: 16px 'P22UndergroundCYPro-Demi',sans-serif
-    color: $text-color
-    margin-bottom: 25px
-  p
-    font: 14px 'P22UndergroundCYPro-Book',sans-serif
-    color: $text-color
+
+
 //item end

@@ -60,11 +60,21 @@
 </div><!-- //header-menu-->
 
 <div class="main">
-  <section class="item">
-      <div class="container">
-          <div class="item-wrapper">
-              <div class="item-image">
-                  <ul class="item-image-list">
+    <div class="breadcrumbs">
+        <div class="container ">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Каталог товаров</a></li>
+                <li><a href="#">Одежда и Обувь</a></li>
+                <li><span>Ботинки Кожаные</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="item">
+        <div class="container">
+            <div class="item-wrapper">
+                <div class="item-image">
+                    <ul class="item-image-list">
                         <li class="item-image-list-item">
                             <div class="inner">
                                 <a href="http://placehold.it/220" class="glightbox">
@@ -72,79 +82,169 @@
                                 </a>
                             </div>
                         </li>
-                       <li class="item-image-list-item not-visible">
+                        <li class="item-image-list-item thumb">
                             <div class="inner">
                                 <a href="http://placehold.it/230" class="glightbox">
-                                    <img src="http://placehold.it/200">
+                                    <img src="http://placehold.it/50">
                                 </a>
                             </div>
                         </li>
-                       <li class="item-image-list-item not-visible">
+                        <li class="item-image-list-item thumb">
                             <div class="inner">
-                                 <a href="http://placehold.it/240" class="glightbox">
-                                    <img src="http://placehold.it/200">
+                                <a href="http://placehold.it/240" class="glightbox">
+                                    <img src="http://placehold.it/50">
                                 </a>
                             </div>
                         </li>
                         <li class="item-image-list-item not-visible">
                             <div class="inner">
                                 <a href="http://placehold.it/270" class="glightbox">
-                                     <img src="http://placehold.it/200">
+                                    <img src="http://placehold.it/200">
                                 </a>
                             </div>
                         </li>
-                       <li class="item-image-list-item not-visible">
+                        <li class="item-image-list-item not-visible">
                             <div class="inner">
-                                 <a href="http://placehold.it/260" class="glightbox">
-                                   <img src="http://placehold.it/200">
+                                <a href="http://placehold.it/260" class="glightbox">
+                                    <img src="http://placehold.it/200">
                                 </a>
                             </div>
                         </li>
-                      <li class="item-image-list-item not-visible">
+                        <li class="item-image-list-item not-visible">
                             <div class="inner">
-                                 <a href="http://placehold.it/250" class="glightbox">
+                                <a href="http://placehold.it/250" class="glightbox">
                                     <img src="http://placehold.it/200">
                                 </a>
                             </div>
                         </li>
                     </ul>
-              </div><!--//item-image-->
-              <div class="item-info">
-                  <h1>Lorem ipsum dolor.</h1>
-                  <p class="item-info-presence">Lorem ipsum.</p>
+                </div><!--//item-image-->
+                <div class="item-info">
+                    <h1>Lorem ipsum dolor.</h1>
+                    <p class="item-info-articul">Артикул: ываываывавыа</p>
+                    <p class="item-info-presence present">В наличии</p>
 
-                  <div class="item-info-group">
-                     <ul class="item-info-attributes">
-                      <li class="item-info-attributes-item"><p>Вес:</p><span>3,4кг</span></li>
-                        <li class="item-info-attributes-item"><p>Комплект:</p><span>3,4кг</span></li>
+
+                    <div class="item-info-group">
+                        <ul class="item-info-attributes">
+
+                            <li class="item-info-attributes-item"><p>Вес:</p><span>3,4кг</span></li>
+                            <li class="item-info-attributes-item"><p>Комплект:</p><span>3,4кг</span></li>
                             <li class="item-info-attributes-item"><p>Размер:</p><span>3,4кг</span></li>
                             <li class="item-info-attributes-item"><p>Толщина:</p><span>3,4кг</span></li>
                             <li class="item-info-attributes-item"><p>Угловые элементы:</p><span>3,4кг</span></li>
+                            <li class="item-info-attributes-item"><p>Угловые элементы:</p><span>3,4кг</span></li>
+                            <li class="item-info-attributes-item"><p>Угловые элементы:</p><span>3,4кг</span></li>
 
+                        </ul>
+                        <div class="item-info-price">
+                            <p class="item-info-price-delivery">Lorem ipsum dolor.</p>
+                            <div class="item-info-price-wrapper">
+                                <p class="current-price"><span id="current_price">560</span> <i class="fa fa-rub"></i></p>
+                                <p class="old-price">760 <i class="fa fa-rub"></i></p>
+                            </div>
+                            <div class="item-info-price-quantity">
+                                <p onclick="delQt()">-</p><input id="quantity" readonly type="number" value="1" min="1"><p class="mr-10" onclick="addQt()">+</p>
+                                <span>Итого: <span id="total_price">560</span> <i class="fa fa-rub"></i></span>
+                            </div>
+                            <div class="item-info-price-buttons">
+                                <span class="btn btn-green">в корзину</span>
+                                <span class="btn btn-outline">купить в 1 клик</span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                 </div><!--//item-info-->
+
+            </div><!--//item-wrapper-->
+            <div class="item-tabs">
+                <div class="tab">
+                    <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'description')">Описание</button>
+                    <button class="tablinks" onclick="openTab(event, 'feedback')">Отзывы</button>
+                    <button class="tablinks" onclick="openTab(event, 'delivery')">Доставка и оплата</button>
+                </div>
+
+                <div id="description" class="tabcontent">
+                    <h3>dsads</h3>
+                    <p>London is the capital city of England.</p>
+                    <ul>
+                        <li>sdl;fklds;</li>
+                        <li>sdl;fklds;</li>
+                        <li>sdl;fklds;</li>
+                        <li>sdl;fklds;</li>
                     </ul>
-                      <div class="item-info-price">
-                          <p class="item-info-price-delivery">Lorem ipsum dolor.</p>
-                          <div class="item-info-price-wrapper">
-                              <p class="current-price">560 <i class="fa fa-rub"></i></p>
-                              <p class="old-price">760 <i class="fa fa-rub"></i></p>
-                          </div>
+                </div>
+
+                <div id="feedback" class="tabcontent">
+
+                    <p>Paris is the capital of France.</p>
+                </div>
+
+                <div id="delivery" class="tabcontent">
+
+                    <p>Tokyo is the capital of Japan.</p>
+                </div>
+
+            </div><!--//item-tabs-->
+
+            <div class="recent-items">
+                <h3>Рекомендуемые товары</h3>
+                   <div class="catalog-items-list">
+                        <div class="catalog-item">
+                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+                            <a class="catalog-item-image" href="#">
+                              <img src="img/item-temp.jpg" alt="">
+                            </a>
+                            <a class="catalog-item-info" href="#">
+                                <p>Lorem ipsum dolor.</p>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
+                            </a>
+                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
+                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                        </div><!--//catalog-item-->
+                         <div class="catalog-item">
+                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+                            <a class="catalog-item-image" href="#">
+                              <img src="img/item-temp.jpg" alt="">
+                            </a>
+                            <a class="catalog-item-info" href="#">
+                                <p>Lorem ipsum dolor.</p>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
+                            </a>
+                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
+                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                        </div><!--//catalog-item-->
+                         <div class="catalog-item">
+                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+                            <a class="catalog-item-image" href="#">
+                              <img src="img/item-temp.jpg" alt="">
+                            </a>
+                            <a class="catalog-item-info" href="#">
+                                <p>Lorem ipsum dolor.</p>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
+                            </a>
+                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
+                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                        </div><!--//catalog-item-->
+                         <div class="catalog-item">
+                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+                            <a class="catalog-item-image" href="#">
+                              <img src="img/item-temp.jpg" alt="">
+                            </a>
+                            <a class="catalog-item-info" href="#">
+                                <p>Lorem ipsum dolor.</p>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
+                            </a>
+                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
+                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                        </div><!--//catalog-item-->
+                    </div><!--//catalog-items-list-->
+            </div>
 
 
-                      </div>
-                  </div>
-                  <div class="item-info-description">
-                    <h3>ОПИСАНИЕ</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dolores dolorum eligendi fugiat officiis quidem reiciendis ut velit! Quisquam, sequi?</p>
-                  </div>
-
-
-
-              </div><!--//item-info-->
-
-          </div><!--//item-wrapper-->
-
-      </div><!--//container-->
-  </section><!--//item-->
+        </div><!--//container-->
+    </section><!--//item-->
 </div><!--//main-->
 <section class="map">
     <div class="container map-inner">
@@ -208,9 +308,43 @@
 </footer>
 <script src="js/glightbox.min.js"></script>
 <script>
-     var lightbox = GLightbox({
-            loop: true
-        });
+    let lightbox = GLightbox({
+        loop: true
+    });
+
+    let quantityInput = document.getElementById('quantity'),
+        currentPrice =document.getElementById('current_price').innerText,
+        totalPrice =document.getElementById('total_price')
+
+    function addQt(){
+        quantityInput.value = parseInt(quantityInput.value) + 1
+        calculate()
+    }
+    function delQt(){
+        if (quantityInput.value > 1){
+            quantityInput.value = parseInt(quantityInput.value) - 1
+            calculate()
+        }
+    }
+    function calculate() {
+        totalPrice.innerText = parseInt(currentPrice) * parseInt(quantityInput.value)
+    }
+</script>
+<script>
+function openTab(evt, tab) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" tab-active", "");
+  }
+  document.getElementById(tab).style.display = "block";
+  evt.currentTarget.className += " tab-active";
+}
+document.getElementById("defaultOpen").click();
 </script>
 
 
