@@ -175,7 +175,7 @@ class Item(models.Model):
     weight = models.CharField('Вес', max_length=15, blank=True, null=True)
     complect = models.CharField('Комплект', max_length=15, blank=True, null=True)
     thickness = models.CharField('Толщина', max_length=15, blank=True, null=True)
-    
+
     description = RichTextUploadingField('Описание товара', blank=True, null=True)
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
     page_description = models.TextField('Description страницы',  blank=True, null=True)
