@@ -51,16 +51,17 @@
                     <div class="catalog-items-list">
                         {% for item in items %}
                         <div class="catalog-item">
-                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
-                            <a class="catalog-item-image" href="#">
+                            <a href="{{ item.get_absolute_url }}" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+                            <a class="catalog-item-image" href="{{ item.get_absolute_url }}">
                               <img src="{{ item.get_small_image }}" alt="{{ item.name }}">
                             </a>
-                            <a class="catalog-item-info" href="#">
+                            <a class="catalog-item-info" href="{{ item.get_absolute_url }}">
                                 <p>{{ item.name }}</p>
                                 <span>Краткое описание товара. Нужно ли??</span>
+
                             </a>
                             <p class="catalog-item-price">{{ item.price }} <i class="fa fa-rub"></i></p>
-                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                            <a href="{{ item.get_absolute_url }}" class="btn catalog-item-btn">в корзину</a>
                         </div><!--//catalog-item-->
                         {% endfor %}
                     </div><!--//catalog-items-list-->

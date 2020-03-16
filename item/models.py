@@ -171,11 +171,11 @@ class Item(models.Model):
     discount = models.IntegerField('Скидка %', blank=True, default=0, db_index=True)
     units = models.CharField('Ед.Измерения', max_length=50, blank=True, null=True, default='не указано')
     material = models.CharField('Материал', max_length=50, blank=True, null=True, default='не указано')
-    length = models.CharField('Длина', max_length=15, blank=True, null=True)
-    width = models.CharField('Ширина', max_length=15, blank=True, null=True)
-    height = models.CharField('Высота', max_length=15, blank=True, null=True)
-    deep = models.CharField('Глубина', max_length=15, blank=True, null=True)
+    size = models.CharField('Размер', max_length=15, blank=True, null=True)
     weight = models.CharField('Вес', max_length=15, blank=True, null=True)
+    complect = models.CharField('Комплект', max_length=15, blank=True, null=True)
+    thickness = models.CharField('Толщина', max_length=15, blank=True, null=True)
+    
     description = RichTextUploadingField('Описание товара', blank=True, null=True)
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
     page_description = models.TextField('Description страницы',  blank=True, null=True)
@@ -203,6 +203,9 @@ class Item(models.Model):
             return self.itemimage_set.first().image_small
         else:
             return 'http://placehold.it/200'
+
+    def get_absolute_url(self):
+        return f'/category/{self.category.first().name_slug}/{self.subcategory.first().name_slug}/{self.name_slug}'
 
     def get_full_image(self):
         if self.itemimage_set.first().image.url:
