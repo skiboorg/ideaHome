@@ -1630,6 +1630,135 @@ section {
   }
 }
 
+.main-cart-items {
+  min-width: 100%;
+}
+
+.main-cart-items-head {
+  font-family: "P22UndergroundCYPro-Demi",sans-serif;
+  font-size: 14px;
+  border-bottom: 1px solid #ebebeb;
+  line-height: 50px;
+}
+
+.main-cart-item {
+  line-height: 120px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.main-cart-footer {
+  line-height: 50px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.main-cart-footer__total,
+.main-cart-footer__total-price {
+  font-family: "P22UndergroundCYPro-Demi",sans-serif;
+  font-size: 18px;
+  color: #000000;
+}
+
+.main-cart-footer__total-price {
+  color: #d83138;
+}
+
+.main-cart-item-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.main-cart-item-name span {
+  margin-left: 20px;
+  font-family: "P22UndergroundCYPro-Demi",sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.main-cart-item-name img {
+  width: 70px;
+}
+
+.main-cart-item-price,
+.main-cart-item-total-price {
+  width: 10%;
+  font-size: 18px;
+  font-family: "P22UndergroundCYPro-Demi",sans-serif;
+  color: #000000;
+}
+
+.main-cart-item-number {
+  width: 13%;
+}
+
+.main-cart-item-action {
+  width: 10%;
+}
+
+.main-cart {
+  width: 100px !important;
+}
+
+.custom-input {
+  border: 1px solid #ebebeb;
+  width: 100%;
+  height: 32px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  font-family: "P22UndergroundCYPro-Demi",sans-serif;
+  font-size: 18px;
+}
+
+.custom-input button {
+  border: none;
+  background: none;
+  font-family: "P22UndergroundCYPro-Demi",sans-serif;
+  font-size: 18px;
+  padding: 7px;
+  outline-width: 0;
+}
+
+.custom-input button:hover {
+  background: #d83138;
+  color: #ffffff;
+}
+
+.custom-input input {
+  border: none;
+  width: 100%;
+  padding: 7px;
+  text-align: center;
+  outline-width: 0;
+}
+
+.main-cart__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.main-cart__buttons a {
+  -ms-flex-preferred-size: 320px;
+  flex-basis: 320px;
+}
+
 .manufactors {
   background: #f5f6f7;
   margin: 0;

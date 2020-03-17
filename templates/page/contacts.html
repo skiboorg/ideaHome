@@ -1,0 +1,64 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+
+ <div class="main">
+    <div class="breadcrumbs bg-grey">
+        <div class="container ">
+            <ul>
+                <li><a href="/">Главная</a></li>
+
+                <li><span>Контакты</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="contacts">
+        <div class="container">
+            <div class="section-header"><h1>Контакты</h1></div>
+            <div class="contacts-wrapper">
+                <div class="contacts-form">
+                    <div class="shadow-box">
+                        <div class="shadow-box-inner">
+                            <h5 class="mb-40">Заказать звонок</h5>
+
+                            <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
+                            <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
+                            <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
+
+                            <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
+
+                            <input style="display: none" name="agree" type="checkbox">
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-info">
+                    <p class="mb-20"><strong>Вы можете задать вопросы по телефону 8 982 333  78 88<br>или заказать обратный звонок.</strong></p>
+                    <p class="mb-20"><strong>Адреса наших магазинов:</strong> </p>
+
+                    <div class="contacts-info-group mb-40">
+                        <p class="contacts-info-group-name"><strong>ТК "ЧЕЛСИ"</strong></p>
+                        <p class="contacts-info-group-address">Троицкий тракт, 21, корпус 2 / сектор 16</p>
+                        <p class="contacts-info-group-phone">+7 (351) 215 55 07 8 908 583 40 15</p>
+                    </div>
+                    <div class="contacts-info-group mb-40">
+                        <p class="contacts-info-group-name"><strong>ТК "ЧЕЛСИ" 2</strong></p>
+                        <p class="contacts-info-group-address">Новоградский проспект, 64, chelsi174.ru</p>
+                        <p class="contacts-info-group-phone">+7 (351) 222 88 88 (доб.1520) 8 951 782 92 74</p>
+                    </div>
+                    <div class="contacts-info-group ">
+                        <p class="contacts-info-group-name"><strong>ТК "СДМ"</strong></p>
+                        <p class="contacts-info-group-address">Свердловский тракт, 1ж, 1 этаж, сектор 2/12</p>
+                        <p class="contacts-info-group-phone">8 922 757 55 05 8 982 333 7 888 (многоканальный)</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!--//container-->
+
+    </section>
+</div><!--//main-->
+
+
+{% endblock %}
+

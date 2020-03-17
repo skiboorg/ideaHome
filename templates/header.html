@@ -8,7 +8,7 @@
             </div>
             <div class="header-top_logo">
 
-                <p class="header-top_logo-name"><span>идеи</span> для дома</p>
+                <p class="header-top_logo-name"><a href="/"><span>идеи</span> для дома</a></p>
                 <div class="header-top_logo-info mobile-hide-800">
                     <p>Декоративные и отделочные материалы по Челябинской области</p>
                     <span>Адреса всех магазинов</span>
@@ -134,12 +134,12 @@
 
 
             </div><!--//catalog-menu-->
-            <a href=""><p class="side-panel-menu-item">Доставка</p></a>
-            <a href=""><p class="side-panel-menu-item">Производители</p></a>
+            <a href="{% url 'delivery' %}"><p class="side-panel-menu-item">Доставка</p></a>
+            <a href="{% url 'manufacturers' %}"><p class="side-panel-menu-item">Производители</p></a>
             <a href=""><p class="side-panel-menu-item">Партнерам</p></a>
             <a href=""><p class="side-panel-menu-item">Статьи</p></a>
-            <a href=""><p class="side-panel-menu-item">Контакты</p></a>
-            <a href=""><p class="side-panel-menu-item">О нас</p></a>
+            <a href="{% url 'contacts' %}"><p class="side-panel-menu-item">Контакты</p></a>
+            <a href="{% url 'about' %}"><p class="side-panel-menu-item">О нас</p></a>
         </div>
     </div>
 </header>
@@ -148,12 +148,12 @@
         <ul class="nav">
             <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
             </li>
-            <li><a class="nav-item" href="#">Доставка</a></li>
-            <li><a class="nav-item" href="#">Производители</a></li>
+            <li><a class="nav-item" href="{% url 'delivery' %}">Доставка</a></li>
+            <li><a class="nav-item" href="{% url 'manufacturers' %}">Производители</a></li>
             <li><a class="nav-item" href="#">Партнерам</a></li>
             <li><a class="nav-item" href="#">Статьи</a></li>
-            <li><a class="nav-item" href="#">Контакты</a></li>
-            <li><a class="nav-item" href="#">О нас</a></li>
+            <li><a class="nav-item" href="{% url 'contacts' %}">Контакты</a></li>
+            <li><a class="nav-item" href="{% url 'about' %}">О нас</a></li>
         </ul>
 
     </div><!-- //container-->

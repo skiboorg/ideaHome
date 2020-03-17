@@ -161,8 +161,10 @@ class Item(models.Model):
     tag = models.ManyToManyField(Tag, blank=True, db_index=True, verbose_name='Теги')
     manufactor = models.ForeignKey(Manufactor, blank=True, null=True, verbose_name='Производитель',
                                  on_delete=models.SET_NULL, db_index=True)
-    category = models.ForeignKey(Category,verbose_name='Категории',on_delete=models.SET_NULL, db_index=True)
-    subcategory = models.ForeignKey(SubCategory, verbose_name='Подкатегории',on_delete=models.SET_NULL,db_index=True)
+    category = models.ForeignKey(Category,verbose_name='Категории',on_delete=models.SET_NULL,
+                                 blank=True,null=True, db_index=True)
+    subcategory = models.ForeignKey(SubCategory, verbose_name='Подкатегории',
+                                    on_delete=models.SET_NULL, blank=True,null=True,db_index=True)
     name = models.CharField('Название товара', max_length=255, blank=True, null=True)
     name_lower = models.CharField(max_length=255, blank=True, null=True,default='')
     name_slug = models.CharField(max_length=255, blank=True, null=True,db_index=True)
