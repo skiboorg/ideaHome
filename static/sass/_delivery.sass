@@ -1,0 +1,61 @@
+.delivery
+  background: $section-bg-grey
+  margin: 0
+  padding-bottom: 115px
+  &-wrapper
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 50px
+
+
+
+  &-form
+    table
+      width: 100%
+      text-align: center
+      p
+        font: 14px 'P22UndergroundCYPro-Demi'
+        color: $text-color
+        margin: 10px 0
+      tr
+        border-bottom: 1px solid $border-color
+        line-height: 40px
+        vertical-align: middle
+        td
+
+            span
+              font-family: 'P22UndergroundCYPro-Book',sans-serif
+              color: #8b8b8b
+              display: block
+    &-block
+      background: #ffffff
+      display: grid
+      grid-template-columns: 1fr 2fr
+      padding: 40px
+      &-big-p
+        font: 32px 'P22UndergroundCYPro-Demi'
+        color: $text-color
+      & .shadow-box
+        box-shadow: none !important
+      & .shadow-box-inner
+        border: none
+        padding: 0
+
+.delivery-info
+  &-icon-block
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    margin-bottom: 75px
+  &-icon-block-item
+    img
+      margin: 10px
+    text-align: center
+  & .accordion
+    background: $section-bg-grey !important
+  & .panel
+    padding: 0 10px
+    box-sizing: border-box
+    background: $section-bg-grey !important
+    p
+      margin: 10px 0

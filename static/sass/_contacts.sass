@@ -1,0 +1,33 @@
+.contacts
+  background: $section-bg-grey
+  margin: 0
+  padding-bottom: 115px
+  &-wrapper
+    display: grid
+    grid-template-columns: 1fr 2fr
+    grid-gap: 50px
+    align-items: center
+
+
+  &-form
+  &-info
+    &-group
+      &-name
+        margin-bottom: 15px
+      &-address
+        font: 14px 'P22UndergroundCYPro-Book'
+        color: #5d5d5d
+        margin-bottom: 10px
+        &::before
+          font-family: FontAwesome
+          content: '\f041'
+          color: $color-red
+          margin-right: 10px
+      &-phone
+        font: 14px 'P22UndergroundCYPro-Demi'
+        color: #5d5d5d
+        &::before
+          font-family: FontAwesome
+          content: '\f095'
+          color: $color-red
+          margin-right: 10px

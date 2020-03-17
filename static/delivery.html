@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- SKIBORG WAS HERE -->
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header ">
+    <div class="container">
+        <div class="header-top">
+            <div class="header-top_logo">
+                <p class="header-top_logo-name"><span>идеи</span> для дома</p>
+                <div class="header-top_logo-info">
+                    <p>Декоративные и отделочные материалы по Челябинской области</p>
+                    <span>Адреса всех магазинов</span>
+                </div>
+            </div>
+            <div class="header-top_search-form">
+                <form>
+                    <div class="form-row">
+                        <input type="text" class="form-control input" placeholder="Поиск по сайту">
+                    </div>
+
+                </form>
+            </div>
+            <div class="header-top_icons">
+                <a href=""><i class="fa fa-user"></i></a>
+                <a href=""><i class="fa fa-shopping-cart"></i></a>
+                <a href=""><i class="fa fa-heart"></i></a>
+            </div>
+            <div class="header-top_callback">
+                <p>8 351 215 55 07</p>
+                <span>обратный звонок</span>
+            </div>
+        </div><!-- //header-top-->
+    </div><!-- //container-->
+
+</header>
+
+<div class="main-nav">
+    <div class="container">
+        <ul class="nav">
+            <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
+            </li>
+            <li><a class="nav-item" href="#">Доставка</a></li>
+            <li><a class="nav-item" href="#">Производители</a></li>
+            <li><a class="nav-item" href="#">Партнерам</a></li>
+            <li><a class="nav-item" href="#">Статьи</a></li>
+            <li><a class="nav-item" href="#">Контакты</a></li>
+            <li><a class="nav-item" href="#">О нас</a></li>
+        </ul>
+    </div><!-- //container-->
+
+</div><!-- //header-menu-->
+
+<div class="main">
+    <div class="breadcrumbs bg-grey">
+        <div class="container ">
+            <ul>
+                <li><a href="#">Главная</a></li>
+
+                <li><span>Доставка</span></li>
+            </ul>
+        </div>
+    </div>
+    <section class="delivery">
+        <div class="container">
+            <div class="section-header"><h1>Доставка</h1></div>
+            <div class="delivery-wrapper">
+                <div class="delivery-form">
+                    <h2>Условия доставки</h2>
+                    <div class="item-tabs">
+                        <div class="tab delivery-tab">
+                            <button id="defaultOpen" class="tablinks delivery-button" onclick="openTab(event, 'delivery')">Доставка</button>
+                            <button class="tablinks delivery-button" onclick="openTab(event, 'self')">Самовывоз</button>
+                        </div>
+                        <div id="delivery" class="tabcontent">
+                            <table >
+                                <thead>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Стоимость</td>
+                                </tr>
+
+                                </thead>
+                                <tr>
+                                    <td><p>По городу</p></td>
+                                    <td><p>Бесплатно<span>при заказе<br> от 30 000 руб.</span></p>
+                                    <td><p>8 000 руб.<span>для заказов на сумму<br> от 0 до 30 000 руб.</span></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>По области</p></td>
+                                    <td><p>Бесплатно<span>при заказе<br> от 30 000 руб.</span></p>
+                                    <td><p>8 000 руб.<span>для заказов на сумму<br> от 0 до 30 000 руб.</span></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>По России</p></td>
+                                    <td><p>Бесплатно<span>при заказе<br> от 30 000 руб.</span></p>
+                                    <td><p>8 000 руб.<span>для заказов на сумму<br> от 0 до 30 000 руб.</span></p></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="self" class="tabcontent">
+                            Информация о самовывозе
+                        </div>
+                    </div><!--//item-tabs-->
+                    <div class="delivery-form-block">
+                        <p class="delivery-form-block-big-p">Остались вопросы?</p>
+
+                        <div class="shadow-box">
+                            <div class="shadow-box-inner">
+                                <h5 class="mb-40">Заказать звонок</h5>
+
+                                <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
+                                <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
+                                <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
+
+                                <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
+
+                                <input style="display: none" name="agree" type="checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="delivery-info">
+                    <div class="delivery-info-icon-block">
+                        <div class="delivery-info-icon-block-item">
+                            <img src="img/d1.png" alt="">
+                            <p>Экспресс-доставка<br>
+                                12 городов + 1 день!</p>
+                        </div>
+                        <div class="delivery-info-icon-block-item">
+                            <img src="img/d2.png" alt="">
+                            <p>Вся Россия<br>
+                                Наложенный платеж</p>
+                        </div>
+                        <div class="delivery-info-icon-block-item">
+                            <img src="img/d3.png" alt="">
+                            <p>Самовывоз</p>
+                        </div>
+                    </div>
+                    <p class="delivery-form-block-big-p mb-40">Часто задаваемые вопросы</p>
+                    <div class="catalog-menu">
+
+                        <button class="accordion">вопрос1</button>
+                        <div class="panel">
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, assumenda dolorum ea impedit inventore iste natus non quas vero? Ad corporis ex iusto labore magnam neque quasi quisquam repellat sed!</p>
+
+                        </div>
+
+                        <button class="accordion">вопрос2</button>
+                        <div class="panel">
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, assumenda dolorum ea impedit inventore iste natus non quas vero? Ad corporis ex iusto labore magnam neque quasi quisquam repellat sed!</p>
+
+                        </div>
+
+                        <button class="accordion">вопрос3</button>
+                        <div class="panel">
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, assumenda dolorum ea impedit inventore iste natus non quas vero? Ad corporis ex iusto labore magnam neque quasi quisquam repellat sed!</p>
+
+                        </div>
+
+
+                    </div><!--//catalog-menu-->
+
+
+                </div>
+            </div>
+
+        </div><!--//container-->
+
+    </section>
+</div><!--//main-->
+<section class="map">
+    <div class="container map-inner">
+        <div class="shadow-box">
+            <div class="shadow-box-inner">
+                <h5>Номер телефона:</h5>
+                <p class="mb-30"><span>8 (982) 333-78-88</span></p>
+                <h5>Email адрес:</h5>
+                <p class="mb-30"><span>ideahome@mail.ru</span></p>
+                <h5>Адреса магазинов:</h5>
+                <p>Челябинск, <span>название улицы, №36</span></p>
+                <p>Челябинск, <span>название улицы, №36</span></p>
+                <p>Челябинск, <span>название улицы, №36</span></p>
+
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top ">
+            <div class="footer-top-info">
+                <p>Все материалы данного сайта защищены авторским правом. Полное или частичное копирование запрещено. Информация предназначена для аудитории 14+</p>
+                <div class="footer-social">
+                    <ul>
+                        <li><a href="#" rel="nofollow"><span class="vk_icon"></span></a></li>
+                        <li><a href="#" rel="nofollow"><span class="fb_icon"></span></a></li>
+                        <li><a href="#" rel="nofollow"><span class="inst_icon"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-top-list">
+                <p>Реквизиты в России:</p>
+                <ul>
+                    <li>ИП Фамилия И.И.</li>
+                    <li>ИНН 54651326526</li>
+                    <li>ОГРНИП 561563592526</li>
+                </ul>
+            </div>
+            <div class="footer-top-list ">
+                <p>Адрес офиса:</p>
+                <ul>
+                    <li>г. Челябинск</li>
+                    <li>7010, ул. Название, 55</li>
+                    <li>Телефон: +7 351 230 80 40</li>
+                </ul>
+            </div>
+
+            <div class="footer-top-phones text-right">
+                <p>+7 (351) 230 80 40</p>
+                <a href="javascript: void(0)" onclick="toggleModal('callback-modal')" class="btn ">Перезвоните мне</a>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+    <script>
+        function openTab(evt, tab) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" tab-active", "");
+            }
+            document.getElementById(tab).style.display = "block";
+            evt.currentTarget.className += " tab-active";
+        }
+        document.getElementById("defaultOpen").click();
+    </script>
+    <script>
+    let acc = document.getElementsByClassName("accordion");
+    let i;
+    let lastActive = null
+    let lastPanel = null
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            console.log(lastActive)
+            if (lastActive){
+                lastActive.classList.remove('active')
+                lastPanel.classList.remove('panel-active')
+                lastPanel.style.maxHeight = null;
+            }
+            this.classList.toggle("active");
+            lastActive=this
+            let panel = this.nextElementSibling;
+            lastPanel = panel
+            if (panel.style.maxHeight) {
+
+                panel.style.maxHeight = null;
+                panel.classList.remove('panel-active')
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                panel.classList.add('panel-active')
+            }
+        });
+    }
+</script>
+</footer>
+
+
+
+
+</body>
+
+</html>

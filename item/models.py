@@ -161,8 +161,8 @@ class Item(models.Model):
     tag = models.ManyToManyField(Tag, blank=True, db_index=True, verbose_name='Теги')
     manufactor = models.ForeignKey(Manufactor, blank=True, null=True, verbose_name='Производитель',
                                  on_delete=models.SET_NULL, db_index=True)
-    category = models.ManyToManyField(Category,verbose_name='Категории', db_index=True)
-    subcategory = models.ManyToManyField(SubCategory, verbose_name='Подкатегории',db_index=True)
+    category = models.ForeignKey(Category,verbose_name='Категории',on_delete=models.SET_NULL, db_index=True)
+    subcategory = models.ForeignKey(SubCategory, verbose_name='Подкатегории',on_delete=models.SET_NULL,db_index=True)
     name = models.CharField('Название товара', max_length=255, blank=True, null=True)
     name_lower = models.CharField(max_length=255, blank=True, null=True,default='')
     name_slug = models.CharField(max_length=255, blank=True, null=True,db_index=True)
@@ -205,7 +205,7 @@ class Item(models.Model):
             return 'http://placehold.it/200'
 
     def get_absolute_url(self):
-        return f'/category/{self.category.first().name_slug}/{self.subcategory.first().name_slug}/{self.name_slug}'
+        return f'/category/{self.category.name_slug}/{self.subcategory.name_slug}/{self.name_slug}'
 
     def get_full_image(self):
         if self.itemimage_set.first().image.url:
