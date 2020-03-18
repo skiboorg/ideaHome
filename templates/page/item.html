@@ -9,7 +9,7 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="#">Каталог товаров</a></li>
                 <li><a href="{% url 'category' category.name_slug %}">{{ category.name }}</a></li>
-{#                <li><a href="{% url 'category' category.name_slug %}">{{ subcategory.name }}</a></li>#}
+                <li><a href="{% url 'category' category.name_slug %}">{{ subcategory.name }}</a></li>
                 <li><span>{{ subcategory.name }}</span></li>
                 <li><span>{{ item.name }}</span></li>
             </ul>
@@ -66,7 +66,6 @@
                 </div><!--//item-image-->
                 <div class="item-info">
                     <h1>{{ item.name }}</h1>
-                    <p class="item-info-articul">Артикул: {{ item.article }}</p>
                     {% if item.is_present %}
                     <p class="item-info-presence present">В наличии</p>
                     {% else %}
@@ -76,20 +75,22 @@
                     <div class="item-info-group">
                         <ul class="item-info-attributes">
 
-                            <li class="item-info-attributes-item"><p>Вес:</p><span>{{ item.weight }}</span></li>
-                            <li class="item-info-attributes-item"><p>Комплект:</p><span>3,4кг</span></li>
-                            <li class="item-info-attributes-item"><p>Размер:</p><span>3,4кг</span></li>
-                            <li class="item-info-attributes-item"><p>Толщина:</p><span>3,4кг</span></li>
-                            <li class="item-info-attributes-item"><p>Угловые элементы:</p><span>3,4кг</span></li>
-                            <li class="item-info-attributes-item"><p>Угловые элементы:</p><span>3,4кг</span></li>
-                            <li class="item-info-attributes-item"><p>Угловые элементы:</p><span>3,4кг</span></li>
+                            <li class="item-info-attributes-item"><p>Артикул:</p><span>{{ item.article }}</span></li>
+                            <li class="item-info-attributes-item"><p>Ед. измерения:</p><span>3,4кг</span></li>
+                            <li class="item-info-attributes-item"><p>Производитель:</p><span>{{ item.manufactor.name }}</span></li>
+
 
                         </ul>
                         <div class="item-info-price">
                             <p class="item-info-price-delivery">Lorem ipsum dolor.</p>
                             <div class="item-info-price-wrapper">
-                                <p class="current-price"><span id="current_price">{{ item.price }}</span> <i class="fa fa-rub"></i></p>
-                                <p class="old-price">760 <i class="fa fa-rub"></i></p>
+                                {% if item.discount > 0 %}
+                                <p class="current-price"><span id="current_price">{{ item.discount_value }}</span> <i class="fa fa-rub"></i></p>
+                                <p class="old-price">{{ item.price }} <i class="fa fa-rub"></i></p>
+                                {% else %}
+                                 <p class="current-price"><span id="current_price">{{ item.price }}</span> <i class="fa fa-rub"></i></p>
+
+                                {% endif %}
                             </div>
                             <div class="item-info-price-quantity">
                                 <p onclick="delQt()">-</p><input id="quantity" readonly type="number" value="1" min="1"><p class="mr-10" onclick="addQt()">+</p>
@@ -114,24 +115,17 @@
                 </div>
 
                 <div id="description" class="tabcontent">
-                    <h3>dsads</h3>
-                    <p>London is the capital city of England.</p>
-                    <ul>
-                        <li>sdl;fklds;</li>
-                        <li>sdl;fklds;</li>
-                        <li>sdl;fklds;</li>
-                        <li>sdl;fklds;</li>
-                    </ul>
+                    {{ item.description | safe }}
                 </div>
 
                 <div id="feedback" class="tabcontent">
 
-                    <p>Paris is the capital of France.</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
                 </div>
 
                 <div id="delivery" class="tabcontent">
 
-                    <p>Tokyo is the capital of Japan.</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
                 </div>
 
             </div><!--//item-tabs-->

@@ -11,9 +11,12 @@
 .catalog-items
   &-wrapper
   &-filter
-    padding: 20px 0
+    padding-bottom: 20px
     border-bottom: 1px solid $border-color
     margin-bottom: 20px
+    display: flex
+    align-items: center
+    justify-content: space-between
   &-list
     display: grid
     grid-template-columns: repeat(auto-fill,minmax(260px,1fr))
@@ -80,9 +83,12 @@
         &:hover
           color: $color-red-hover
           //font-family: 'P22UndergroundCYPro-Demi',sans-serif
+
   &.panel-active
     border-bottom: 1px solid $border-color
-
+.panel-item-active
+  color: $color-red !important
+  font-family: P22UndergroundCYPro-Demi !important
 
 .dropbtn
   font: 16px 'P22UndergroundCYPro-Demi',sans-serif
@@ -118,12 +124,13 @@
     overflow: auto
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
     z-index: 100
-    a
+    a, span
       font: 16px 'P22UndergroundCYPro-Light',sans-serif
       color: $text-color
       padding: 12px 16px
       text-decoration: none
       display: block
+      cursor: pointer
       &:hover
         color: $color-red
 

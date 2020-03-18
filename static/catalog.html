@@ -78,7 +78,7 @@
                     <button class="accordion">3D панели</button>
                     <div class="panel">
                         <ul class="panel-list">
-                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a class="panel-item-active" href="">Искусственный декоративный камень</a></li>
                             <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
                             <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
                         </ul>
@@ -133,19 +133,24 @@
                             </div>
                         </div>
 
+                        <form action=""></form>
 
                     </div><!--//catalog-items-filter-->
                     <div class="catalog-items-list">
                         <div class="catalog-item">
-                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+                            <span class="catalog-item-discount">- 10%</span>
+                            <a href="#" class="catalog-item-fav-btn in-fav"><i class="fa fa-heart-o"></i></a>
                             <a class="catalog-item-image" href="#">
-                              <img src="img/item-temp.jpg" alt="">  
+                              <img src="img/item-temp.jpg" alt="">
                             </a>
                             <a class="catalog-item-info" href="#">
                                 <p>Lorem ipsum dolor.</p>
                                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
                             </a>
-                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
+                             <div class="item-info-price-wrapper">
+                                <p class="current-price"><span id="current_price">560</span> <i class="fa fa-rub"></i></p>
+                                <p class="old-price">760 <i class="fa fa-rub"></i></p>
+                            </div>
                             <a href="#" class="btn catalog-item-btn">в корзину</a>
                         </div><!--//catalog-item-->
                          <div class="catalog-item">
@@ -157,7 +162,10 @@
                                 <p>Lorem ipsum dolor.</p>
                                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
                             </a>
-                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
+                            <div class="item-info-price-wrapper">
+                                <p class="current-price"><span id="current_price">560</span> <i class="fa fa-rub"></i></p>
+
+                            </div>
                             <a href="#" class="btn catalog-item-btn">в корзину</a>
                         </div><!--//catalog-item-->
                          <div class="catalog-item">

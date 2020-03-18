@@ -451,13 +451,13 @@ section {
   flex-basis: 30%;
 }
 
-.header-top_logo-name {
+.header-top_logo-name a {
   font: 18px 'P22UndergroundCYPro-Demi', sans-serif;
   color: #90b95c;
   text-transform: uppercase;
 }
 
-.header-top_logo-name span {
+.header-top_logo-name a span {
   color: #d83138;
 }
 
@@ -1362,9 +1362,18 @@ section {
 }
 
 .catalog-items-filter {
-  padding: 20px 0;
+  padding-bottom: 20px;
   border-bottom: 1px solid #ebebeb;
   margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .catalog-items-list {
@@ -1471,6 +1480,11 @@ section {
   border-bottom: 1px solid #ebebeb;
 }
 
+.panel-item-active {
+  color: #d83138 !important;
+  font-family: P22UndergroundCYPro-Demi !important;
+}
+
 .dropbtn {
   font: 16px 'P22UndergroundCYPro-Demi',sans-serif;
   color: #000000;
@@ -1521,15 +1535,18 @@ section {
   z-index: 100;
 }
 
-.dropdown-content a {
+.dropdown-content a,
+.dropdown-content span {
   font: 16px 'P22UndergroundCYPro-Light',sans-serif;
   color: #000000;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 
-.dropdown-content a:hover {
+.dropdown-content a:hover,
+.dropdown-content span:hover {
   color: #d83138;
 }
 
@@ -1834,6 +1851,32 @@ section {
   padding: 30px 40px;
 }
 
+.catalog-item .item-info-price-wrapper {
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  padding: 20px 0;
+}
+
+.catalog-item .item-info-price-wrapper .current-price {
+  font: 24px 'P22UndergroundCYPro-Medium',sans-serif;
+  color: #000000;
+  margin-right: 0;
+}
+
+.catalog-item-discount {
+  position: absolute;
+  background: #d83138;
+  color: #ffffff;
+  text-align: center;
+  left: 0;
+  top: 50px;
+  padding: 5px 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 70px;
+}
+
 .catalog-item-fav-btn {
   position: absolute;
   color: #be353b;
@@ -1847,8 +1890,8 @@ section {
   font-family: 'FontAwesome';
   content: '\f004';
   opacity: 0;
-  left: 0px;
-  top: 2px;
+  left: 1px;
+  top: 0px;
   font-size: 23px;
   -webkit-transition: opacity .3s linear;
   -o-transition: opacity .3s linear;
@@ -1872,8 +1915,8 @@ section {
   font-family: 'FontAwesome';
   content: '\f004';
   color: #d83138;
-  left: 0px;
-  top: 2px;
+  left: 1px;
+  top: 0px;
   font-size: 23px;
   opacity: 1;
   z-index: -1;
@@ -1887,6 +1930,7 @@ section {
   display: block;
   text-align: center;
   margin-bottom: 30px;
+  min-height: 175px;
 }
 
 .catalog-item-info {
@@ -2074,13 +2118,14 @@ section {
   -ms-user-select: none;
   user-select: none;
   font: 16px 'P22UndergroundCYPro-Demi',sans-serif;
+  padding-top: 3px;
 }
 
 .item-info-price-quantity p:hover {
   border-color: #000000;
-  -webkit-transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  transform: scale(1.5);
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .item-info-price-quantity input {
@@ -2310,6 +2355,11 @@ section {
 
 .form-control.input:focus {
   outline: 1px;
+}
+
+.form-control.input.input-outline {
+  border: 1px solid #ebebeb;
+  background: transparent;
 }
 
 .form-agreed-text {

@@ -1,119 +1,200 @@
 {% extends 'basic.html' %}
 {% load static %}
 {% block content %}
-<div class="main">
-    <section class="catalog">
-        <div class="container">
-            <div class="catalog-wrapper">
-                <div class="catalog-menu">
-                    {% for cat in all_categories %}
-                    <button id="{{ cat.name_slug }}" class="accordion">{{ cat.name }}</button>
-                    <div class="panel">
-                        <ul class="panel-list">
-                            {% for subcat in cat.subcategory.all %}
-                            <li class="panel-list-item"><a href="">{{ subcat.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endfor %}
-
-
-                </div><!--//catalog-menu-->
-                <div class="catalog-items-wrapper">
-                    <div class="catalog-items-filter">
-                        <div class="dropdown">
-                            <button onclick="customDropDown(this)" data-target="price" class="dropbtn">Сортировка</button>
-                            <div id="price" class="dropdown-content">
-                                <a href="#">Цена выше</a>
-                                <a href="#">Цена ниже</a>
+    <div class="main">
+        <div class="breadcrumbs  bg-grey">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="#">Каталог товаров</a></li>
+                    <li><span>{{ category.name }}</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="catalog">
+            <div class="container">
+                <div class="catalog-wrapper">
+                    <div class="catalog-menu">
+                        {% for cat in all_categories %}
+                            <button id="{{ cat.name_slug }}" class="accordion">{{ cat.name }}</button>
+                            <div class="panel">
+                                <ul class="panel-list">
+                                    {% for subcat in cat.subcategory.all %}
+                                        <li class="panel-list-item"><a {% if subcat.name_slug == subcategory.name_slug %} class="panel-item-active" {% endif %} href="{% url 'subcategory' subcat.category.name_slug subcat.name_slug %}">{{ subcat.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
                             </div>
-                        </div>
-                        <div class="dropdown">
-                            <button onclick="customDropDown(this)" data-target="category" class="dropbtn">Категория</button>
-                            <div id="category" class="dropdown-content">
-                                <a href="#">Цена выше</a>
-                                <a href="#">Цена ниже</a>
-                                <a href="#">Цена выше</a>
-                                <a href="#">Цена ниже</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button onclick="customDropDown(this)" data-target="brand" class="dropbtn">Производитель</button>
-                            <div id="brand" class="dropdown-content">
-                                {% for manufactor in manufactors %}
-                                <a href="#">{{ manufactor.name }}</a>
-                               {% endfor %}
-                            </div>
-                        </div>
-
-
-                    </div><!--//catalog-items-filter-->
-                    <div class="catalog-items-list">
-                        {% for item in items %}
-                        <div class="catalog-item">
-                            <a href="{{ item.get_absolute_url }}" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
-                            <a class="catalog-item-image" href="{{ item.get_absolute_url }}">
-                              <img src="{{ item.get_small_image }}" alt="{{ item.name }}">
-                            </a>
-                            <a class="catalog-item-info" href="{{ item.get_absolute_url }}">
-                                <p>{{ item.name }}</p>
-                                <span>Краткое описание товара. Нужно ли??</span>
-
-                            </a>
-                            <p class="catalog-item-price">{{ item.price }} <i class="fa fa-rub"></i></p>
-                            <a href="{{ item.get_absolute_url }}" class="btn catalog-item-btn">в корзину</a>
-                        </div><!--//catalog-item-->
                         {% endfor %}
-                    </div><!--//catalog-items-list-->
-                </div><!--//catalog-items-wrapper-->
-            </div><!--//catalog-wrapper-->
 
 
-        </div><!--//container-->
+                    </div><!--//catalog-menu-->
+                    <div class="catalog-items-wrapper">
+                        <div class="catalog-items-filter">
+                            <div class="">
+                                <div class="dropdown">
+                                    <button onclick="customDropDown(this)" data-target="price" class="dropbtn">Сортировка</button>
+                                    <div id="price" class="dropdown-content">
+                                        <span {% if param_order == 'price_gte' %}style="color: red" {% endif %} onclick="setParam('order','price_gte')">Цена выше</span>
+                                        <span onclick="setParam('order','price_lte')">Цена ниже</span>
+                                        <span onclick="setParam('order','name_az')">Название А-Я</span>
+                                        <span onclick="setParam('order','name_za')">Название Я-А</span>
 
-    </section>
-    <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-      document.getElementById('{{ category.name_slug }}').click()
-});
-    </script>
-<script>
-    let last_open=''
-    function customDropDown(el) {
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button onclick="customDropDown(this)" data-target="category" class="dropbtn">Категория</button>
+                                    <div style="min-width: 320px" id="category" class="dropdown-content">
+                                        {% for subcat in category.subcategory.all %}
+                                            <a href="{% url 'subcategory' subcat.category.name_slug subcat.name_slug %}">{{ subcat.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button onclick="customDropDown(this)" data-target="brand" class="dropbtn">Производитель</button>
+                                    <div id="brand" class="dropdown-content">
+                                        {% for manufactor in manufactors %}
+                                            <span onclick="setParam('manufactor','{{ manufactor.name_slug }}')">{{ manufactor.name }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
 
-        let target = el.dataset.target
-        if (last_open !=''){
-            if (last_open === target){
-                document.getElementById(target).classList.toggle("show");
-                last_open=target
-            }else{
-                document.getElementById(last_open).classList.remove("show");
-                document.getElementById(target).classList.toggle("show");
-                last_open=target
-            }
+                            <form style="flex-grow: 1" onsubmit="setParam('q',document.getElementById('search_str').value);return false;">
+                                <div class="form-row">
+                                    <input id="search_str" style="height: 40px;" type="text"  class="form-control input input-outline" value="{{ param_search }}" placeholder="Поиск по категории">
+                                </div>
+
+                            </form>
+
+                        </div><!--//catalog-items-filter-->
+                        <div class="catalog-items-list">
+                            {% for item in items %}
+                                <div class="catalog-item">
+                                    {% if item.discount > 0 %}
+                                        <span class="catalog-item-discount">- {{ item.discount }}%</span>
+                                    {% endif %}
+                                    <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+                                    <a class="catalog-item-image" href="{{ item.get_absolute_url }}">
+                                        <img src="{{ item.get_small_image }}" alt="{{ item.name }}">
+                                    </a>
+                                    <a class="catalog-item-info" href="{{ item.get_absolute_url }}">
+                                        <p>{{ item.name }}</p>
+                                        <p>Подкатегория {{ item.subcategory.name }}</p>
+                                        <span>{{ item.manufactor.name }} Краткое описание товара. Нужно ли??</span>
+
+                                    </a>
+                                    <div class="item-info-price-wrapper">
+                                        {% if item.discount > 0 %}
+                                            <p class="current-price"><span id="current_price">{{ item.discount_value }}</span> <i class="fa fa-rub"></i></p>
+                                            <p class="old-price">{{ item.price }} <i class="fa fa-rub"></i></p>
+                                        {% else %}
+                                            <p class="current-price"><span id="current_price">{{ item.price }}</span> <i class="fa fa-rub"></i></p>
+
+                                        {% endif %}
+                                    </div>
+                                    {#                            <p class="catalog-item-price">{{ item.price }} <i class="fa fa-rub"></i></p>#}
+                                    <a href="{{ item.get_absolute_url }}" class="btn catalog-item-btn">в корзину</a>
+                                </div><!--//catalog-item-->
+                            {% endfor %}
+                        </div><!--//catalog-items-list-->
+                    </div><!--//catalog-items-wrapper-->
+                </div><!--//catalog-wrapper-->
 
 
-        }else{
+            </div><!--//container-->
 
-            document.getElementById(target).classList.toggle("show");
-            last_open=target
-        }
+        </section>
 
-    }
+        <script>
+            let last_order = '';
+            function setGetParam(key,value) {
+                if (history.pushState) {
+                    let params = new URLSearchParams(window.location.search);
+                    params.set(key, value);
+                    let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.toString();
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
+                    window.history.pushState({path:newUrl},'',newUrl);
                 }
             }
-        }
-    }
-</script>
-</div><!--//main-->
+
+            function removeParam(parameter)
+            {
+                let url=document.location.href;
+                let urlparts= url.split('?');
+
+                if (urlparts.length>=2)
+                {
+                    let urlBase=urlparts.shift();
+                    let queryString=urlparts.join("?");
+
+                    let prefix = encodeURIComponent(parameter)+'=';
+                    let pars = queryString.split(/[&;]/g);
+                    for (let i= pars.length; i-->0;)
+                        if (pars[i].lastIndexOf(prefix, 0)!==-1)
+                            pars.splice(i, 1);
+                    url = urlBase+'?'+pars.join('&');
+                    window.history.pushState('',document.title,url);
+
+                }
+                return url;
+            }
+
+            function setParam(param,order) {
+
+                    if (document.getElementById('search_str').value){
+                        console.log('search not empty');
+                    }
+                    else {
+                        console.log('search empty');
+                        removeParam("q");
+
+                    }
+
+
+                    setGetParam(param,order);
+                    last_order = order;
+                    let url =location.href.split('?')[1];
+
+                    window.location.href = '?'+url;
+
+
+            }
+
+
+            document.addEventListener("DOMContentLoaded", function(event) {
+                document.getElementById('{{ category.name_slug }}').click()
+            });
+        </script>
+        <script>
+            let last_open=''
+            function customDropDown(el) {
+                let target = el.dataset.target
+                if (last_open !==''){
+                    if (last_open === target){
+                        document.getElementById(target).classList.toggle("show");
+                        last_open=target
+                    }else{
+                        document.getElementById(last_open).classList.remove("show");
+                        document.getElementById(target).classList.toggle("show");
+                        last_open=target
+                    }
+                }else{
+                    document.getElementById(target).classList.toggle("show");
+                    last_open=target
+                }
+            }
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+    </div><!--//main-->
 {% endblock %}
