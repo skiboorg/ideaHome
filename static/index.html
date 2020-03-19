@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<header class="header ">
+<div id="app">
+    <header class="header ">
     <div class="container">
         <div class="header-top">
 
@@ -40,16 +40,16 @@
                     <a  href="#"><i class="fa fa-shopping-cart"></i></a>
                     <div  class="header-cart">
                         <div id="HeaderCart">
-                          <!--  <header-cart-items
+                          <header-cart-items
                                     v-for="(item,index) in headerCartItems"
                                     v-bind:item="item"
                                     v-bind:key="item.id"
                                     v-bind:index="index"
                                     v-on:userdelete="remove"
-                            ></header-cart-items-->
+                            ></header-cart-items>
 
 
-                            <div class="header-cart-items">
+                            <!--div class="header-cart-items">
                                 <div class="header-cart-item">
                                     <img src="http://placehold.it/50" alt="">
                                     <div class="header-cart-item-info">
@@ -80,7 +80,7 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div-->
                             <div class="header-cart-bottom">
                                 <div class="header-cart-bottom-total">
                                     <p>Итого</p>
@@ -419,6 +419,8 @@
 
     </div>
 </footer>
+</div>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>

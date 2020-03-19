@@ -10,38 +10,120 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<div id="app">
 <header class="header ">
-    <div class="container">
-        <div class="header-top">
-            <div class="header-top_logo">
-                <p class="header-top_logo-name"><span>идеи</span> для дома</p>
-                <div class="header-top_logo-info">
-                    <p>Декоративные и отделочные материалы по Челябинской области</p>
-                    <span>Адреса всех магазинов</span>
+        <div class="container">
+            <div class="header-top">
+
+                <div class="mobile-menu-toggle">
+                    <span><i class="fa fa-list"></i></span>
                 </div>
-            </div>
-            <div class="header-top_search-form">
-                <form>
-                    <div class="form-row">
-                        <input type="text" class="form-control input" placeholder="Поиск по сайту">
+                <div class="header-top_logo">
+
+                    <p class="header-top_logo-name"><span>идеи</span> для дома</p>
+                    <div class="header-top_logo-info mobile-hide-800">
+                        <p>Декоративные и отделочные материалы по Челябинской области</p>
+                        <span>Адреса всех магазинов</span>
+                    </div>
+                </div>
+                <div class="header-top_search-form mobile-hide-800">
+                    <form>
+                        <div class="form-row">
+                            <input type="text" class="form-control input" placeholder="Поиск по сайту">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="header-top_icons">
+                    <a href=""><i class="fa fa-user"></i></a>
+                    <div class="header-cart-toggle">
+                        <a  href="#"><i class="fa fa-shopping-cart"></i></a>
+                        <div  class="header-cart">
+                            <div id="HeaderCart">
+                                <header-cart-items
+                                        v-for="(item,index) in headerCartItems"
+                                        v-bind:item="item"
+                                        v-bind:key="item.id"
+                                        v-bind:index="index"
+                                        v-on:userdelete="remove"
+                                ></header-cart-items>
+
+
+
+                                <div class="header-cart-bottom">
+                                    <div class="header-cart-bottom-total">
+                                        <p>Итого</p>
+                                        <p>[[cartTotal]]</p>
+                                    </div>
+                                    <div class="header-cart-bottom-buttons">
+                                        <a href="" class="btn">Корзина</a>
+                                        <a href="" class="btn">Оформить</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
-                </form>
-            </div>
-            <div class="header-top_icons">
-                <a href=""><i class="fa fa-user"></i></a>
-                <a href=""><i class="fa fa-shopping-cart"></i></a>
-                <a href=""><i class="fa fa-heart"></i></a>
-            </div>
-            <div class="header-top_callback">
-                <p>8 351 215 55 07</p>
-                <span>обратный звонок</span>
-            </div>
-        </div><!-- //header-top-->
-    </div><!-- //container-->
+                    <a href=""><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="header-top_callback mobile-hide-800">
+                    <p>8 351 215 55 07</p>
+                    <span>обратный звонок</span>
+                </div>
+            </div><!-- //header-top-->
+        </div><!-- //container-->
+        <div class="side-panel">
 
-</header>
+            <div class="side-panel-top">
+                <span class="side-panel-top-toggle"><i class="fa fa-times"></i></span>
+                <p class="side-panel-top-logo">идеи для дома</p>
+            </div>
+
+
+            <div class="side-panel-menu">
+                <a href=""><p class="side-panel-menu-item">Каталог материалов</p></a>
+                <div class="catalog-menu mobile-catalog">
+
+                    <button class="accordion">3D панели</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
+                    <a class="catalog-menu-link" href="#">ССылка</a>
+                    <button class="accordion">Section 2</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
+
+                    <button class="accordion">Section 3</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
+                    <a class="catalog-menu-link" href="#">ССылка</a>
+
+
+                </div><!--//catalog-menu-->
+                <a href=""><p class="side-panel-menu-item">Доставка</p></a>
+                <a href=""><p class="side-panel-menu-item">Производители</p></a>
+                <a href=""><p class="side-panel-menu-item">Партнерам</p></a>
+                <a href=""><p class="side-panel-menu-item">Статьи</p></a>
+                <a href=""><p class="side-panel-menu-item">Контакты</p></a>
+                <a href=""><p class="side-panel-menu-item">О нас</p></a>
+            </div>
+        </div>
+    </header>
 
 <div class="main-nav">
     <div class="container">
@@ -137,7 +219,7 @@
 
                     </div><!--//catalog-items-filter-->
                     <div class="catalog-items-list">
-                        <div class="catalog-item">
+                        <div  class="catalog-item" >
                             <span class="catalog-item-discount">- 10%</span>
                             <a href="#" class="catalog-item-fav-btn in-fav"><i class="fa fa-heart-o"></i></a>
                             <a class="catalog-item-image" href="#">
@@ -151,7 +233,7 @@
                                 <p class="current-price"><span id="current_price">560</span> <i class="fa fa-rub"></i></p>
                                 <p class="old-price">760 <i class="fa fa-rub"></i></p>
                             </div>
-                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                            <span data-id="4" data-name="name-name" data-price="100" data-image="http://placehold.it/100" @click="addItem" class="btn catalog-item-btn">в корзину</span>
                         </div><!--//catalog-item-->
                          <div class="catalog-item">
                             <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
@@ -166,7 +248,8 @@
                                 <p class="current-price"><span id="current_price">560</span> <i class="fa fa-rub"></i></p>
 
                             </div>
-                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                                <button data-added="0" data-id="2" data-name="name-name222" data-price="1200" data-image="http://placehold.it/100" @click="addItem" class="btn catalog-item-btn">в корзину</button>
+
                         </div><!--//catalog-item-->
                          <div class="catalog-item">
                             <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
@@ -261,7 +344,10 @@
 
     </div>
 </footer>
-
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
 <script>
     let last_open=''
     function customDropDown(el) {

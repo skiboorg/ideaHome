@@ -10,182 +10,265 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<header class="header ">
-    <div class="container">
-        <div class="header-top">
-            <div class="header-top_logo">
-                <p class="header-top_logo-name"><span>идеи</span> для дома</p>
-                <div class="header-top_logo-info">
-                    <p>Декоративные и отделочные материалы по Челябинской области</p>
-                    <span>Адреса всех магазинов</span>
-                </div>
-            </div>
-            <div class="header-top_search-form">
-                <form>
-                    <div class="form-row">
-                        <input type="text" class="form-control input" placeholder="Поиск по сайту">
-                    </div>
-
-                </form>
-            </div>
-            <div class="header-top_icons">
-                <a href=""><i class="fa fa-user"></i></a>
-                <a href=""><i class="fa fa-shopping-cart"></i></a>
-                <a href=""><i class="fa fa-heart"></i></a>
-            </div>
-            <div class="header-top_callback">
-                <p>8 351 215 55 07</p>
-                <span>обратный звонок</span>
-            </div>
-        </div><!-- //header-top-->
-    </div><!-- //container-->
-
-</header>
-
-<div class="main-nav">
-    <div class="container">
-        <ul class="nav">
-            <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
-            </li>
-            <li><a class="nav-item" href="#">Доставка</a></li>
-            <li><a class="nav-item" href="#">Производители</a></li>
-            <li><a class="nav-item" href="#">Партнерам</a></li>
-            <li><a class="nav-item" href="#">Статьи</a></li>
-            <li><a class="nav-item" href="#">Контакты</a></li>
-            <li><a class="nav-item" href="#">О нас</a></li>
-        </ul>
-    </div><!-- //container-->
-
-</div><!-- //header-menu-->
-
-<div class="main">
-    <div class="breadcrumbs bg-grey">
-        <div class="container ">
-            <ul>
-                <li><a href="#">Главная</a></li>
-
-                <li><span>Контакты</span></li>
-            </ul>
-        </div>
-    </div>
-    <section class="contacts">
+<div id="app">
+    <header class="header ">
         <div class="container">
-            <div class="section-header"><h1>Контакты</h1></div>
-            <div class="cart">
-            <table class="main-cart-items">
-                <thead class="main-cart-items-head">
-                <tr>
-                    <td>Товары</td>
-                    <td>Кол-во</td>
-                    <td>Цена</td>
-                    <td>Сумма</td>
-                    <td>Действие</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="main-cart-item">
-                    <td>
-                        <div class="main-cart-item-name">
-                            <img src="https://dummyimage.com/70x80/000/fff" alt=""> <span>Название товара</span>
+            <div class="header-top">
+
+                <div class="mobile-menu-toggle">
+                    <span><i class="fa fa-list"></i></span>
+                </div>
+                <div class="header-top_logo">
+
+                    <p class="header-top_logo-name"><span>идеи</span> для дома</p>
+                    <div class="header-top_logo-info mobile-hide-800">
+                        <p>Декоративные и отделочные материалы по Челябинской области</p>
+                        <span>Адреса всех магазинов</span>
+                    </div>
+                </div>
+                <div class="header-top_search-form mobile-hide-800">
+                    <form>
+                        <div class="form-row">
+                            <input type="text" class="form-control input" placeholder="Поиск по сайту">
                         </div>
 
-                    </td>
-                    <td class="main-cart-item-number">
-                        <div class="item-info-price-quantity">
-                                <p onclick="delQt()">-</p><input style="background: transparent; color:#e63d44 " id="quantity" readonly type="number" value="1" min="1"><p class="mr-10" onclick="addQt()">+</p>
+                    </form>
+                </div>
+                <div class="header-top_icons">
+                    <a href=""><i class="fa fa-user"></i></a>
+                    <div class="header-cart-toggle">
+                        <a  href="#"><i class="fa fa-shopping-cart"></i></a>
+                        <div  class="header-cart">
+                            <div id="HeaderCart">
+                                <header-cart-items
+                                        v-for="(item,index) in headerCartItems"
+                                        v-bind:item="item"
+                                        v-bind:key="item.id"
+                                        v-bind:index="index"
+                                        v-on:userdelete="remove"
+                                ></header-cart-items>
 
+
+
+                                <div class="header-cart-bottom">
+                                    <div class="header-cart-bottom-total">
+                                        <p>Итого</p>
+                                        <p>[[cartTotal]]</p>
+                                    </div>
+                                    <div class="header-cart-bottom-buttons">
+                                        <a href="" class="btn">Корзина</a>
+                                        <a href="" class="btn">Оформить</a>
+                                    </div>
+                                </div>
                             </div>
-                    </td>
-                    <td class="main-cart-item-price">990 Р</td>
-                    <td class="main-cart-item-total-price">990 Р</td>
-                    <td class="main-cart-item-action"><a class="cart-delete-btn" href="javascript:void(0)"><span>&#10006;</span></a></td>
-                </tr>
-                <tr class="main-cart-footer">
-                    <td class="main-cart-footer__total">Итого</td>
-                    <td></td>
-                    <td></td>
-                    <td class="main-cart-footer__total-price">1000</td>
-                    <td></td>
-                </tr>
 
-                </tbody>
-            </table>
+                        </div>
+                    </div>
 
-        </div>
+                    <a href=""><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="header-top_callback mobile-hide-800">
+                    <p>8 351 215 55 07</p>
+                    <span>обратный звонок</span>
+                </div>
+            </div><!-- //header-top-->
+        </div><!-- //container-->
+        <div class="side-panel">
 
-        <div class="main-cart__buttons">
+            <div class="side-panel-top">
+                <span class="side-panel-top-toggle"><i class="fa fa-times"></i></span>
+                <p class="side-panel-top-logo">идеи для дома</p>
+            </div>
 
-            <a href="javascript:void(0)" class="btn btn-outline ">продолжить покупки</a>
-            <a href="javascript:void(0)" class="btn btn-md">оформить заказ</a>
-        </div>
 
-        </div><!--//container-->
+            <div class="side-panel-menu">
+                <a href=""><p class="side-panel-menu-item">Каталог материалов</p></a>
+                <div class="catalog-menu mobile-catalog">
 
-    </section>
-</div><!--//main-->
-<section class="map">
-    <div class="container map-inner">
-        <div class="shadow-box">
-            <div class="shadow-box-inner">
-                <h5>Номер телефона:</h5>
-                <p class="mb-30"><span>8 (982) 333-78-88</span></p>
-                <h5>Email адрес:</h5>
-                <p class="mb-30"><span>ideahome@mail.ru</span></p>
-                <h5>Адреса магазинов:</h5>
-                <p>Челябинск, <span>название улицы, №36</span></p>
-                <p>Челябинск, <span>название улицы, №36</span></p>
-                <p>Челябинск, <span>название улицы, №36</span></p>
+                    <button class="accordion">3D панели</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
+                    <a class="catalog-menu-link" href="#">ССылка</a>
+                    <button class="accordion">Section 2</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
 
+                    <button class="accordion">Section 3</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
+                    <a class="catalog-menu-link" href="#">ССылка</a>
+
+
+                </div><!--//catalog-menu-->
+                <a href=""><p class="side-panel-menu-item">Доставка</p></a>
+                <a href=""><p class="side-panel-menu-item">Производители</p></a>
+                <a href=""><p class="side-panel-menu-item">Партнерам</p></a>
+                <a href=""><p class="side-panel-menu-item">Статьи</p></a>
+                <a href=""><p class="side-panel-menu-item">Контакты</p></a>
+                <a href=""><p class="side-panel-menu-item">О нас</p></a>
             </div>
         </div>
-    </div>
-</section>
-<footer class="footer">
-    <div class="container">
-        <div class="footer-top ">
-            <div class="footer-top-info">
-                <p>Все материалы данного сайта защищены авторским правом. Полное или частичное копирование запрещено. Информация предназначена для аудитории 14+</p>
-                <div class="footer-social">
-                    <ul>
-                        <li><a href="#" rel="nofollow"><span class="vk_icon"></span></a></li>
-                        <li><a href="#" rel="nofollow"><span class="fb_icon"></span></a></li>
-                        <li><a href="#" rel="nofollow"><span class="inst_icon"></span></a></li>
-                    </ul>
+    </header>
+
+    <div class="main-nav">
+        <div class="container">
+            <ul class="nav">
+                <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
+                </li>
+                <li><a class="nav-item" href="#">Доставка</a></li>
+                <li><a class="nav-item" href="#">Производители</a></li>
+                <li><a class="nav-item" href="#">Партнерам</a></li>
+                <li><a class="nav-item" href="#">Статьи</a></li>
+                <li><a class="nav-item" href="#">Контакты</a></li>
+                <li><a class="nav-item" href="#">О нас</a></li>
+            </ul>
+        </div><!-- //container-->
+
+    </div><!-- //header-menu-->
+
+    <div class="main">
+        <div class="breadcrumbs bg-grey">
+            <div class="container ">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+
+                    <li><span>Контакты</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="contacts">
+
+            <div v-if="cartTotal" class="container">
+                <div class="section-header"><h1>Контакты</h1></div>
+                <div class="cart">
+                    <div class="main-cart-items">
+                        <div class="main-cart-item ">
+                            <div class="main-cart-item-head">Товары</div>
+                            <div class="main-cart-item-head">Кол-во</div>
+                            <div class="main-cart-item-head">Цена</div>
+                            <div class="main-cart-item-head">Сумма</div>
+                            <div class="main-cart-item-head">Действие</div>
+                        </div><!--// main-cart-item-->
+                         <main-cart-item
+                                v-for="(item,index) in headerCartItems"
+                                v-bind:item="item"
+                                v-bind:key="item.id"
+                                v-bind:index="index"
+                                v-on:userdelete="remove"
+                                v-on:del_qt="del_qt"
+                                v-on:add_qt="add_qt"
+                        ></main-cart-item>
+
+                             <div class="main-cart-item ">
+                            <div class="main-cart-item-head">Итого</div>
+                            <div class="main-cart-item-head"></div>
+                            <div class="main-cart-item-head"></div>
+                            <div class="main-cart-item-head">[[cartTotal]]</div>
+                            <div class="main-cart-item-head"></div>
+                        </div><!--// main-cart-item-->
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="main-cart__buttons">
+
+                    <a href="javascript:void(0)" class="btn btn-outline ">продолжить покупки</a>
+                    <a href="javascript:void(0)" class="btn btn-md">оформить заказ</a>
+                </div>
+
+            </div><!--//container-->
+            <div v-else>
+  А теперь — нет
+</div>
+
+        </section>
+    </div><!--//main-->
+    <section class="map">
+        <div class="container map-inner">
+            <div class="shadow-box">
+                <div class="shadow-box-inner">
+
+                    <h5>Номер телефона:</h5>
+                    <p class="mb-30"><span>8 (982) 333-78-88</span></p>
+                    <h5>Email адрес:</h5>
+                    <p class="mb-30"><span>ideahome@mail.ru</span></p>
+                    <h5>Адреса магазинов:</h5>
+                    <p>Челябинск, <span>название улицы, №36</span></p>
+                    <p>Челябинск, <span>название улицы, №36</span></p>
+                    <p>Челябинск, <span>название улицы, №36</span></p>
+
                 </div>
             </div>
-            <div class="footer-top-list">
-                <p>Реквизиты в России:</p>
-                <ul>
-                    <li>ИП Фамилия И.И.</li>
-                    <li>ИНН 54651326526</li>
-                    <li>ОГРНИП 561563592526</li>
-                </ul>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top ">
+                <div class="footer-top-info">
+                    <p>Все материалы данного сайта защищены авторским правом. Полное или частичное копирование запрещено. Информация предназначена для аудитории 14+</p>
+                    <div class="footer-social">
+                        <ul>
+                            <li><a href="#" rel="nofollow"><span class="vk_icon"></span></a></li>
+                            <li><a href="#" rel="nofollow"><span class="fb_icon"></span></a></li>
+                            <li><a href="#" rel="nofollow"><span class="inst_icon"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-top-list">
+                    <p>Реквизиты в России:</p>
+                    <ul>
+                        <li>ИП Фамилия И.И.</li>
+                        <li>ИНН 54651326526</li>
+                        <li>ОГРНИП 561563592526</li>
+                    </ul>
+                </div>
+                <div class="footer-top-list ">
+                    <p>Адрес офиса:</p>
+                    <ul>
+                        <li>г. Челябинск</li>
+                        <li>7010, ул. Название, 55</li>
+                        <li>Телефон: +7 351 230 80 40</li>
+                    </ul>
+                </div>
+
+                <div class="footer-top-phones text-right">
+                    <p>+7 (351) 230 80 40</p>
+                    <a href="javascript: void(0)" onclick="toggleModal('callback-modal')" class="btn ">Перезвоните мне</a>
+                </div>
+
+
+
+
+
             </div>
-            <div class="footer-top-list ">
-                <p>Адрес офиса:</p>
-                <ul>
-                    <li>г. Челябинск</li>
-                    <li>7010, ул. Название, 55</li>
-                    <li>Телефон: +7 351 230 80 40</li>
-                </ul>
-            </div>
-
-            <div class="footer-top-phones text-right">
-                <p>+7 (351) 230 80 40</p>
-                <a href="javascript: void(0)" onclick="toggleModal('callback-modal')" class="btn ">Перезвоните мне</a>
-            </div>
-
-
-
-
 
         </div>
 
-    </div>
-    <script>
-        let quantityInput = document.getElementById('quantity')
-     function addQt(){
+    </footer>
+
+</div>
+
+<script>
+    let quantityInput = document.getElementById('quantity')
+    function addQt(){
         quantityInput.value = parseInt(quantityInput.value) + 1
 
     }
@@ -197,11 +280,10 @@
     }
 
 </script>
-</footer>
 
-
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/main.js"></script>
 </body>
 
 </html>
