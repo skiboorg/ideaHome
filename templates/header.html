@@ -25,8 +25,8 @@
             <div class="header-top_icons">
                 <a href=""><i class="fa fa-user"></i></a>
                 <div class="header-cart-toggle">
-                    <a  href="#"><i class="fa fa-shopping-cart"></i></a>
-                    <div style="display: none" class="header-cart">
+                    <a href="#"><i id="cart_items_count" :data-num="[[cartItemsNum ]]"  class="{% if all_items_in_cart.count == 0 %}empty{% endif %} fa fa-shopping-cart header-cart-toggle-num"></i></a>
+                    <div v-if="cartTotal" class="header-cart">
                         <div id="HeaderCart">
                             <header-cart-items
                                     v-for="(item,index) in headerCartItems"
@@ -37,51 +37,23 @@
                             ></header-cart-items>
 
 
-                            <!--div class="header-cart-items">
-                                <div class="header-cart-item">
-                                    <img src="http://placehold.it/50" alt="">
-                                    <div class="header-cart-item-info">
-                                        <p>Lorem ipsum dolor.</p>
-                                        <span class="header-cart-item-info-num">4</span>
-                                        x
-                                        <span class="header-cart-item-info-price">400</span>
-                                        =
-                                        <span class="header-cart-item-info-total">10000</span>
-                                    </div>
-                                    <div class="header-cart-item-remove">
-                                        <a href="">X</a>
-                                    </div>
 
-                                </div>
-                                <div class="header-cart-item">
-                                    <img src="http://placehold.it/50" alt="">
-                                    <div class="header-cart-item-info">
-                                        <p>Lorem ipsum Lorem ipsumLorem ipsum dolor.</p>
-                                        <span class="header-cart-item-info-num">4</span>
-                                        x
-                                        <span class="header-cart-item-info-price">400</span>
-                                        =
-                                        <span class="header-cart-item-info-total">1044000</span>
-                                    </div>
-                                    <div class="header-cart-item-remove">
-                                        <a href="">X</a>
-                                    </div>
-
-                                </div>
-                            </div-->
                             <div class="header-cart-bottom">
                                 <div class="header-cart-bottom-total">
                                     <p>Итого</p>
                                     <p>[[cartTotal]]</p>
                                 </div>
                                 <div class="header-cart-bottom-buttons">
-                                    <a href="" class="btn">Корзина</a>
+                                    <a href="{% url 'show_cart' %}" class="btn">Корзина</a>
                                     <a href="" class="btn">Оформить</a>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+                            <div v-else class="header-cart">
+ <p>Корзина пуста</p>
+</div>
                 </div>
 
                 <a href=""><i class="fa fa-heart"></i></a>
@@ -142,19 +114,28 @@
             <a href="{% url 'about' %}"><p class="side-panel-menu-item">О нас</p></a>
         </div>
     </div>
-</header>
-<div class="main-nav mobile-hide-800">
+   <div class="main-nav mobile-hide-800">
     <div class="container">
         <ul class="nav">
-            <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
+            <li><a class="nav-item" href="#"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
             </li>
             <li><a class="nav-item" href="{% url 'delivery' %}">Доставка</a></li>
             <li><a class="nav-item" href="{% url 'manufacturers' %}">Производители</a></li>
             <li><a class="nav-item" href="#">Партнерам</a></li>
             <li><a class="nav-item" href="#">Статьи</a></li>
             <li><a class="nav-item" href="{% url 'contacts' %}">Контакты</a></li>
-            <li><a class="nav-item" href="{% url 'about' %}">О нас</a></li>
+            <li><a class="nav-item" href="#">О нас</a></li>
+            <li class="have-sub-menu"><a class="nav-item" href="#">О нас</a>
+                        <ul class="nav-sub-menu">
+                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                        </ul>
+                    </li>
         </ul>
 
     </div><!-- //container-->
 </div><!-- //header-menu-->
+</header>
+
+

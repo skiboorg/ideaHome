@@ -9,36 +9,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
     <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
      <link rel="stylesheet" href="{% static 'css/glightbox.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+<div id="app">
+<form id="dummy_form" class="not-visible">{% csrf_token %}</form>
 {% include 'header.html' %}
 {% block content %}
 {% endblock %}
 {% include 'footer.html' %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
-{#<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
-{#<script src="js/main.js"></script>#}
+</div>
+{% block js %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+
 <script>
-    function changeVideo(videoId) {
-        var ytString = "https://www.youtube.com/embed/" + videoId;
-        document.getElementById('youtube').src = ytString;
+
+    function getCart() {
+        let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value
+            let body = {}
+            fetch(`/cart/get_cart/`, {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+                    if (res){
+                            console.log(res)
+                    for (let x of res){
+                           console.log(x)
+                        app.headerCartItems.push(x)
+                    }
+                    }
+
+
+
+                })
+
     }
-
-    var slider3 = tns({
-        container: '.reviews-slider',
-        items: 3,
-        axis: 'vertical' ,
-        gutter:15,
-        autoplay: false,
-        nav: false,
-        controls:false,
-        mouseDrag:true,
-    });
-</script>
-
-
-<script>
+    getCart()
     let acc = document.getElementsByClassName("accordion");
     let i;
     let lastActive = null
@@ -83,6 +97,8 @@ function openTab(evt, tab) {
 }
 document.getElementById("defaultOpen").click();
 </script>
+{% endblock %}
+
 
 </body>
 

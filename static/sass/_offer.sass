@@ -6,20 +6,30 @@
   &-banner
     display: flex
     justify-content: space-between
+    &-items
+     flex-basis: 75%
     &-item
-      background: url(../img/bg.png) no-repeat
+      position: relative
       height: 332px
-      flex-grow: 1
+      img
+        width: 100%
+        height: 100%
+        object-fit: cover
       &-text
-        padding: 45px
+        top: 0
+        position: absolute
+        padding: 35px
         h3
           font-size: 36px
           color: #ffffff
           max-width: 585px
+          margin-bottom: 20px
           span
             color: $color-red
+        a
+          max-width: 320px
     &-menu
-      flex-basis: 306px
+      flex-basis: 25%
       &-wrapper
         width: 100%
         height: 100%
@@ -29,7 +39,7 @@
         justify-content: space-between
       &-item
         position: relative
-        padding: 18px 35px
+        padding: 17px 35px
         border-bottom: 1px solid $border-color
         box-sizing: border-box
         cursor: pointer
@@ -45,16 +55,21 @@
         &:hover > div
             opacity: 1
             pointer-events: all
+            left: 100%
 
-
+@media (max-width: 800px)
+  .offer-banner-items
+    flex-basis: 100%
 .offer-banner-menu-inner
   position: absolute
-  left: 100%
+  left: 95%
   width: 100%
   top: 0
   opacity: 0
   border-left: 2px solid $color-red
   pointer-events: none
+  z-index: 10
+  transition: all .2s linear
 .offer-banner-menu-wrapper
   width: 100%
   height: 100%
@@ -84,6 +99,7 @@
   &:hover > div
     opacity: 1
     pointer-events: all
+    left: 100%
 
 .link-item::after
   content: none
@@ -95,5 +111,14 @@
   flex-wrap: wrap
   align-items: center
   justify-content: space-between
-
   background: #ffffff
+  &-item
+    img
+      display: block
+      margin: 0 auto
+
+@media (max-width: 420px)
+  .offer-partners
+    padding: 35px 0
+
+

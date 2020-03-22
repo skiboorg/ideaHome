@@ -7,7 +7,13 @@
                 <ul>
                     <li><a href="/">Главная</a></li>
                     <li><a href="#">Каталог товаров</a></li>
-                    <li><span>{{ category.name }}</span></li>
+                    {% if subcategory %}
+                         <li><a href="{% url 'category' subcategory.category.name_slug %}">{{ subcategory.category.name }}</a></li>
+                         <li><span>{{ subcategory.name }}</span></li>
+                        {% else %}
+                         <li><span>{{ category.name }}</span></li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>
@@ -92,9 +98,15 @@
 
                                         {% endif %}
                                     </div>
+                                {% if item.id in cart_items_ids %}
+                                      <button id="add_btn_{{ item.id }}" data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.discount_value }}" data-image="{{ item.itemimage_set.first.image_small }}" @click="addItem" class="btn catalog-item-btn" disabled="disabled">в корзине</button>
+
+                                    {% else %}
+                                       <button id="add_btn_{{ item.id }}" data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.discount_value }}" data-image="{{ item.itemimage_set.first.image_small }}" @click="addItem" class="btn catalog-item-btn">в корзину</button>
+
+                                {% endif %}
                                     {#                            <p class="catalog-item-price">{{ item.price }} <i class="fa fa-rub"></i></p>#}
-                                    <a href="{{ item.get_absolute_url }}" class="btn catalog-item-btn">в корзину</a>
-                                </div><!--//catalog-item-->
+                               </div><!--//catalog-item-->
                             {% endfor %}
                         </div><!--//catalog-items-list-->
                     </div><!--//catalog-items-wrapper-->
@@ -105,7 +117,12 @@
 
         </section>
 
-        <script>
+
+    </div><!--//main-->
+{% endblock %}
+{% block js %}
+    {{ block.super }}
+     <script>
             let last_order = '';
             function setGetParam(key,value) {
                 if (history.pushState) {
@@ -196,5 +213,4 @@
                 }
             }
         </script>
-    </div><!--//main-->
 {% endblock %}

@@ -35,6 +35,7 @@ class Category(models.Model):
     description = RichTextUploadingField('Описание категории', blank=True, null=True)
     is_active = models.BooleanField('Отображать ?', default=True, db_index=True)
     is_in_index_catalog = models.BooleanField('Показывать в каталоге на главной ?', default=False, db_index=True)
+    old_id = models.IntegerField(blank=True,null=True)
     views = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -80,6 +81,7 @@ class SubCategory(models.Model):
     page_keywords = models.TextField('Keywords', blank=True, null=True)
     description = RichTextUploadingField('Описание подкатегории', blank=True, null=True)
     discount = models.IntegerField('Скидка на все товары в подкатегории %', blank=True, default=0)
+    old_id = models.IntegerField(blank=True, null=True)
     views = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -116,6 +118,7 @@ class Manufactor(models.Model):
     page_description = models.CharField('Description страницы', max_length=255, blank=True, null=True)
     page_keywords = models.TextField('Keywords', blank=True, null=True)
     description = RichTextUploadingField('Описание на странице', blank=True, null=True)
+    old_id = models.IntegerField(blank=True, null=True)
     views = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -177,6 +180,7 @@ class Item(models.Model):
     weight = models.CharField('Вес', max_length=15, blank=True, null=True)
     complect = models.CharField('Комплект', max_length=15, blank=True, null=True)
     thickness = models.CharField('Толщина', max_length=15, blank=True, null=True)
+    old_id = models.IntegerField(blank=True, null=True)
 
     description = RichTextUploadingField('Описание товара', blank=True, null=True)
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
@@ -230,7 +234,7 @@ class Item(models.Model):
         if self.discount > 0:
             dis_val = self.price - (self.price * self.discount / 100)
         else:
-            dis_val = 0
+            dis_val = self.price
         return (format_number(dis_val))
 
 

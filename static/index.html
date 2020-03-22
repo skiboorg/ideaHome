@@ -11,414 +11,489 @@
 </head>
 <body>
 <div id="app">
-    <header class="header ">
-    <div class="container">
-        <div class="header-top">
+    <header class="header header-fixed">
+        <div class="container">
+            <div class="header-top">
 
-            <div class="mobile-menu-toggle">
-                <span><i class="fa fa-list"></i></span>
-            </div>
-            <div class="header-top_logo">
-
-                <p class="header-top_logo-name"><span>идеи</span> для дома</p>
-                <div class="header-top_logo-info mobile-hide-800">
-                    <p>Декоративные и отделочные материалы по Челябинской области</p>
-                    <span>Адреса всех магазинов</span>
+                <div class="mobile-menu-toggle">
+                    <span><i class="fa fa-list"></i></span>
                 </div>
-            </div>
-            <div class="header-top_search-form mobile-hide-800">
-                <form>
-                    <div class="form-row">
-                        <input type="text" class="form-control input" placeholder="Поиск по сайту">
+                <div class="header-top_logo">
+
+                    <p class="header-top_logo-name"><span>идеи</span> для дома</p>
+                    <div class="header-top_logo-info mobile-hide-800">
+                        <p>Декоративные и отделочные материалы по Челябинской области</p>
+                        <span>Адреса всех магазинов</span>
                     </div>
+                </div>
+                <div class="header-top_search-form mobile-hide-800">
+                    <form>
+                        <div class="form-row">
+                            <input type="text" class="form-control input" placeholder="Поиск по сайту">
+                        </div>
 
-                </form>
-            </div>
-            <div class="header-top_icons">
-                <a href=""><i class="fa fa-user"></i></a>
-                <div class="header-cart-toggle">
-                    <a  href="#"><i class="fa fa-shopping-cart"></i></a>
-                    <div  class="header-cart">
-                        <div id="HeaderCart">
-                          <header-cart-items
-                                    v-for="(item,index) in headerCartItems"
-                                    v-bind:item="item"
-                                    v-bind:key="item.id"
-                                    v-bind:index="index"
-                                    v-on:userdelete="remove"
-                            ></header-cart-items>
+                    </form>
+                </div>
+                <div class="header-top_icons">
+                    <a href=""><i class="fa fa-user"></i></a>
+                    <div class="header-cart-toggle">
+                        <a href="#"><i data-num="4" class="fa fa-shopping-cart header-cart-toggle-num"></i>
+
+                        </a>
+
+                        <div  class="header-cart">
+                            <div id="HeaderCart">
+                                <header-cart-items
+                                        v-for="(item,index) in headerCartItems"
+                                        v-bind:item="item"
+                                        v-bind:key="item.id"
+                                        v-bind:index="index"
+                                        v-on:userdelete="remove"
+                                ></header-cart-items>
 
 
-                            <!--div class="header-cart-items">
-                                <div class="header-cart-item">
-                                    <img src="http://placehold.it/50" alt="">
-                                    <div class="header-cart-item-info">
-                                        <p>Lorem ipsum dolor.</p>
-                                        <span class="header-cart-item-info-num">4</span>
-                                        x
-                                        <span class="header-cart-item-info-price">400</span>
-                                        =
-                                        <span class="header-cart-item-info-total">10000</span>
+                                <div class="header-cart-items">
+                                    <div class="header-cart-item">
+                                        <img src="http://placehold.it/50" alt="">
+                                        <div class="header-cart-item-info">
+                                            <p>Lorem ipsum dolor.</p>
+                                            <span class="header-cart-item-info-num">4</span>
+                                            x
+                                            <span class="header-cart-item-info-price">400</span>
+                                            =
+                                            <span class="header-cart-item-info-total">10000</span>
+                                        </div>
+                                        <div class="header-cart-item-remove">
+                                            <i class="fa fa-times"></i>
+                                        </div>
                                     </div>
-                                    <div class="header-cart-item-remove">
-                                        <a href="">X</a>
+                                    <div class="header-cart-item">
+                                        <img src="http://placehold.it/50" alt="">
+                                        <div class="header-cart-item-info">
+                                            <p>Lorem ipsum dolor.</p>
+                                            <span class="header-cart-item-info-num">4</span>
+                                            x
+                                            <span class="header-cart-item-info-price">400</span>
+                                            =
+                                            <span class="header-cart-item-info-total">10000</span>
+                                        </div>
+                                        <div class="header-cart-item-remove">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="header-cart-item">
+                                        <img src="http://placehold.it/50" alt="">
+                                        <div class="header-cart-item-info">
+                                            <p>Lorem ipsum dolor.</p>
+                                            <span class="header-cart-item-info-num">4</span>
+                                            x
+                                            <span class="header-cart-item-info-price">400</span>
+                                            =
+                                            <span class="header-cart-item-info-total">10000</span>
+                                        </div>
+                                        <div class="header-cart-item-remove">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="header-cart-item">
+                                        <img src="http://placehold.it/50" alt="">
+                                        <div class="header-cart-item-info">
+                                            <p>Lorem ipsum dolor.</p>
+                                            <span class="header-cart-item-info-num">4</span>
+                                            x
+                                            <span class="header-cart-item-info-price">400</span>
+                                            =
+                                            <span class="header-cart-item-info-total">10000</span>
+                                        </div>
+                                        <div class="header-cart-item-remove">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="header-cart-item">
+                                        <img src="http://placehold.it/50" alt="">
+                                        <div class="header-cart-item-info">
+                                            <p>Lorem ipsum dolor.</p>
+                                            <span class="header-cart-item-info-num">4</span>
+                                            x
+                                            <span class="header-cart-item-info-price">400</span>
+                                            =
+                                            <span class="header-cart-item-info-total">10000</span>
+                                        </div>
+                                        <div class="header-cart-item-remove">
+                                            <i class="fa fa-times"></i>
+                                        </div>
                                     </div>
 
                                 </div>
-                                <div class="header-cart-item">
-                                    <img src="http://placehold.it/50" alt="">
-                                    <div class="header-cart-item-info">
-                                        <p>Lorem ipsum Lorem ipsumLorem ipsum dolor.</p>
-                                        <span class="header-cart-item-info-num">4</span>
-                                        x
-                                        <span class="header-cart-item-info-price">400</span>
-                                        =
-                                        <span class="header-cart-item-info-total">1044000</span>
+                                <div class="header-cart-bottom">
+                                    <div class="header-cart-bottom-total">
+                                        <p>Итого</p>
+                                        <p>[[cartTotal]]</p>
                                     </div>
-                                    <div class="header-cart-item-remove">
-                                        <a href="">X</a>
+                                    <div class="header-cart-bottom-buttons">
+                                        <a href="" class="btn">Корзина</a>
+                                        <a href="" class="btn">Оформить</a>
                                     </div>
-
-                                </div>
-                            </div-->
-                            <div class="header-cart-bottom">
-                                <div class="header-cart-bottom-total">
-                                    <p>Итого</p>
-                                    <p>[[cartTotal]]</p>
-                                </div>
-                                <div class="header-cart-bottom-buttons">
-                                    <a href="" class="btn">Корзина</a>
-                                    <a href="" class="btn">Оформить</a>
                                 </div>
                             </div>
+
                         </div>
-
                     </div>
-                </div>
 
-                <a href=""><i class="fa fa-heart"></i></a>
+                    <a href=""><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="header-top_callback mobile-hide-800">
+                    <p>8 351 215 55 07</p>
+                    <span>обратный звонок</span>
+                </div>
+            </div><!-- //header-top-->
+        </div><!-- //container-->
+        <div class="side-panel">
+
+            <div class="side-panel-top">
+                <span class="side-panel-top-toggle"><i class="fa fa-times"></i></span>
+                <p class="side-panel-top-logo">идеи для дома</p>
             </div>
-            <div class="header-top_callback mobile-hide-800">
-                <p>8 351 215 55 07</p>
-                <span>обратный звонок</span>
-            </div>
-        </div><!-- //header-top-->
-    </div><!-- //container-->
-    <div class="side-panel">
-
-        <div class="side-panel-top">
-            <span class="side-panel-top-toggle"><i class="fa fa-times"></i></span>
-            <p class="side-panel-top-logo">идеи для дома</p>
-        </div>
 
 
-        <div class="side-panel-menu">
-            <a href=""><p class="side-panel-menu-item">Каталог материалов</p></a>
-            <div class="catalog-menu mobile-catalog">
+            <div class="side-panel-menu">
+                <a href=""><p class="side-panel-menu-item">Каталог материалов</p></a>
+                <div class="catalog-menu mobile-catalog">
 
-                <button class="accordion">3D панели</button>
-                <div class="panel">
-                    <ul class="panel-list">
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                    </ul>
-                </div>
-                <a class="catalog-menu-link" href="#">ССылка</a>
-                <button class="accordion">Section 2</button>
-                <div class="panel">
-                    <ul class="panel-list">
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                    </ul>
-                </div>
-
-                <button class="accordion">Section 3</button>
-                <div class="panel">
-                    <ul class="panel-list">
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                    </ul>
-                </div>
-                <a class="catalog-menu-link" href="#">ССылка</a>
-
-
-            </div><!--//catalog-menu-->
-            <a href=""><p class="side-panel-menu-item">Доставка</p></a>
-            <a href=""><p class="side-panel-menu-item">Производители</p></a>
-            <a href=""><p class="side-panel-menu-item">Партнерам</p></a>
-            <a href=""><p class="side-panel-menu-item">Статьи</p></a>
-            <a href=""><p class="side-panel-menu-item">Контакты</p></a>
-            <a href=""><p class="side-panel-menu-item">О нас</p></a>
-        </div>
-    </div>
-</header>
-<div class="main-nav mobile-hide-800">
-    <div class="container">
-        <ul class="nav">
-            <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
-            </li>
-            <li><a class="nav-item" href="#">Доставка</a></li>
-            <li><a class="nav-item" href="#">Производители</a></li>
-            <li><a class="nav-item" href="#">Партнерам</a></li>
-            <li><a class="nav-item" href="#">Статьи</a></li>
-            <li><a class="nav-item" href="#">Контакты</a></li>
-            <li><a class="nav-item" href="#">О нас</a></li>
-        </ul>
-
-    </div><!-- //container-->
-</div><!-- //header-menu-->
-<div class="main">
-    <section class="offer">
-        <div class="container ">
-            <div class="offer-wrapper">
-                <div class="offer-banner">
-                    <div class="offer-banner-menu mobile-hide-800">
-                        <ul class="offer-banner-menu-wrapper">
-                            <li class="offer-banner-menu-item" >Lorem ipsum.
-                                <div  class="offer-banner-menu-inner">
-                                    <ul class="offer-banner-menu-wrapper">
-                                        <li class="offer-banner-menu-inner-item">1
-                                            <div  class="offer-banner-menu-inner">
-                                                <ul class="offer-banner-menu-wrapper">
-                                                    <li class="offer-banner-menu-inner-item">1</li>
-                                                    <li class="offer-banner-menu-inner-item">2</li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="offer-banner-menu-inner-item">2</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="offer-banner-menu-item" >Lorem ipsum.
-                                <div class="offer-banner-menu-inner">
-                                    <ul class="offer-banner-menu-wrapper">
-                                        <li class="offer-banner-menu-inner-item">33</li>
-                                        <li class="offer-banner-menu-inner-item">444</li>
-                                        <li class="offer-banner-menu-inner-item link-item"><a href="#">Lorem ipsum.</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="offer-banner-menu-item">Lorem ipsum.</li>
-                            <li class="offer-banner-menu-item">Lorem ipsum.</li>
-                            <li class="offer-banner-menu-item">Lorem ipsum.</li>
-                            <li class="offer-banner-menu-item link-item"><a href="sd">Lorem ipsum.</a></li>
+                    <button class="accordion">3D панели</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
                         </ul>
                     </div>
-                    <div class="offer-banner-item">
-                        <div class="offer-banner-item-text">
-                            <h3><span>Сэкономьте до 50%</span> на покупке любого материала за счет налаженного производства</h3>
+                    <a class="catalog-menu-link" href="#">ССылка</a>
+                    <button class="accordion">Section 2</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
+
+                    <button class="accordion">Section 3</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                            <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
+                        </ul>
+                    </div>
+                    <a class="catalog-menu-link" href="#">ССылка</a>
+
+
+                </div><!--//catalog-menu-->
+                <a href=""><p class="side-panel-menu-item">Доставка</p></a>
+                <a href=""><p class="side-panel-menu-item">Производители</p></a>
+                <a href=""><p class="side-panel-menu-item">Партнерам</p></a>
+                <a href=""><p class="side-panel-menu-item">Статьи</p></a>
+                <a href=""><p class="side-panel-menu-item">Контакты</p></a>
+                <a href=""><p class="side-panel-menu-item">О нас</p></a>
+            </div>
+        </div>
+        <div class="main-nav mobile-hide-800">
+            <div class="container">
+                <ul class="nav">
+                    <li><a class="nav-item" href="javascript: void(0)"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
+                    </li>
+                    <li><a class="nav-item" href="#">Доставка</a></li>
+                    <li><a class="nav-item" href="#">Производители</a></li>
+                    <li><a class="nav-item" href="#">Партнерам</a></li>
+                    <li><a class="nav-item" href="#">Статьи</a></li>
+                    <li><a class="nav-item" href="#">Контакты</a></li>
+                    <li class="have-sub-menu"><a class="nav-item" href="#">О нас</a>
+                        <ul class="nav-sub-menu">
+                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div><!-- //container-->
+        </div><!-- //header-menu-->
+    </header>
+
+    <div class="main">
+        <section class="offer">
+            <div class="container ">
+                <div class="offer-wrapper">
+                    <div class="offer-banner">
+                        <div class="offer-banner-menu mobile-hide-800">
+                            <ul class="offer-banner-menu-wrapper">
+                                <li class="offer-banner-menu-item" >Lапrem ipsum.
+                                    <div  class="offer-banner-menu-inner">
+                                        <ul class="offer-banner-menu-wrapper">
+                                            <li class="offer-banner-menu-inner-item">1
+                                                <div  class="offer-banner-menu-inner">
+                                                    <ul class="offer-banner-menu-wrapper">
+                                                        <li class="offer-banner-menu-inner-item">1</li>
+                                                        <li class="offer-banner-menu-inner-item">2</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="offer-banner-menu-inner-item">2</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="offer-banner-menu-item" >Lorem ipsum.
+                                    <div class="offer-banner-menu-inner">
+                                        <ul class="offer-banner-menu-wrapper">
+                                            <li class="offer-banner-menu-inner-item">33</li>
+                                            <li class="offer-banner-menu-inner-item">444</li>
+                                            <li class="offer-banner-menu-inner-item link-item"><a href="#">Lorem ipsum.</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="offer-banner-menu-item">Lorem ipsum.</li>
+                                <li class="offer-banner-menu-item">Lorem ipsum.</li>
+                                <li class="offer-banner-menu-item">Lorem ipsum.</li>
+                                <li class="offer-banner-menu-item link-item"><a href="sd">Lorem ipsum.</a></li>
+                            </ul>
+                        </div>
+                        <div class="offer-banner-items">
+                                <div class="offer-slider">
+                                              <div class="offer-banner-item">
+                                    <img src="img/bg.png" alt="">
+                                     <div class="offer-banner-item-text">
+                                    <h3><span>Сэкономьте до 520%</span> на покупке любого материала за счет налаженного производства</h3>
+                                         <a href="#" class="btn">подробнее</a>
+                                </div>
+                            </div><!--// offer-banner-item-->
+
+                             <div class="offer-banner-item">
+                                    <img src="img/bg.png" alt="">
+                                     <div class="offer-banner-item-text">
+                                    <h3><span>Сэкономьте до 50%</span> на покупке любого материала за счет налаженного производства</h3>
+                                </div>
+                            </div><!--// offer-banner-item-->
+                                </div>
+
+
+
+
+                        </div>
+
+
+                    </div><!-- //offer-slider-->
+                    <div class="offer-partners">
+                        <div class="offer-partners-slider">
+                              <div class="offer-partners-item">
+                                  <a href="">
+                                     <img src="http://placehold.it/110x55" alt="">
+                                  </a>
+
+                        </div><!-- //offer-partners-item-->
+                        <div class="offer-partners-item">
+                            <img src="http://placehold.it/110x55" alt="">
+                        </div><!-- //offer-partners-item-->
+                        <div class="offer-partners-item">
+                            <img src="http://placehold.it/110x55" alt="">
+                        </div><!-- //offer-partners-item-->
+                        <div class="offer-partners-item">
+                            <img src="http://placehold.it/110x55" alt="">
+                        </div><!-- //offer-partners-item-->
+                        <div class="offer-partners-item">
+                            <img src="http://placehold.it/110x55" alt="">
+                        </div><!-- //offer-partners-item-->
+                        <div class="offer-partners-item">
+                            <img src="http://placehold.it/110x55" alt="">
+                        </div><!-- //offer-partners-item-->
+                        <div class="offer-partners-item">
+                            <img src="http://placehold.it/110x55" alt="">
+                        </div><!-- //offer-partners-item-->
+                        </div>
+
+
+                    </div><!-- //offer-partners-->
+                </div><!-- //offer-wrapper-->
+
+            </div>
+        </section>
+        <section class="why-we">
+            <div class="container">
+                <h3 class="text-center">Почему идеи для дома?</h3>
+                <div class="why-we-wrapper">
+                    <div class="why-we-item">
+                        <img src="http://placehold.it/300" alt="">
+                        <h4>Лучшие цены</h4>
+                        <p>Найдете дешевле и мы <span>сделаем цену еще ниже</span> при лучшем качестве, за счет производителя</p>
+                    </div><!--//why-we-item-->
+                    <div class="why-we-item">
+                        <img src="http://placehold.it/300" alt="">
+                        <h4>Мы — специалисты</h4>
+                        <p>Каждый сотрудник обладает <span>сертификатом обучения</span> по нашей продукции</p>
+                    </div><!--//why-we-item-->
+                    <div class="why-we-item">
+                        <img src="http://placehold.it/300" alt="">
+                        <h4>Бесплатная доставка</h4>
+                        <p>Привезём всё что нужно <span>в день вашего обращения</span></p>
+                    </div><!--//why-we-item-->
+                </div>
+            </div>
+        </section>
+        <section class="lets-meet not-visible-md">
+            <div class="container">
+                <div class="lets-meet-inner">
+
+                    <div class="quote">
+                        <p>Открыл магазин, когда сам делал ремонт и не нашел материала во всем городе</p>
+                    </div>
+                    <p class="info-text mb-30">Оббегав кучу магазина я так и не нашёл нужного мне материала с достойным качеством и по выгодной цене.</p>
+                    <p class="info-text ">Выбор заняться данным бизнесом пал из-за очень малого процента конкурентов на рынке на тот момент
+                        И вот, уже на протяжении семи лет наш состав остается неизменным. Каждый сотрудник — настоящий практик в своей специальности, который живет ею.</p>
+                </div>
+                <div class="lets-meet-about">
+                    <p><span>Представитель</span><br/>магазина "Идеи для дома"<br/><span>Дмитрий Петров</span></p>
+                </div>
+            </div>
+        </section><!-- // lets-meet -->
+        <section class="features">
+            <div class="container">
+                <div class="features-wrapper">
+                    <div class="features-left">
+                        <h3>Европейское качество</h3>
+                        <ul>
+                            <li>Звукоизоляций от соседей</li>
+                            <li>Идеальная геометрия и простой монтаж</li>
+                            <li>Окраска в любой цвет под ваш интерьер</li>
+                            <li>Монолитная конструкция<br> абсолютно без швов</li>
+                        </ul>
+                    </div>
+                    <div class="shadow-box">
+                        <div class="shadow-box-inner">
+                            <h5 class="mb-40">Хотите узнать подробнее
+                                <span>или убедиться в качестве?</span>
+                            </h5>
+
+                            <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
+                            <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
+                            <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
+
+                            <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
+
+                            <input style="display: none" name="agree" type="checkbox">
                         </div>
                     </div>
-
-                </div><!-- //offer-slider-->
-                <div class="offer-partners">
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-
-                </div><!-- //offer-partners-->
-            </div><!-- //offer-wrapper-->
-
-        </div>
-    </section>
-    <section class="why-we">
-        <div class="container">
-            <h3 class="text-center">Почему идеи для дома?</h3>
-            <div class="why-we-wrapper">
-                <div class="why-we-item">
-                    <img src="http://placehold.it/300" alt="">
-                    <h4>Лучшие цены</h4>
-                    <p>Найдете дешевле и мы <span>сделаем цену еще ниже</span> при лучшем качестве, за счет производителя</p>
-                </div><!--//why-we-item-->
-                <div class="why-we-item">
-                    <img src="http://placehold.it/300" alt="">
-                    <h4>Мы — специалисты</h4>
-                    <p>Каждый сотрудник обладает <span>сертификатом обучения</span> по нашей продукции</p>
-                </div><!--//why-we-item-->
-                <div class="why-we-item">
-                    <img src="http://placehold.it/300" alt="">
-                    <h4>Бесплатная доставка</h4>
-                    <p>Привезём всё что нужно <span>в день вашего обращения</span></p>
-                </div><!--//why-we-item-->
-            </div>
-        </div>
-    </section>
-    <section class="lets-meet not-visible-md">
-        <div class="container">
-            <div class="lets-meet-inner">
-
-                <div class="quote">
-                    <p>Открыл магазин, когда сам делал ремонт и не нашел материала во всем городе</p>
                 </div>
-                <p class="info-text mb-30">Оббегав кучу магазина я так и не нашёл нужного мне материала с достойным качеством и по выгодной цене.</p>
-                <p class="info-text ">Выбор заняться данным бизнесом пал из-за очень малого процента конкурентов на рынке на тот момент
-                    И вот, уже на протяжении семи лет наш состав остается неизменным. Каждый сотрудник — настоящий практик в своей специальности, который живет ею.</p>
             </div>
-            <div class="lets-meet-about">
-                <p><span>Представитель</span><br/>магазина "Идеи для дома"<br/><span>Дмитрий Петров</span></p>
+
+        </section>
+        <section class="dont-risk">
+            <div class="container">
+                <div class="dont-risk-wrapper">
+                    <div class="dont-risk-left">
+                        <h3>Не рискуйте!</h3>
+                        <p class="dont-risk-left-text1"><span class="green-underline">Посетите наш салон, чтобы убедиться</span><br>в качестве материала</p>
+                        <p class="dont-risk-left-text2">Там вы сможете пообщаться с консультантом, обсудить детали будущего ремонта и посмотреть все материалы</p>
+                        <a   class="btn mb-40" href="#" >Адреса салонов</a>
+                    </div>
+                    <div class="dont-risk-right">
+                        <img src="http://placehold.it/650x370" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="reviews">
+            <div class="reviews-container">
+                <h3 class="text-center">Посмотрите реальные отзывы</h3>
+                <div class="reviews-wrapper">
+                    <div class="reviews-video">
+                        <iframe id="youtube" width="590" height="460" src="https://www.youtube.com/embed/RYDpE0SgXOw" frameborder="0" allowfullscreen></iframe>
+
+                    </div>
+                    <div class="reviews-slider">
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+                    </div>
+                    <div class="slider-arrows">
+                        <div class="up-arrow">
+                            <a href="">d</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!--//main-->
+    <section class="map">
+        <div class="container map-inner">
+            <div class="shadow-box">
+                <div class="shadow-box-inner">
+                    <h5>Номер телефона:</h5>
+                    <p class="mb-30"><span>8 (982) 333-78-88</span></p>
+                    <h5>Email адрес:</h5>
+                    <p class="mb-30"><span>ideahome@mail.ru</span></p>
+                    <h5>Адреса магазинов:</h5>
+                    <p>Челябинск, <span>название улицы, №36</span></p>
+                    <p>Челябинск, <span>название улицы, №36</span></p>
+                    <p>Челябинск, <span>название улицы, №36</span></p>
+
+                </div>
             </div>
         </div>
-    </section><!-- // lets-meet -->
-    <section class="features">
+    </section>
+    <footer class="footer">
         <div class="container">
-            <div class="features-wrapper">
-                <div class="features-left">
-                    <h3>Европейское качество</h3>
+            <div class="footer-top ">
+                <div class="footer-top-info">
+                    <p>Все материалы данного сайта защищены авторским правом. Полное или частичное копирование запрещено. Информация предназначена для аудитории 14+</p>
+                    <div class="footer-social">
+                        <ul>
+                            <li><a href="#" rel="nofollow"><span class="vk_icon"></span></a></li>
+                            <li><a href="#" rel="nofollow"><span class="fb_icon"></span></a></li>
+                            <li><a href="#" rel="nofollow"><span class="inst_icon"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-top-list">
+                    <p>Реквизиты в России:</p>
                     <ul>
-                        <li>Звукоизоляций от соседей</li>
-                        <li>Идеальная геометрия и простой монтаж</li>
-                        <li>Окраска в любой цвет под ваш интерьер</li>
-                        <li>Монолитная конструкция<br> абсолютно без швов</li>
+                        <li>ИП Фамилия И.И.</li>
+                        <li>ИНН 54651326526</li>
+                        <li>ОГРНИП 561563592526</li>
                     </ul>
                 </div>
-                <div class="shadow-box">
-                    <div class="shadow-box-inner">
-                        <h5 class="mb-40">Хотите узнать подробнее
-                            <span>или убедиться в качестве?</span>
-                        </h5>
-
-                        <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
-                        <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
-                        <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
-
-                        <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
-
-                        <input style="display: none" name="agree" type="checkbox">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-    <section class="dont-risk">
-        <div class="container">
-            <div class="dont-risk-wrapper">
-                <div class="dont-risk-left">
-                    <h3>Не рискуйте!</h3>
-                    <p class="dont-risk-left-text1"><span class="green-underline">Посетите наш салон, чтобы убедиться</span><br>в качестве материала</p>
-                    <p class="dont-risk-left-text2">Там вы сможете пообщаться с консультантом, обсудить детали будущего ремонта и посмотреть все материалы</p>
-                    <a   class="btn mb-40" href="#" >Адреса салонов</a>
-                </div>
-                <div class="dont-risk-right">
-                    <img src="http://placehold.it/650x370" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="reviews">
-        <div class="reviews-container">
-            <h3 class="text-center">Посмотрите реальные отзывы</h3>
-            <div class="reviews-wrapper">
-                <div class="reviews-video">
-                    <iframe id="youtube" width="590" height="460" src="https://www.youtube.com/embed/RYDpE0SgXOw" frameborder="0" allowfullscreen></iframe>
-
-                </div>
-                <div class="reviews-slider">
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
-                    </div>
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
-                    </div>
-
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
-                    </div>
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
-                    </div>
-                </div>
-                <div class="slider-arrows">
-                    <div class="up-arrow">
-                        <a href="">d</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</div><!--//main-->
-<section class="map">
-    <div class="container map-inner">
-        <div class="shadow-box">
-            <div class="shadow-box-inner">
-                <h5>Номер телефона:</h5>
-                <p class="mb-30"><span>8 (982) 333-78-88</span></p>
-                <h5>Email адрес:</h5>
-                <p class="mb-30"><span>ideahome@mail.ru</span></p>
-                <h5>Адреса магазинов:</h5>
-                <p>Челябинск, <span>название улицы, №36</span></p>
-                <p>Челябинск, <span>название улицы, №36</span></p>
-                <p>Челябинск, <span>название улицы, №36</span></p>
-
-            </div>
-        </div>
-    </div>
-</section>
-<footer class="footer">
-    <div class="container">
-        <div class="footer-top ">
-            <div class="footer-top-info">
-                <p>Все материалы данного сайта защищены авторским правом. Полное или частичное копирование запрещено. Информация предназначена для аудитории 14+</p>
-                <div class="footer-social">
+                <div class="footer-top-list ">
+                    <p>Адрес офиса:</p>
                     <ul>
-                        <li><a href="#" rel="nofollow"><span class="vk_icon"></span></a></li>
-                        <li><a href="#" rel="nofollow"><span class="fb_icon"></span></a></li>
-                        <li><a href="#" rel="nofollow"><span class="inst_icon"></span></a></li>
+                        <li>г. Челябинск</li>
+                        <li>7010, ул. Название, 55</li>
+                        <li>Телефон: +7 351 230 80 40</li>
                     </ul>
                 </div>
+
+                <div class="footer-top-phones text-right">
+                    <p>+7 (351) 230 80 40</p>
+                    <a href="javascript: void(0)" onclick="toggleModal('callback-modal')" class="btn ">Перезвоните мне</a>
+                </div>
+
+
+
+
+
             </div>
-            <div class="footer-top-list">
-                <p>Реквизиты в России:</p>
-                <ul>
-                    <li>ИП Фамилия И.И.</li>
-                    <li>ИНН 54651326526</li>
-                    <li>ОГРНИП 561563592526</li>
-                </ul>
-            </div>
-            <div class="footer-top-list ">
-                <p>Адрес офиса:</p>
-                <ul>
-                    <li>г. Челябинск</li>
-                    <li>7010, ул. Название, 55</li>
-                    <li>Телефон: +7 351 230 80 40</li>
-                </ul>
-            </div>
-
-            <div class="footer-top-phones text-right">
-                <p>+7 (351) 230 80 40</p>
-                <a href="javascript: void(0)" onclick="toggleModal('callback-modal')" class="btn ">Перезвоните мне</a>
-            </div>
-
-
-
-
 
         </div>
-
-    </div>
-</footer>
+    </footer>
 </div>
 
 
@@ -432,8 +507,50 @@
         document.getElementById('youtube').src = ytString;
     }
 
+var slider1 = tns({
+        container: '.offer-slider',
+        items: 1,
+        autoplay: false,
+        "autoHeight": true,
+        nav: false,
+        controls:false,
+        mouseDrag:true,
+    });
 
+    var slider2 = tns({
+        container: '.offer-partners-slider',
 
+        autoplay: false,
+        gutter:20,
+        nav: false,
+        controls:false,
+        mouseDrag:true,
+        responsive: {
+              300: {
+                    edgePadding: 0,
+                    gutter:10,
+                    items: 1,
+
+                },
+             360: {
+                    //edgePadding: 50,
+                    gutter:10,
+                    items: 2
+                },
+                520: {
+                    //edgePadding: 50,
+                    gutter:10,
+                    items: 3
+                },
+                720: {
+                    items: 4
+                },
+                900:{
+                    items: 6
+                }
+
+            }
+    });
     var slider3 = tns({
         container: '.reviews-slider',
         items: 3,

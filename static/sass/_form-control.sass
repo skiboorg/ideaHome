@@ -25,6 +25,7 @@
 .btn
   position: relative
   //display: block
+  border: none
   display: flex
   align-items: center
   justify-content: center
@@ -40,6 +41,9 @@
   //text-align: center
   cursor: pointer
   transition: all .1s linear
+  &:focus
+    outline: none
+
   &::after
     position: absolute
     content: ''

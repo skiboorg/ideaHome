@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.http import JsonResponse
 from cart.models import Cart
@@ -12,10 +14,28 @@ def format_number(num):
         return int(num)
     else:
         return num
+def get_all_items(client=None,guest=None):
+    all_cart_items = []
+    if client:
+        all_cart_items = Cart.objects.filter(client=client)
+        print('Cart class : client cart items : ', all_cart_items)
+    if guest:
+        all_cart_items = Cart.objects.filter(guest=guest)
+        print('Cart class : guest cart items : ', all_cart_items)
+    if all_cart_items.exists():
+        allitems = []
+        for cartitem in all_cart_items:
+            allitems.append({
+                'id': cartitem.item.id,
+                'name': cartitem.item.name,
+                'num': cartitem.number,
+                'price': cartitem.current_price,
+                'image': cartitem.item.itemimage_set.first().image_small})
+        return allitems
 
 def show_cart(request):
 
-    return render(request, 'cart/cart.html', locals())
+    return render(request, 'page/cart.html', locals())
 
 def wishlist_delete(request):
     return_dict = {}
@@ -37,10 +57,8 @@ def wishlist_add(request):
         return_dict['result'] = False
     return JsonResponse(return_dict)
 
-def add_to_cart(request):
+def add_to_cart1(request):
     return_dict = {}
-
-
     data = request.POST
     print(data)
     s_key = request.session.session_key
@@ -395,3 +413,80 @@ def sort_filter(request):
 
 
     return JsonResponse(return_dict)
+
+
+def add_to_cart(request):
+    body = json.loads(request.body)
+    return_dict = {}
+    print(body)
+    item_id = int(body.get('item_id'))
+    action = body.get('action')
+    number = body.get('number')
+    user = None
+    guest = None
+    s_key = request.session.session_key
+
+    if request.user.is_authenticated:
+        print('User is_authenticated')
+        user = request.user
+    else:
+        print('User is_not authenticated')
+        try:
+            guest = Guest.objects.get(session=s_key)
+            print('Guest already created')
+        except:
+            guest = None
+        if not guest:
+            guest = Guest.objects.create(session=s_key)
+            guest.save()
+            print('Guest created')
+
+    if action == 'add_new':
+        if user:
+            new_cart_item = Cart.objects.create(client=user, item_id=item_id, number=1)
+        elif guest:
+            new_cart_item = Cart.objects.create(guest=guest, item_id=item_id, number=1)
+        return_dict['result'] = True
+    if action == 'del_item':
+        if user:
+            Cart.objects.get(client=user, item_id=item_id).delete()
+        elif guest:
+            Cart.objects.get(guest=guest, item_id=item_id).delete()
+        return_dict['result'] = True
+    if action=='set_num':
+        if user:
+            item = Cart.objects.get(client=user, item_id=item_id)
+            item.number = number
+            item.save()
+        elif guest:
+            item = Cart.objects.get(guest=guest, item_id=item_id)
+            item.number = number
+            item.save()
+        return_dict['result'] = True
+
+    return JsonResponse(return_dict)
+
+def get_cart(request):
+    user = None
+    guest = None
+    s_key = request.session.session_key
+    all_cart_items = None
+    if request.user.is_authenticated:
+        print('User is_authenticated')
+        user = request.user
+    else:
+        print('User is_not authenticated')
+        try:
+            guest = Guest.objects.get(session=s_key)
+            print('Guest already created')
+        except:
+            guest = None
+        if not guest:
+            guest = Guest.objects.create(session=s_key)
+            guest.save()
+            print('Guest created')
+    if user:
+        all_cart_items = get_all_items(client=user)
+    elif guest:
+        all_cart_items = get_all_items(guest=guest)
+    return JsonResponse(all_cart_items, safe=False)

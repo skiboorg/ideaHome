@@ -154,8 +154,12 @@
         <section class="contacts">
 
             <div v-if="cartTotal" class="container">
+
                 <div class="section-header"><h1>Контакты</h1></div>
                 <div class="cart">
+                       <div id="cart_overlay" class="cart-overlay">
+                    <div class="loader"></div>
+                </div>
                     <div class="main-cart-items">
                         <div class="main-cart-item ">
                             <div class="main-cart-item-head">Товары</div>

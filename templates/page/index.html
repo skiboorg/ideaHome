@@ -1,181 +1,269 @@
 {% extends 'basic.html' %}
 {% load static %}
 {% block content %}
-<div class="main">
-    <section class="offer">
-        <div class="container ">
-            <div class="offer-wrapper">
-                <div class="offer-banner">
-                    <div class="offer-banner-menu mobile-hide-800">
-                        <ul class="offer-banner-menu-wrapper">
-                            {% for category in all_categories %}
-                            <li class="offer-banner-menu-item" ><a href="{% url 'category' category.name_slug %}">{{ category.name }}</a>
-                                <div  class="offer-banner-menu-inner">
-                                    <ul class="offer-banner-menu-wrapper">
-                                        {% for subcategory in category.subcategory.all %}
-                                        <li class="offer-banner-menu-inner-item"><a href="">{{ subcategory.name }}</a></li>
-                                        {% endfor %}
+    <div class="main">
+        <section class="offer">
+            <div class="container ">
+                <div class="offer-wrapper">
+                    <div class="offer-banner">
+                        <div class="offer-banner-menu mobile-hide-800">
+                            <ul class="offer-banner-menu-wrapper">
+                                {% for category in all_categories %}
+                                    <li class="offer-banner-menu-item" ><a href="{% url 'category' category.name_slug %}">{{ category.name }}</a>
+                                        <div  class="offer-banner-menu-inner">
+                                            <ul class="offer-banner-menu-wrapper">
+                                                {% for subcategory in category.subcategory.all %}
+                                                    <li class="offer-banner-menu-inner-item link-item"><a href="{% url 'subcategory' subcategory.category.name_slug subcategory.name_slug %}">{{ subcategory.name }}</a></li>
+                                                {% endfor %}
 
-                                    </ul>
-                                </div>
-                            </li>
-                            {% endfor %}
-                            <li class="offer-banner-menu-item link-item"><a href="sd">Lorem ipsum.</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                                <li class="offer-banner-menu-item link-item"><a href="sd">Lorem ipsum.</a></li>
+                            </ul>
+                        </div>
+                        <div class="offer-banner-items">
+                            <div class="offer-slider">
+                                <div class="offer-banner-item">
+                                    <img src="{% static 'img/bg.png' %}" alt="">
+                                    <div class="offer-banner-item-text">
+                                        <h3><span>Сэкономьте до 520%</span> на покупке любого материала за счет налаженного производства</h3>
+                                        <a href="#" class="btn">подробнее</a>
+                                    </div>
+                                </div><!--// offer-banner-item-->
+
+                                <div class="offer-banner-item">
+                                    <img src="{% static 'img/bg.png' %}" alt="">
+                                    <div class="offer-banner-item-text">
+                                        <h3><span>Сэкономьте до 50%</span> на покупке любого материала за счет налаженного производства</h3>
+                                    </div>
+                                </div><!--// offer-banner-item-->
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div><!-- //offer-slider-->
+                    <div class="offer-partners">
+                        <div class="offer-partners-slider">
+                            <div class="offer-partners-item">
+                                <a href="">
+                                    <img src="http://placehold.it/110x55" alt="">
+                                </a>
+
+                            </div><!-- //offer-partners-item-->
+                            <div class="offer-partners-item">
+                                <img src="http://placehold.it/110x55" alt="">
+                            </div><!-- //offer-partners-item-->
+                            <div class="offer-partners-item">
+                                <img src="http://placehold.it/110x55" alt="">
+                            </div><!-- //offer-partners-item-->
+                            <div class="offer-partners-item">
+                                <img src="http://placehold.it/110x55" alt="">
+                            </div><!-- //offer-partners-item-->
+                            <div class="offer-partners-item">
+                                <img src="http://placehold.it/110x55" alt="">
+                            </div><!-- //offer-partners-item-->
+                            <div class="offer-partners-item">
+                                <img src="http://placehold.it/110x55" alt="">
+                            </div><!-- //offer-partners-item-->
+                            <div class="offer-partners-item">
+                                <img src="http://placehold.it/110x55" alt="">
+                            </div><!-- //offer-partners-item-->
+                        </div>
+
+
+                    </div><!-- //offer-partners-->
+                </div><!-- //offer-wrapper-->
+
+            </div>
+        </section>
+        <section class="why-we">
+            <div class="container">
+                <h3 class="text-center">Почему идеи для дома?</h3>
+                <div class="why-we-wrapper">
+                    <div class="why-we-item">
+                        <img src="http://placehold.it/300" alt="">
+                        <h4>Лучшие цены</h4>
+                        <p>Найдете дешевле и мы <span>сделаем цену еще ниже</span> при лучшем качестве, за счет производителя</p>
+                    </div><!--//why-we-item-->
+                    <div class="why-we-item">
+                        <img src="http://placehold.it/300" alt="">
+                        <h4>Мы — специалисты</h4>
+                        <p>Каждый сотрудник обладает <span>сертификатом обучения</span> по нашей продукции</p>
+                    </div><!--//why-we-item-->
+                    <div class="why-we-item">
+                        <img src="http://placehold.it/300" alt="">
+                        <h4>Бесплатная доставка</h4>
+                        <p>Привезём всё что нужно <span>в день вашего обращения</span></p>
+                    </div><!--//why-we-item-->
+                </div>
+            </div>
+        </section>
+        <section class="lets-meet not-visible-md">
+            <div class="container">
+                <div class="lets-meet-inner">
+
+                    <div class="quote">
+                        <p>Открыл магазин, когда сам делал ремонт и не нашел материала во всем городе</p>
+                    </div>
+                    <p class="info-text mb-30">Оббегав кучу магазина я так и не нашёл нужного мне материала с достойным качеством и по выгодной цене.</p>
+                    <p class="info-text ">Выбор заняться данным бизнесом пал из-за очень малого процента конкурентов на рынке на тот момент
+                        И вот, уже на протяжении семи лет наш состав остается неизменным. Каждый сотрудник — настоящий практик в своей специальности, который живет ею.</p>
+                </div>
+                <div class="lets-meet-about">
+                    <p><span>Представитель</span><br/>магазина "Идеи для дома"<br/><span>Дмитрий Петров</span></p>
+                </div>
+            </div>
+        </section><!-- // lets-meet -->
+        <section class="features">
+            <div class="container">
+                <div class="features-wrapper">
+                    <div class="features-left">
+                        <h3>Европейское качество</h3>
+                        <ul>
+                            <li>Звукоизоляций от соседей</li>
+                            <li>Идеальная геометрия и простой монтаж</li>
+                            <li>Окраска в любой цвет под ваш интерьер</li>
+                            <li>Монолитная конструкция<br> абсолютно без швов</li>
                         </ul>
                     </div>
-                    <div class="offer-banner-item">
-                        <div class="offer-banner-item-text">
-                            <h3><span>Сэкономьте до 50%</span> на покупке любого материала за счет налаженного производства</h3>
+                    <div class="shadow-box">
+                        <div class="shadow-box-inner">
+                            <h5 class="mb-40">Хотите узнать подробнее
+                                <span>или убедиться в качестве?</span>
+                            </h5>
+
+                            <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
+                            <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
+                            <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
+
+                            <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
+
+                            <input style="display: none" name="agree" type="checkbox">
                         </div>
                     </div>
-
-                </div><!-- //offer-slider-->
-                <div class="offer-partners">
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-                    <div class="offer-partners-item">
-                        <img src="http://placehold.it/110x55" alt="">
-                    </div><!-- //offer-partners-item-->
-
-                </div><!-- //offer-partners-->
-            </div><!-- //offer-wrapper-->
-
-        </div>
-    </section>
-    <section class="why-we">
-        <div class="container">
-            <h3 class="text-center">Почему идеи для дома?</h3>
-            <div class="why-we-wrapper">
-                <div class="why-we-item">
-                    <img src="http://placehold.it/300" alt="">
-                    <h4>Лучшие цены</h4>
-                    <p>Найдете дешевле и мы <span>сделаем цену еще ниже</span> при лучшем качестве, за счет производителя</p>
-                </div><!--//why-we-item-->
-                <div class="why-we-item">
-                    <img src="http://placehold.it/300" alt="">
-                    <h4>Мы — специалисты</h4>
-                    <p>Каждый сотрудник обладает <span>сертификатом обучения</span> по нашей продукции</p>
-                </div><!--//why-we-item-->
-                <div class="why-we-item">
-                    <img src="http://placehold.it/300" alt="">
-                    <h4>Бесплатная доставка</h4>
-                    <p>Привезём всё что нужно <span>в день вашего обращения</span></p>
-                </div><!--//why-we-item-->
-            </div>
-        </div>
-    </section>
-    <section class="lets-meet not-visible-md">
-        <div class="container">
-            <div class="lets-meet-inner">
-
-                <div class="quote">
-                    <p>Открыл магазин, когда сам делал ремонт и не нашел материала во всем городе</p>
                 </div>
-                <p class="info-text mb-30">Оббегав кучу магазина я так и не нашёл нужного мне материала с достойным качеством и по выгодной цене.</p>
-                <p class="info-text ">Выбор заняться данным бизнесом пал из-за очень малого процента конкурентов на рынке на тот момент
-                    И вот, уже на протяжении семи лет наш состав остается неизменным. Каждый сотрудник — настоящий практик в своей специальности, который живет ею.</p>
             </div>
-            <div class="lets-meet-about">
-                <p><span>Представитель</span><br/>магазина "Идеи для дома"<br/><span>Дмитрий Петров</span></p>
-            </div>
-        </div>
-    </section><!-- // lets-meet -->
-    <section class="features">
-        <div class="container">
-            <div class="features-wrapper">
-                <div class="features-left">
-                    <h3>Европейское качество</h3>
-                    <ul>
-                        <li>Звукоизоляций от соседей</li>
-                        <li>Идеальная геометрия и простой монтаж</li>
-                        <li>Окраска в любой цвет под ваш интерьер</li>
-                        <li>Монолитная конструкция<br> абсолютно без швов</li>
-                    </ul>
-                </div>
-                <div class="shadow-box">
-                    <div class="shadow-box-inner">
-                        <h5 class="mb-40">Хотите узнать подробнее
-                            <span>или убедиться в качестве?</span>
-                        </h5>
 
-                        <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
-                        <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
-                        <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
-
-                        <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
-
-                        <input style="display: none" name="agree" type="checkbox">
+        </section>
+        <section class="dont-risk">
+            <div class="container">
+                <div class="dont-risk-wrapper">
+                    <div class="dont-risk-left">
+                        <h3>Не рискуйте!</h3>
+                        <p class="dont-risk-left-text1"><span class="green-underline">Посетите наш салон, чтобы убедиться</span><br>в качестве материала</p>
+                        <p class="dont-risk-left-text2">Там вы сможете пообщаться с консультантом, обсудить детали будущего ремонта и посмотреть все материалы</p>
+                        <a   class="btn mb-40" href="#" >Адреса салонов</a>
+                    </div>
+                    <div class="dont-risk-right">
+                        <img src="http://placehold.it/650x370" alt="">
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <section class="reviews">
+            <div class="reviews-container">
+                <h3 class="text-center">Посмотрите реальные отзывы</h3>
+                <div class="reviews-wrapper">
+                    <div class="reviews-video">
+                        <iframe id="youtube" width="590" height="460" src="https://www.youtube.com/embed/RYDpE0SgXOw" frameborder="0" allowfullscreen></iframe>
 
-    </section>
-    <section class="dont-risk">
-        <div class="container">
-            <div class="dont-risk-wrapper">
-                <div class="dont-risk-left">
-                    <h3>Не рискуйте!</h3>
-                    <p class="dont-risk-left-text1"><span class="green-underline">Посетите наш салон, чтобы убедиться</span><br>в качестве материала</p>
-                    <p class="dont-risk-left-text2">Там вы сможете пообщаться с консультантом, обсудить детали будущего ремонта и посмотреть все материалы</p>
-                    <a   class="btn mb-40" href="#" >Адреса салонов</a>
-                </div>
-                <div class="dont-risk-right">
-                    <img src="http://placehold.it/650x370" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="reviews">
-        <div class="reviews-container">
-            <h3 class="text-center">Посмотрите реальные отзывы</h3>
-            <div class="reviews-wrapper">
-                <div class="reviews-video">
-                    <iframe id="youtube" width="590" height="460" src="https://www.youtube.com/embed/RYDpE0SgXOw" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="reviews-slider">
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
 
-                </div>
-                <div class="reviews-slider">
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
                     </div>
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
-                    </div>
-
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
-                    </div>
-                    <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
-                        <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
-                    </div>
-                </div>
-                <div class="slider-arrows">
-                    <div class="up-arrow">
-                        <a href="">d</a>
+                    <div class="slider-arrows">
+                        <div class="up-arrow">
+                            <a href="">d</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-</div><!--//main-->
+    </div><!--//main-->
 
 
 {% endblock %}
 
+{% block js %}
+    {{ block.super }}
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+    <script>
+    function changeVideo(videoId) {
+        var ytString = "https://www.youtube.com/embed/" + videoId;
+        document.getElementById('youtube').src = ytString;
+    }
+
+var slider1 = tns({
+        container: '.offer-slider',
+        items: 1,
+        autoplay: false,
+        "autoHeight": true,
+        nav: false,
+        controls:false,
+        mouseDrag:true,
+    });
+
+    var slider2 = tns({
+        container: '.offer-partners-slider',
+
+        autoplay: false,
+        gutter:20,
+        nav: false,
+        controls:false,
+        mouseDrag:true,
+        responsive: {
+              300: {
+                    edgePadding: 0,
+                    gutter:10,
+                    items: 1,
+
+                },
+             360: {
+                    //edgePadding: 50,
+                    gutter:10,
+                    items: 2
+                },
+                520: {
+                    //edgePadding: 50,
+                    gutter:10,
+                    items: 3
+                },
+                720: {
+                    items: 4
+                },
+                900:{
+                    items: 6
+                }
+
+            }
+    });
+    var slider3 = tns({
+        container: '.reviews-slider',
+        items: 3,
+        axis: 'vertical' ,
+        gutter:15,
+        autoplay: false,
+        nav: false,
+        controls:false,
+        mouseDrag:true,
+    });
+</script>
+{% endblock %}
