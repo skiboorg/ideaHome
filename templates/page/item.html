@@ -9,8 +9,10 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="#">Каталог товаров</a></li>
                 <li><a href="{% url 'category' category.name_slug %}">{{ category.name }}</a></li>
-                <li><a href="{% url 'category' category.name_slug %}">{{ subcategory.name }}</a></li>
-                <li><span>{{ subcategory.name }}</span></li>
+                {% if subcategory %}
+                    <li><a href="{% url 'subcategory' category.name_slug subcategory.name_slug%}">{{ subcategory.name }}</a></li>
+                {% endif %}
+
                 <li><span>{{ item.name }}</span></li>
             </ul>
         </div>

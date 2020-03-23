@@ -54,10 +54,9 @@ class Category(models.Model):
     def get_all_manufactors(self):
         all_manufactors = []
         #result = list()
-        for subcat in self.subcategory.all():
-            for m in Manufactor.objects.filter(subcategory=subcat):
-                if m not in all_manufactors:
-                    all_manufactors.append(m)
+        for item in self.item_set.all():
+           if item.manufactor not in all_manufactors:
+                all_manufactors.append(item.manufactor)
         # for i in all_manufactors:
         #     result = list(chain(result, i))
         return all_manufactors
@@ -174,8 +173,8 @@ class Item(models.Model):
     price = models.IntegerField('Цена', blank=True, default=0, db_index=True)
     article = models.CharField('Артикул', max_length=50, blank=True, null=True)
     discount = models.IntegerField('Скидка %', blank=True, default=0, db_index=True)
-    units = models.CharField('Ед.Измерения', max_length=50, blank=True, null=True, default='не указано')
-    material = models.CharField('Материал', max_length=50, blank=True, null=True, default='не указано')
+    units = models.CharField('Ед.Измерения', max_length=5, blank=True, null=True, default='')
+    material = models.CharField('Материал', max_length=50, blank=True, null=True, default='')
     size = models.CharField('Размер', max_length=15, blank=True, null=True)
     weight = models.CharField('Вес', max_length=15, blank=True, null=True)
     complect = models.CharField('Комплект', max_length=15, blank=True, null=True)
@@ -211,8 +210,10 @@ class Item(models.Model):
             return 'http://placehold.it/200'
 
     def get_absolute_url(self):
-        return f'/category/{self.category.name_slug}/{self.subcategory.name_slug}/{self.name_slug}'
-
+        if self.subcategory:
+            return f'/category/{self.category.name_slug}/{self.subcategory.name_slug}/{self.name_slug}'
+        else:
+            return f'/category/{self.category.name_slug}/{self.name_slug}'
     def get_full_image(self):
         if self.itemimage_set.first().image.url:
             return self.itemimage_set.first().image.url

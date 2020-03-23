@@ -140,10 +140,12 @@ def subcategory(request, category_slug, subcategory_slug):
 
     return render(request, 'page/category.html', locals())
 
-def item_page(request,category_slug,subcategory_slug,item_slug):
+def item_page(request,category_slug,item_slug,subcategory_slug=None):
+    if subcategory_slug:
+        subcategory = get_object_or_404(SubCategory, name_slug=subcategory_slug)
     category = get_object_or_404(Category, name_slug=category_slug)
-    subcategory = get_object_or_404(SubCategory, name_slug=subcategory_slug)
-    print(subcategory.name)
+
+
     item = get_object_or_404(Item, name_slug=item_slug)
 
     filter_qs(1,None,{'dsf':'sada'})

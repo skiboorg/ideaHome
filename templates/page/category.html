@@ -22,7 +22,7 @@
                 <div class="catalog-wrapper">
                     <div class="catalog-menu">
                         {% for cat in all_categories %}
-                            <button id="{{ cat.name_slug }}" class="accordion">{{ cat.name }}</button>
+                            <button id="{{ cat.name_slug }}" class="accordion" >{{ cat.name }}</button>
                             <div class="panel">
                                 <ul class="panel-list">
                                     {% for subcat in cat.subcategory.all %}
@@ -157,24 +157,17 @@
             }
 
             function setParam(param,order) {
-
                     if (document.getElementById('search_str').value){
                         console.log('search not empty');
                     }
                     else {
                         console.log('search empty');
                         removeParam("q");
-
                     }
-
-
                     setGetParam(param,order);
                     last_order = order;
                     let url =location.href.split('?')[1];
-
                     window.location.href = '?'+url;
-
-
             }
 
 
