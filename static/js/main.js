@@ -27,7 +27,9 @@ Vue.component('main-cart-item', {
     delimiters: ['[[', ']]'],
     props: ['item','index'],
     template :`  <div class="main-cart-item">
+ 
                     <div class="main-cart-item-name">
+                    
                         <img :src="[[item.image]]" alt=""> <span>[[item.name]]</span>
                     </div>
                     <div class="main-cart-item-number">

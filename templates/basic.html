@@ -42,15 +42,12 @@
                     if (res){
                             console.log(res)
                     for (let x of res){
+                        app.headerCartItems=[]
                            console.log(x)
                         app.headerCartItems.push(x)
+                        }
                     }
-                    }
-
-
-
                 })
-
     }
     getCart()
     let acc = document.getElementsByClassName("accordion");

@@ -421,7 +421,7 @@ def add_to_cart(request):
     print(body)
     item_id = int(body.get('item_id'))
     action = body.get('action')
-    number = body.get('number')
+    number = int(body.get('number'))
     user = None
     guest = None
     s_key = request.session.session_key
@@ -443,9 +443,19 @@ def add_to_cart(request):
 
     if action == 'add_new':
         if user:
-            new_cart_item = Cart.objects.create(client=user, item_id=item_id, number=1)
+            try:
+                item = Cart.objects.get(client=user, item_id=item_id)
+                item.number += number
+                item.save()
+            except:
+                new_cart_item = Cart.objects.create(client=user, item_id=item_id, number=number)
         elif guest:
-            new_cart_item = Cart.objects.create(guest=guest, item_id=item_id, number=1)
+            try:
+                item = Cart.objects.get(guest=guest, item_id=item_id)
+                item.number += number
+                item.save()
+            except:
+                new_cart_item = Cart.objects.create(guest=guest, item_id=item_id, number=number)
         return_dict['result'] = True
     if action == 'del_item':
         if user:

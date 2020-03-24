@@ -99,7 +99,7 @@
                                 <span>Итого: <span id="total_price">560</span> <i class="fa fa-rub"></i></span>
                             </div>
                             <div class="item-info-price-buttons">
-                                <span class="btn btn-green">в корзину</span>
+                                <span class="btn btn-green" onclick="add_to_cart()">в корзину</span>
                                 <span class="btn btn-outline">купить в 1 клик</span>
                             </div>
 
@@ -181,7 +181,7 @@
                                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
                             </a>
                             <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
-                            <a href="#" class="btn catalog-item-btn">в корзину</a>
+                            <span class="btn catalog-item-btn" onclick="add_to_cart()">в корзину</span>
                         </div><!--//catalog-item-->
                     </div><!--//catalog-items-list-->
             </div>
@@ -190,7 +190,12 @@
         </div><!--//container-->
     </section><!--//item-->
 </div><!--//main-->
-<script src="{% static 'js/glightbox.min.js' %}"></script>
+
+
+{% endblock %}
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'js/glightbox.min.js' %}"></script>
 <script>
     let lightbox = GLightbox({
         loop: true
@@ -213,7 +218,32 @@
     function calculate() {
         totalPrice.innerText = parseInt(currentPrice) * parseInt(quantityInput.value)
     }
-</script>
 
+    function add_to_cart() {
+        let cartItem = app.headerCartItems.find(item => item.id === {{ item.id }}),
+            num = parseInt(quantityInput.value)
+        console.log('q',quantityInput.value)
+        app.sendUpdateRequest({{ item.id }},'add_new',num)
+        try{
+          cartItem.num += num
+        }
+        catch (e) {
+            app.headerCartItems.push({id:{{ item.id }},
+                name: '{{ item.name }}',
+                price:{{ item.discount_value }},
+                num:num,
+                image:'{{ item.itemimage_set.first.image_small }}' })
+
+        }
+        Toastify({
+                duration: 1000,
+                close: true,
+                text: '{{ item.name }} добавлен в корзину',
+                backgroundColor: "linear-gradient(to right, #f55f63, #be353b)",
+                className: "info",
+            }).showToast();
+
+    }
+</script>
 
 {% endblock %}
