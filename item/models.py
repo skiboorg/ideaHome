@@ -26,7 +26,7 @@ def format_number(num):
 class Category(models.Model):
     name = models.CharField('Название категории', max_length=255, blank=True, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
-    image = models.ImageField('Изображение категории', upload_to='category_img/', blank=True)
+    image = models.ImageField('Изображение категории', upload_to='images/catalog/categories/', blank=True)
     page_h1 = models.CharField('Тег H1', max_length=255, blank=True, null=True)
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
     page_description = models.CharField('Description страницы', max_length=255, blank=True, null=True)
@@ -62,7 +62,7 @@ class Category(models.Model):
         return all_manufactors
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name}| old_id {self.old_id}'
 
     class Meta:
         verbose_name = "Категория"
@@ -101,7 +101,7 @@ class SubCategory(models.Model):
         super(SubCategory, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name}| old_id {self.old_id}'
 
     class Meta:
         verbose_name = "Подкатегория"
@@ -111,7 +111,7 @@ class Manufactor(models.Model):
     subcategory = models.ManyToManyField(SubCategory, blank=False, verbose_name='Отностится к подкатегориям', db_index=True)
     name = models.CharField('Название производителя', max_length=255, blank=True, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
-    image = models.ImageField('Лого', upload_to='manufactor_img/', blank=True)
+    image = models.ImageField('Лого', upload_to='images/catalog/manufacturers/', blank=True)
     page_h1 = models.CharField('Тег H1', max_length=255, blank=True, null=True)
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
     page_description = models.CharField('Description страницы', max_length=255, blank=True, null=True)
@@ -184,6 +184,7 @@ class Item(models.Model):
     description = RichTextUploadingField('Описание товара', blank=True, null=True)
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
     page_description = models.TextField('Description страницы',  blank=True, null=True)
+    page_keywords = models.TextField('Keywords', blank=True, null=True)
     is_active = models.BooleanField('Отображать товар ?', default=True, db_index=True)
     is_present = models.BooleanField('Товар в наличии ?', default=True, db_index=True)
     is_new = models.BooleanField('Товар новинка ?', default=False, db_index=True)
@@ -204,9 +205,12 @@ class Item(models.Model):
         super(Item, self).save(*args, **kwargs)
 
     def get_small_image(self):
-        if self.itemimage_set.first().image_small:
-            return self.itemimage_set.first().image_small
-        else:
+        try:
+            if self.itemimage_set.first().image_small:
+                return self.itemimage_set.first().image_small
+            else:
+                return 'http://placehold.it/200'
+        except:
             return 'http://placehold.it/200'
 
     def get_absolute_url(self):
@@ -260,7 +264,7 @@ class ItemImage(models.Model):
         return self.upload_to % (self.item.id, filename)
 
     item = models.ForeignKey(Item, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Товар')
-    image = models.ImageField('Изображение товара', upload_to='items/', blank=True)
+    image = models.ImageField('Изображение товара', upload_to='images/catalog/items/', blank=True)
     image_small = models.CharField(max_length=255, blank=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -282,29 +286,30 @@ class ItemImage(models.Model):
     image_tag.short_description = 'Картинка'
 
 
-    def save(self, *args, **kwargs):
-        fill_color = '#fff'
-        image = Image.open(self.image)
 
-        if image.mode in ('RGBA', 'LA'):
-            background = Image.new(image.mode[:-1], image.size, fill_color)
-            background.paste(image, image.split()[-1])
-            image = background
-        image.thumbnail((175, 175), Image.ANTIALIAS)
-        small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
-        # if settings.DEBUG:
-        #     os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
-        #     image.save(small_name, 'JPEG', quality=100)
-        # else:
-        os.makedirs(BASE_DIR + '/media/items/{}'.format(self.item.id), exist_ok=True)
-        image.save(BASE_DIR + '/' + small_name, 'JPEG', quality=100)
-        self.image_small = '/' + small_name
-
-
-
-
-        super(ItemImage, self).save(*args, **kwargs)
-
+    # def save(self, *args, **kwargs):
+    #     fill_color = '#fff'
+    #     image = Image.open(self.image)
+    #
+    #     if image.mode in ('RGBA', 'LA'):
+    #         background = Image.new(image.mode[:-1], image.size, fill_color)
+    #         background.paste(image, image.split()[-1])
+    #         image = background
+    #     image.thumbnail((175, 175), Image.ANTIALIAS)
+    #     small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
+    #     # if settings.DEBUG:
+    #     #     os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
+    #     #     image.save(small_name, 'JPEG', quality=100)
+    #     # else:
+    #     os.makedirs(BASE_DIR + '/media/items/{}'.format(self.item.id), exist_ok=True)
+    #     image.save(BASE_DIR + '/' + small_name, 'JPEG', quality=100)
+    #     self.image_small = '/' + small_name
+    #
+    #
+    #
+    #
+    #     super(ItemImage, self).save(*args, **kwargs)
+    #
 
 
 class PromoCode(models.Model):

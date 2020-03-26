@@ -41,11 +41,13 @@
                 .then(res => {
                     if (res){
                             console.log(res)
+                       app.headerCartItems=[]
                     for (let x of res){
-                        app.headerCartItems=[]
+
                            console.log(x)
                         app.headerCartItems.push(x)
                         }
+                        console.log(app.headerCartItems)
                     }
                 })
     }

@@ -46,6 +46,7 @@ def items_in_cart(request):
             for x in all_items_in_cart:
                 cart_items_ids.append(x.item.id)
             print('Cart items for NOT auth user')
+            print(cart_items_ids)
             count_items_in_cart = all_items_in_cart.count()
             total_cart_price = 0
 

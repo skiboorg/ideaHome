@@ -112,7 +112,7 @@ var app = new Vue({
             }
             this.sendUpdateRequest(item_id,'set_num',num)
         },
-        sendUpdateRequest: function(item_id,action,num='0'){
+        sendUpdateRequest: function(item_id,action,num='1'){
             let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value,
                 overlay = document.getElementById('cart_overlay'),
                 body = {item_id:item_id,

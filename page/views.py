@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from item.models import *
-
+from openpyxl import load_workbook
 def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     return render(request, 'page/index.html', locals())
@@ -9,6 +9,147 @@ def index(request):
 def about(request):
     return render(request, 'page/about.html', locals())
 
+def cats(request):
+    wb = load_workbook(filename='C:/Users/ххх/PycharmProjects/ideaHome/cats.xlsx')
+    sheet = wb.active
+
+    max_row = sheet.max_row
+
+    max_column = sheet.max_column
+    for i in range(1, max_row + 1):
+        # worksheet.write('A{}'.format(row), cat_id)
+        # worksheet.write('B{}'.format(row), cat_name)
+        # worksheet.write('C{}'.format(row), cat_parent_id)
+        # worksheet.write('D{}'.format(row), cat_description)
+        # worksheet.write('E{}'.format(row), cat_img)
+        # worksheet.write('F{}'.format(row), cat_title)
+        # worksheet.write('G{}'.format(row), cat_keywords)
+        # worksheet.write('H{}'.format(row), cat_meta_description)
+        old_id=sheet.cell(row=i, column=1).value
+        cat_name=sheet.cell(row=i, column=2).value
+        cat_parent_id=sheet.cell(row=i, column=3).value
+        try:
+            cat_description=sheet.cell(row=i, column=4).value.replace('_x000D_','')
+        except:
+            cat_description = sheet.cell(row=i, column=4).value
+        cat_img=sheet.cell(row=i, column=5).value
+        cat_title=sheet.cell(row=i, column=6).value
+        cat_keywords=sheet.cell(row=i, column=7).value
+        cat_meta_description=sheet.cell(row=i, column=8).value
+        # if cat_parent_id ==0:
+        #     Category.objects.create(old_id=old_id,name=cat_name,description=cat_description,image=cat_img,
+        #                             page_title=cat_title,page_description=cat_meta_description,page_keywords=cat_keywords)
+        if cat_parent_id != 0:
+            cat = Category.objects.get(old_id=cat_parent_id)
+            SubCategory.objects.create(old_id=old_id, name=cat_name, description=cat_description, category=cat,
+                                    page_title=cat_title, page_description=cat_meta_description,
+                                    page_keywords=cat_keywords)
+    return render(request, 'page/about.html', locals())
+
+
+
+def manuf(request):
+    wb = load_workbook(filename='C:/Users/ххх/PycharmProjects/ideaHome/manuf.xlsx')
+    sheet = wb.active
+
+    max_row = sheet.max_row
+
+    max_column = sheet.max_column
+    for i in range(1, max_row + 1):
+        # worksheet.write('A{}'.format(row), cat_id)
+        # worksheet.write('B{}'.format(row), cat_name)
+        # worksheet.write('C{}'.format(row), cat_img)
+        # worksheet.write('D{}'.format(row), cat_title)
+        # worksheet.write('E{}'.format(row), cat_keywords)
+        # worksheet.write('F{}'.format(row), cat_meta_description)
+        old_id=sheet.cell(row=i, column=1).value
+        name=sheet.cell(row=i, column=2).value
+        img=sheet.cell(row=i, column=3).value
+        cat_title=sheet.cell(row=i, column=4).value
+        cat_keywords=sheet.cell(row=i, column=5).value
+        cat_meta_description=sheet.cell(row=i, column=6).value
+
+        Manufactor.objects.create(old_id=old_id, name=name, image=img,
+                                    page_title=cat_title, page_description=cat_meta_description,
+                                    page_keywords=cat_keywords)
+    return render(request, 'page/about.html', locals())
+
+def itemm(request):
+    wb = load_workbook(filename='C:/Users/ххх/PycharmProjects/ideaHome/items.xlsx')
+    sheet = wb.active
+
+    max_row = sheet.max_row
+
+    max_column = sheet.max_column
+    for i in range(1, max_row + 1):
+        # worksheet.write('A{}'.format(row), item_id)
+        # worksheet.write('B{}'.format(row), item_cat_id)
+        # worksheet.write('C{}'.format(row), item_name)
+        # worksheet.write('D{}'.format(row), item_articul)
+        # worksheet.write('E{}'.format(row), item_description)
+        # worksheet.write('F{}'.format(row), item_manufactor)
+        # worksheet.write('G{}'.format(row), item_unit)
+        # worksheet.write('H{}'.format(row), item_price)
+        # worksheet.write('I{}'.format(row), item_img_main)
+        # worksheet.write('J{}'.format(row), item_img_add)
+        # worksheet.write('K{}'.format(row), item_title)
+        # worksheet.write('L{}'.format(row), item_keywords)
+        # worksheet.write('M{}'.format(row), item_meta_description)
+        old_id=sheet.cell(row=i, column=1).value
+        item_cat_id=sheet.cell(row=i, column=2).value
+        item_name=sheet.cell(row=i, column=3).value
+        item_articul=sheet.cell(row=i, column=4).value
+        try:
+            item_description = sheet.cell(row=i, column=5).value.replace('_x000D_', '')
+        except:
+            item_description = sheet.cell(row=i, column=5).value
+        item_manufactor = sheet.cell(row=i, column=6).value
+        item_unit = sheet.cell(row=i, column=7).value
+        item_price = sheet.cell(row=i, column=8).value
+        item_img_main = sheet.cell(row=i, column=9).value
+        item_img_add = sheet.cell(row=i, column=10).value
+        item_title = sheet.cell(row=i, column=11).value
+        item_keywords = sheet.cell(row=i, column=12).value
+        item_meta_description = sheet.cell(row=i, column=13).value
+        cat= None
+        subcat = None
+        if old_id==156:
+            print (item_name)
+            print(item_img_main)
+            print(item_img_add.splitlines())
+
+            try:
+                cat = Category.objects.get(old_id=item_cat_id)
+                print('cat', cat)
+            except:
+                subcat = SubCategory.objects.get(old_id=item_cat_id)
+                print('subcat', subcat)
+
+
+            manufactor = Manufactor.objects.get(old_id=item_manufactor)
+            print(manufactor)
+            item_first_big_img= item_img_main.split('|')[0]
+            item_first_small_img = item_img_main.split('|')[2]
+
+            item = None
+            if cat:
+                item = Item.objects.create(category=cat, name=item_name,price=item_price,article=item_articul,
+                                           units=item_unit,old_id=old_id,description=item_description,
+                                           page_title=item_title,page_description=item_meta_description,page_keywords=item_keywords)
+            if subcat:
+                catt = subcat.category
+                item = Item.objects.create(category=catt, subcategory=subcat, name=item_name, price=item_price, article=item_articul,
+                                           units=item_unit, old_id=old_id, description=item_description,
+                                           page_title=item_title, page_description=item_meta_description,
+                                           page_keywords=item_keywords)
+            ItemImage.objects.create(item=item,image='images/catalog/items/'+item_first_big_img,image_small='/media/images/catalog/items/'+item_first_small_img)
+            for img in item_img_add.splitlines():
+                item_big_img = item_img_main.split('|')[0]
+                item_small_img = item_img_main.split('|')[1]
+                ItemImage.objects.create(item=item, image='images/catalog/items/'+item_big_img, image_small='/media/images/catalog/items/'+item_small_img)
+
+
+    return render(request, 'page/about.html', locals())
 
 def contacts(request):
     return render(request, 'page/contacts.html', locals())
