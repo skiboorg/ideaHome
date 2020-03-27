@@ -108,7 +108,6 @@ class SubCategory(models.Model):
         verbose_name_plural = "Подкатегории"
 
 class Manufactor(models.Model):
-    subcategory = models.ManyToManyField(SubCategory, blank=False, verbose_name='Отностится к подкатегориям', db_index=True)
     name = models.CharField('Название производителя', max_length=255, blank=True, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField('Лого', upload_to='images/catalog/manufacturers/', blank=True)

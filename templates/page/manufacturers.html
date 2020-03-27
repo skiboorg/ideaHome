@@ -2,77 +2,39 @@
 {% load static %}
 {% block content %}
 
- <div class="main">
-     <div class="breadcrumbs bg-grey">
-        <div class="container ">
-            <ul>
-                <li><a href="/">Главная</a></li>
+    <div class="main">
+        <div class="breadcrumbs bg-grey">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
 
-                <li><span>Производители</span></li>
-            </ul>
+                    <li><span>Производители</span></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <section class="manufactors">
-        <div class="container">
-            <div class="section-header"><h1>Производители</h1></div>
-            <p class="mb-20">Выберите производителя и посмотрите продукцию, которую вы можете приобрести у нас</p>
-            <div class="manufactors-wrapper">
-            <div class="manufactors-item">
-                <a href="">
-                    <div class="manufactors-item-inner">
-                        <img src="http://placehold.it/400x300" alt="">
-                        <p>Lorem ipsum dolor.</p>
-                    </div>
-                </a>
-            </div><!--//manufactors-item-->
-                  <div class="manufactors-item">
-                <a href="">
-                    <div class="manufactors-item-inner">
-                        <img src="http://placehold.it/400x300" alt="">
-                        <p>Lorem ipsum dolor.</p>
-                    </div>
-                </a>
-            </div><!--//manufactors-item-->
-                  <div class="manufactors-item">
-                <a href="">
-                    <div class="manufactors-item-inner">
-                        <img src="http://placehold.it/400x300" alt="">
-                        <p>Lorem ipsum dolor.</p>
-                    </div>
-                </a>
-            </div><!--//manufactors-item-->
-                  <div class="manufactors-item">
-                <a href="">
-                    <div class="manufactors-item-inner">
-                        <img src="http://placehold.it/400x300" alt="">
-                        <p>Lorem ipsum dolor.</p>
-                    </div>
-                </a>
-            </div><!--//manufactors-item-->
-                  <div class="manufactors-item">
-                <a href="">
-                    <div class="manufactors-item-inner">
-                        <img src="http://placehold.it/400x300" alt="">
-                        <p>Lorem ipsum dolor.</p>
-                    </div>
-                </a>
-            </div><!--//manufactors-item-->
-                  <div class="manufactors-item">
-                <a href="">
-                    <div class="manufactors-item-inner">
-                        <img src="http://placehold.it/400x300" alt="">
-                        <p>Lorem ipsum dolor.</p>
-                    </div>
-                </a>
-            </div><!--//manufactors-item-->
+        <section class="manufactors">
+            <div class="container">
+                <div class="section-header"><h1>Производители</h1></div>
+                <p class="mb-20">Выберите производителя и посмотрите продукцию, которую вы можете приобрести у нас</p>
+                <div class="manufactors-wrapper">
+                    {% for manufactor in all_manufacturers %}
+                    <div class="manufactors-item">
+                        <a href="">
+                            <div class="manufactors-item-inner">
+                                <img src="{{ manufactor.image.url }}" alt="">
+                                <p>{{ manufactor.name }}</p>
+                            </div>
+                        </a>
+                    </div><!--//manufactors-item-->
+                  {% endfor %}
 
-            </div><!--//manufactors-wrapper-->
+                </div><!--//manufactors-wrapper-->
 
 
-        </div><!--//container-->
+            </div><!--//container-->
 
-    </section>
-</div><!--//main-->
+        </section>
+    </div><!--//main-->
 
 {% endblock %}
 

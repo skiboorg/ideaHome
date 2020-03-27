@@ -1,0 +1,41 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="main">
+        <div class="breadcrumbs bg-grey">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+
+                    <li><span>КАТАЛОГ</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="manufactors">
+            <div class="container">
+                <div class="section-header"><h1>КАТАЛОГ ПРОДУКЦИИ</h1></div>
+
+                <div class="manufactors-wrapper">
+                    {% for cat in all_categories %}
+                    <div class="manufactors-item">
+                        <a href="{% url 'category' cat.name_slug %}">
+                            <div class="manufactors-item-inner">
+                                <img src="{{ cat.image.url }}" alt="">
+                                <p>{{ cat.name }}</p>
+                            </div>
+                        </a>
+                    </div><!--//manufactors-item-->
+                  {% endfor %}
+
+                </div><!--//manufactors-wrapper-->
+
+
+            </div><!--//container-->
+
+        </section>
+    </div><!--//main-->
+
+{% endblock %}
+
+

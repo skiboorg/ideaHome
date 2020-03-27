@@ -14,6 +14,11 @@ def format_number(num):
 def items_in_cart(request):
     if request.user.is_authenticated:
         all_items_in_cart = Cart.objects.filter(client_id=request.user.id)
+        cart_items_ids = []
+        for x in all_items_in_cart:
+            cart_items_ids.append(x.item.id)
+        print('Cart items for NOT auth user')
+        print(cart_items_ids)
         used_promo = request.user.used_promo
         if not used_promo:
             promo_discount_value = 0

@@ -37,7 +37,7 @@ def cats(request):
         cat_keywords=sheet.cell(row=i, column=7).value
         cat_meta_description=sheet.cell(row=i, column=8).value
         # if cat_parent_id ==0:
-        #     Category.objects.create(old_id=old_id,name=cat_name,description=cat_description,image=cat_img,
+        #     Category.objects.create(old_id=old_id,name=cat_name,description=cat_description,image='images/catalog/categories/'+cat_img,
         #                             page_title=cat_title,page_description=cat_meta_description,page_keywords=cat_keywords)
         if cat_parent_id != 0:
             cat = Category.objects.get(old_id=cat_parent_id)
@@ -69,7 +69,7 @@ def manuf(request):
         cat_keywords=sheet.cell(row=i, column=5).value
         cat_meta_description=sheet.cell(row=i, column=6).value
 
-        Manufactor.objects.create(old_id=old_id, name=name, image=img,
+        Manufactor.objects.create(old_id=old_id, name=name, image='images/catalog/manufacturers/'+img,
                                     page_title=cat_title, page_description=cat_meta_description,
                                     page_keywords=cat_keywords)
     return render(request, 'page/about.html', locals())
@@ -113,36 +113,41 @@ def itemm(request):
         item_meta_description = sheet.cell(row=i, column=13).value
         cat= None
         subcat = None
-        if old_id==156:
-            print (item_name)
-            print(item_img_main)
-            print(item_img_add.splitlines())
-
-            try:
-                cat = Category.objects.get(old_id=item_cat_id)
-                print('cat', cat)
-            except:
-                subcat = SubCategory.objects.get(old_id=item_cat_id)
-                print('subcat', subcat)
 
 
+        try:
+            cat = Category.objects.get(old_id=item_cat_id)
+
+        except:
+            subcat = SubCategory.objects.get(old_id=item_cat_id)
+
+
+        try:
             manufactor = Manufactor.objects.get(old_id=item_manufactor)
-            print(manufactor)
+        except:
+            manufactor=None
+        print(manufactor)
+        print(old_id)
+        if item_img_main:
             item_first_big_img= item_img_main.split('|')[0]
             item_first_small_img = item_img_main.split('|')[2]
-
-            item = None
-            if cat:
-                item = Item.objects.create(category=cat, name=item_name,price=item_price,article=item_articul,
-                                           units=item_unit,old_id=old_id,description=item_description,
-                                           page_title=item_title,page_description=item_meta_description,page_keywords=item_keywords)
-            if subcat:
-                catt = subcat.category
-                item = Item.objects.create(category=catt, subcategory=subcat, name=item_name, price=item_price, article=item_articul,
-                                           units=item_unit, old_id=old_id, description=item_description,
-                                           page_title=item_title, page_description=item_meta_description,
-                                           page_keywords=item_keywords)
+        else:
+            item_first_big_img = None
+            item_first_small_img = None
+        item = None
+        if cat:
+            item = Item.objects.create(manufactor=manufactor,category=cat, name=item_name,price=item_price,article=item_articul,
+                                       units=item_unit,old_id=old_id,description=item_description,
+                                       page_title=item_title,page_description=item_meta_description,page_keywords=item_keywords)
+        if subcat:
+            catt = subcat.category
+            item = Item.objects.create(manufactor=manufactor,category=catt, subcategory=subcat, name=item_name, price=item_price, article=item_articul,
+                                       units=item_unit, old_id=old_id, description=item_description,
+                                       page_title=item_title, page_description=item_meta_description,
+                                       page_keywords=item_keywords)
+        if item_img_main:
             ItemImage.objects.create(item=item,image='images/catalog/items/'+item_first_big_img,image_small='/media/images/catalog/items/'+item_first_small_img)
+        if item_img_add:
             for img in item_img_add.splitlines():
                 item_big_img = item_img_main.split('|')[0]
                 item_small_img = item_img_main.split('|')[1]
@@ -160,7 +165,12 @@ def delivery(request):
 
 
 def manufacturers(request):
+    all_manufacturers = Manufactor.objects.all()
     return render(request, 'page/manufacturers.html', locals())
+
+def catalog(request):
+    all_categories = Category.objects.all()
+    return render(request, 'page/catalog.html', locals())
 
 
 def manufacturers_cat(request,slug):
@@ -230,7 +240,7 @@ def subcategory(request, category_slug, subcategory_slug):
     subcategory = SubCategory.objects.get(name_slug=subcategory_slug)
     items_qs = Item.objects.filter(subcategory=subcategory)
     items = items_qs
-    manufactors = subcategory.manufactor_set.all()
+   # manufactors = subcategory.manufactor_set.all()
     qs_filtered = False
     search_res = False
 

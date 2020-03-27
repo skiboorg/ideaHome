@@ -22,7 +22,9 @@
                 <div class="catalog-wrapper">
                     <div class="catalog-menu">
                         {% for cat in all_categories %}
+                            {% if cat.subcategory.all.exists %}
                             <button id="{{ cat.name_slug }}" class="accordion" >{{ cat.name }}</button>
+
                             <div class="panel">
                                 <ul class="panel-list">
                                     {% for subcat in cat.subcategory.all %}
@@ -30,6 +32,9 @@
                                     {% endfor %}
                                 </ul>
                             </div>
+                                {% else %}
+                                <a class="accordion" href="{% url 'category' cat.name_slug %}">{{ cat.name }}</a>
+                            {% endif %}
                         {% endfor %}
 
 
