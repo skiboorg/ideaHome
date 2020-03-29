@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from item.models import *
 from openpyxl import load_workbook
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     return render(request, 'page/index.html', locals())
@@ -186,10 +188,11 @@ def category(request, category_slug):
     manufactors = category.get_all_manufactors()
     qs_filtered = False
     search_res = False
-
+    count = request.GET.get('count')
+    page = request.GET.get('page')
     order = request.GET.get('order')
     filter_manufactor = request.GET.get('manufactor')
-    search_q = request.GET.get('q')
+    search_q = request.GET.get('search')
 
 
     if search_q:
@@ -232,6 +235,21 @@ def category(request, category_slug):
         else:
             items = items_qs.order_by('-name')
         param_order = order
+
+    if count:
+        items_paginator = Paginator(items, int(count))
+        param_count = count
+    else:
+        items_paginator = Paginator(items, 12)
+
+    print('items_paginator',items_paginator)
+    try:
+        items = items_paginator.get_page(page)
+    except PageNotAnInteger:
+        items = items_paginator.page(1)
+    except EmptyPage:
+        items = items_paginator.page(items_paginator.num_pages)
+
     return render(request, 'page/category.html', locals())
 
 def subcategory(request, category_slug, subcategory_slug):
@@ -240,13 +258,15 @@ def subcategory(request, category_slug, subcategory_slug):
     subcategory = SubCategory.objects.get(name_slug=subcategory_slug)
     items_qs = Item.objects.filter(subcategory=subcategory)
     items = items_qs
+    manufactors = subcategory.get_all_manufactors()
    # manufactors = subcategory.manufactor_set.all()
     qs_filtered = False
     search_res = False
-
+    count = request.GET.get('count')
+    page = request.GET.get('page')
     order = request.GET.get('order')
     filter_manufactor = request.GET.get('manufactor')
-    search_q = request.GET.get('q')
+    search_q = request.GET.get('search')
 
     if search_q:
         items = items_qs.filter(name_lower__contains=search_q.lower())
@@ -288,6 +308,20 @@ def subcategory(request, category_slug, subcategory_slug):
         else:
             items = items_qs.order_by('-name')
         param_order = order
+    if count:
+        items_paginator = Paginator(items, int(count))
+        param_count = count
+    else:
+        items_paginator = Paginator(items, 12)
+
+    print('items_paginator', items_paginator)
+    try:
+        items = items_paginator.get_page(page)
+    except PageNotAnInteger:
+        items = items_paginator.page(1)
+    except EmptyPage:
+        items = items_paginator.page(items_paginator.num_pages)
+
 
     return render(request, 'page/category.html', locals())
 
@@ -306,3 +340,7 @@ def filter_qs(qs,*args,**kwargs):
     print('filter')
     print(qs)
     print(**kwargs)
+
+def checkout(request):
+
+    return render(request, 'page/checkout.html', locals())

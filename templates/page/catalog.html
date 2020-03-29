@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="section-header"><h1>КАТАЛОГ ПРОДУКЦИИ</h1></div>
 
-                <div class="manufactors-wrapper">
+                <div style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));"  class="manufactors-wrapper ">
                     {% for cat in all_categories %}
                     <div class="manufactors-item">
                         <a href="{% url 'category' cat.name_slug %}">

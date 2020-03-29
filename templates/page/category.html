@@ -28,12 +28,14 @@
                             <div class="panel">
                                 <ul class="panel-list">
                                     {% for subcat in cat.subcategory.all %}
-                                        <li class="panel-list-item"><a {% if subcat.name_slug == subcategory.name_slug %} class="panel-item-active" {% endif %} href="{% url 'subcategory' subcat.category.name_slug subcat.name_slug %}">{{ subcat.name }}</a></li>
+                                        {% if subcat.is_active %}
+                                            <li class="panel-list-item"><a {% if subcat.name_slug == subcategory.name_slug %} class="panel-item-active" {% endif %} href="{% url 'subcategory' subcat.category.name_slug subcat.name_slug %}">{{ subcat.name }}</a></li>
+                                        {% endif %}
                                     {% endfor %}
                                 </ul>
                             </div>
                                 {% else %}
-                                <a class="accordion" href="{% url 'category' cat.name_slug %}">{{ cat.name }}</a>
+                                <a class="catalog-menu-link" href="{% url 'category' cat.name_slug %}">{{ cat.name }}</a>
                             {% endif %}
                         {% endfor %}
 
@@ -70,7 +72,7 @@
                                 </div>
                             </div>
 
-                            <form style="flex-grow: 1" onsubmit="setParam('q',document.getElementById('search_str').value);return false;">
+                            <form style="flex-grow: 1" onsubmit="setParam('search',document.getElementById('search_str').value);return false;">
                                 <div class="form-row">
                                     <input id="search_str" style="height: 40px;" type="text"  class="form-control input input-outline" value="{{ param_search }}" placeholder="Поиск по категории">
                                 </div>
@@ -90,8 +92,8 @@
                                     </a>
                                     <a class="catalog-item-info" href="{{ item.get_absolute_url }}">
                                         <p>{{ item.name }}</p>
-                                        <p>Подкатегория {{ item.subcategory.name }}</p>
-                                        <span>{{ item.manufactor.name }} Краткое описание товара. Нужно ли??</span>
+
+                                        <span>Краткое описание товара. Нужно ли??</span>
 
                                     </a>
                                     <div class="item-info-price-wrapper">
@@ -114,6 +116,33 @@
                                </div><!--//catalog-item-->
                             {% endfor %}
                         </div><!--//catalog-items-list-->
+                         <nav id="items_paginator" class="shop-pagination" aria-label="Shop navigation">
+                                <ul class="pagination ">
+                                {% if items.has_previous %}
+                                    <li class="page-item">
+                                      <a class="page-link" href="?{% if param_search %}&search={{ param_search }}{% endif %}{% if param_manufactor %}&manufactor={{ param_manufactor }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}" aria-label="Previous">
+                                       <i class="fa fa-chevron-left"></i>
+                                      </a>
+                                    </li>
+                                {% endif %}
+                                    {% for pg in items.paginator.page_range %}
+                                        {% if items.number == pg %}
+                                            <li class="page-item page-item-active"><a class="page-link" href="?{% if pg > 1 %}page={{ pg }}{% endif %}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_manufactor %}&manufactor={{ param_manufactor }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}">{{pg}}</a></li>
+                                        {% elif pg > items.number|add:'-6' and pg < items.number|add:'6' %}
+                                            <li class="page-item"><a class="page-link" href="?{% if pg > 1 %}page={{ pg }}{% endif %}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_manufactor %}&manufactor={{ param_manufactor }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}">{{pg}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% if items.has_next %}
+                                  <li class="page-item">
+                                    <a class="page-link" href="?page={{ items.paginator.num_pages }}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_manufactor %}&manufactor={{ param_manufactor }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}" aria-label="Next">
+                                      <i class="fa fa-chevron-right"></i>
+                                    </a>
+                                  </li>
+                                  {% endif %}
+
+                                </ul>
+
+                            </nav>
                     <div class="catalog-seo">
                         {{ category.description | safe }}
                     </div>

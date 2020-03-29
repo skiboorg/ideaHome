@@ -1,0 +1,72 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+    <div class="main">
+        <div class="breadcrumbs  bg-grey">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><span>Корзина</span></li>
+
+                </ul>
+            </div>
+        </div>
+        <section class="contacts">
+
+            <div v-if="cartTotal" class="container">
+               <div class="section-header"><h1>Оформление заказа</h1></div>
+            <div class="checkout-wrapper">
+                <div class="checkout-form">
+                    <form action="" >
+                        <div class="form-row mb-20">
+                            <label class="form-control label">ФИО <sup class="form-control-required">*</sup></label>
+                            <input type="text" required class="form-control input" name="fio">
+                        </div>
+                        <div class="form-row mb-20">
+                            <label class="form-control label">E-Mail <sup class="form-control-required">*</sup></label>
+                            <input type="email" required class="form-control input" name="email">
+                        </div>
+                         <div class="form-row mb-20">
+                            <label class="form-control label">Телефон <sup class="form-control-required">*</sup></label>
+                            <input id="tel" required type="tel"
+                                   pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}"
+                                   class="form-control input" name="phone" >
+                        </div>
+                         <div class="form-row mb-20">
+                            <label class="form-control label">Выберите вариант доставки товара <sup class="form-control-required">*</sup></label>
+                             <select name="delivery" class="form-control input">
+                                 <option value="1">Самовывоз</option>
+                                 <option value="1">Доставка</option>
+                             </select>
+                        </div>
+                         <div class="form-row mb-40">
+                            <label class="form-control label">Ваш комментарий</label>
+                             <textarea name="comment" class="form-control input textarea" cols="30" rows="10"></textarea>
+                        </div>
+                        <button  type="submit" class="btn btn-link">Продолжить</button>
+                    </form>
+                </div><!--//checkout-form-->
+                <div class="checkout-total">
+                    <div class="checkout-total-cart-info">
+                        <h4 class="checkout-total-cart-info-head">Итого</h4>
+                        <p class="checkout-total-cart-info-summ"> [[cartTotal]] <i class="fa fa-rub"></i></p>
+                    </div>
+                </div><!--//checkout-total-->
+            </div><!--//checkout-wrapper-->
+
+            </div><!--//container-->
+            <div v-else class="container">
+                <div  class="empty-cart">
+                     <div class="section-header text-center"><h4>Корзина пуста</h4></div>
+                <a style="max-width: 320px; margin: 0 auto" href="{% url 'catalog' %}" class="btn">в каталог</a>
+                </div>
+            </div>
+
+        </section>
+
+    </div><!--//main-->
+{% endblock %}
+{% block js %}
+    {{ block.super }}
+
+{% endblock %}

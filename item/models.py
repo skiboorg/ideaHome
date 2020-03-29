@@ -37,6 +37,7 @@ class Category(models.Model):
     is_in_index_catalog = models.BooleanField('Показывать в каталоге на главной ?', default=False, db_index=True)
     old_id = models.IntegerField(blank=True,null=True)
     views = models.IntegerField(default=0)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -82,8 +83,19 @@ class SubCategory(models.Model):
     discount = models.IntegerField('Скидка на все товары в подкатегории %', blank=True, default=0)
     old_id = models.IntegerField(blank=True, null=True)
     views = models.IntegerField(default=0)
+    is_active = models.BooleanField('Отображается,', default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_all_manufactors(self):
+        all_manufactors = []
+        #result = list()
+        for item in self.item_set.all():
+           if item.manufactor not in all_manufactors:
+                all_manufactors.append(item.manufactor)
+        # for i in all_manufactors:
+        #     result = list(chain(result, i))
+        return all_manufactors
 
     def save(self, *args, **kwargs):
         slug = slugify(self.name)
@@ -118,6 +130,7 @@ class Manufactor(models.Model):
     description = RichTextUploadingField('Описание на странице', blank=True, null=True)
     old_id = models.IntegerField(blank=True, null=True)
     views = models.IntegerField(default=0)
+    is_active = models.BooleanField('Отображается,', default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -143,6 +156,7 @@ class Tag(models.Model):
     name = models.CharField('Название тега', max_length=255, blank=True, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
     seoText = RichTextUploadingField('Текст для СЕО', blank=True, null=True)
+    is_active = models.BooleanField('Отображается,', default=True)
 
     def save(self, *args, **kwargs):
         self.name_slug = slugify(self.name)
@@ -286,29 +300,29 @@ class ItemImage(models.Model):
 
 
 
-    # def save(self, *args, **kwargs):
-    #     fill_color = '#fff'
-    #     image = Image.open(self.image)
-    #
-    #     if image.mode in ('RGBA', 'LA'):
-    #         background = Image.new(image.mode[:-1], image.size, fill_color)
-    #         background.paste(image, image.split()[-1])
-    #         image = background
-    #     image.thumbnail((175, 175), Image.ANTIALIAS)
-    #     small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
-    #     # if settings.DEBUG:
-    #     #     os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
-    #     #     image.save(small_name, 'JPEG', quality=100)
-    #     # else:
-    #     os.makedirs(BASE_DIR + '/media/items/{}'.format(self.item.id), exist_ok=True)
-    #     image.save(BASE_DIR + '/' + small_name, 'JPEG', quality=100)
-    #     self.image_small = '/' + small_name
-    #
-    #
-    #
-    #
-    #     super(ItemImage, self).save(*args, **kwargs)
-    #
+    def save(self, *args, **kwargs):
+        fill_color = '#fff'
+        image = Image.open(self.image)
+
+        if image.mode in ('RGBA', 'LA'):
+            background = Image.new(image.mode[:-1], image.size, fill_color)
+            background.paste(image, image.split()[-1])
+            image = background
+        image.thumbnail((175, 175), Image.ANTIALIAS)
+        small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
+        # if settings.DEBUG:
+        #     os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
+        #     image.save(small_name, 'JPEG', quality=100)
+        # else:
+        os.makedirs(BASE_DIR + '/media/items/{}'.format(self.item.id), exist_ok=True)
+        image.save(BASE_DIR + '/' + small_name, 'JPEG', quality=100)
+        self.image_small = '/' + small_name
+
+
+
+
+        super(ItemImage, self).save(*args, **kwargs)
+
 
 
 class PromoCode(models.Model):

@@ -41,11 +41,11 @@
                             <div class="header-cart-bottom">
                                 <div class="header-cart-bottom-total">
                                     <p>Итого</p>
-                                    <p>[[cartTotal]]</p>
+                                    <p>[[cartTotal]] <i class="fa fa-rub"></i></p>
                                 </div>
                                 <div class="header-cart-bottom-buttons">
                                     <a href="{% url 'show_cart' %}" class="btn">Корзина</a>
-                                    <a href="" class="btn">Оформить</a>
+                                    <a href="{% url 'checkout' %}" class="btn">Оформить</a>
                                 </div>
                             </div>
                         </div>

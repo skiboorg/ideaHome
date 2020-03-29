@@ -13,14 +13,16 @@
                                         <div  class="offer-banner-menu-inner">
                                             <ul class="offer-banner-menu-wrapper">
                                                 {% for subcategory in category.subcategory.all %}
-                                                    <li class="offer-banner-menu-inner-item link-item"><a href="{% url 'subcategory' subcategory.category.name_slug subcategory.name_slug %}">{{ subcategory.name }}</a></li>
+                                                    {% if subcategory.is_active %}
+                                                        <li class="offer-banner-menu-inner-item link-item"><a href="{% url 'subcategory' subcategory.category.name_slug subcategory.name_slug %}">{{ subcategory.name }}</a></li>
+                                                    {% endif %}
                                                 {% endfor %}
 
                                             </ul>
                                         </div>
                                     </li>
                                 {% endfor %}
-                                <li class="offer-banner-menu-item link-item"><a href="sd">Lorem ipsum.</a></li>
+                                <li class="offer-banner-menu-item link-item"><a href="{% url 'catalog' %}">Каталог материалов</a></li>
                             </ul>
                         </div>
                         <div class="offer-banner-items">

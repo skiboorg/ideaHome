@@ -7,9 +7,9 @@ Vue.component('header-cart-items', {
                         <p>[[item.name]]</p>
                         <span class="header-cart-item-info-num">[[item.num]]</span>
                         x
-                        <span class="header-cart-item-info-price">[[item.price]]</span>
+                        <span class="header-cart-item-info-price">[[item.price]] <i class="fa fa-rub"></i> </span>
                         =
-                        <span class="header-cart-item-info-total">[[item.num * item.price]]</span>
+                        <span class="header-cart-item-info-total">[[item.num * item.price]] <i class="fa fa-rub"></i></span>
                     </div>                                           
                     <div class="header-cart-item-remove">
                         <i v-on:click="userDelete(index)" class="fa fa-times"></i>

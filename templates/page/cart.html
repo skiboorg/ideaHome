@@ -37,11 +37,11 @@
                                 v-on:add_qt="add_qt"
                         ></main-cart-item>
 
-                             <div class="main-cart-item ">
-                            <div class="main-cart-item-head">Итого</div>
+                             <div  class="main-cart-item ">
+                            <div class="main-cart-item-head"><p style="font: 20px 'P22UndergroundCYPro-Demi', sans-serif;">Итого</p></div>
                             <div class="main-cart-item-head"></div>
                             <div class="main-cart-item-head"></div>
-                            <div class="main-cart-item-head">[[cartTotal]]</div>
+                            <div class="main-cart-item-head"><p style="font: 20px 'P22UndergroundCYPro-Demi', sans-serif;">[[cartTotal]] <i class="fa fa-rub"></i></p></div>
                             <div class="main-cart-item-head"></div>
                         </div><!--// main-cart-item-->
 
@@ -54,14 +54,14 @@
                 <div class="main-cart__buttons">
 
                     <a href="javascript:void(0)" class="btn btn-outline ">продолжить покупки</a>
-                    <a href="javascript:void(0)" class="btn btn-md">оформить заказ</a>
+                    <a href="{% url 'checkout' %}" class="btn btn-md">оформить заказ</a>
                 </div>
 
             </div><!--//container-->
             <div v-else class="container">
                 <div  class="empty-cart">
                      <div class="section-header text-center"><h4>Корзина пуста</h4></div>
-                <a style="max-width: 320px; margin: 0 auto" href="/" class="btn">в каталог</a>
+                <a style="max-width: 320px; margin: 0 auto" href="{% url 'catalog'%}" class="btn">в каталог</a>
                 </div>
             </div>
 
