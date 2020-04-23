@@ -35,6 +35,7 @@ class Category(models.Model):
     description = RichTextUploadingField('Описание категории', blank=True, null=True)
     is_active = models.BooleanField('Отображать ?', default=True, db_index=True)
     is_in_index_catalog = models.BooleanField('Показывать в каталоге на главной ?', default=False, db_index=True)
+    order_num = models.IntegerField(default=100)
     old_id = models.IntegerField(blank=True,null=True)
     views = models.IntegerField(default=0)
 
@@ -63,9 +64,10 @@ class Category(models.Model):
         return all_manufactors
 
     def __str__(self):
-        return f'{self.name}| old_id {self.old_id}'
+        return f'id:{self.id} | {self.name}| old_id {self.old_id}'
 
     class Meta:
+        ordering = ('order_num',)
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
 
@@ -83,6 +85,7 @@ class SubCategory(models.Model):
     discount = models.IntegerField('Скидка на все товары в подкатегории %', blank=True, default=0)
     old_id = models.IntegerField(blank=True, null=True)
     views = models.IntegerField(default=0)
+    order_num = models.IntegerField(default=100)
     is_active = models.BooleanField('Отображается,', default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -113,9 +116,10 @@ class SubCategory(models.Model):
         super(SubCategory, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.name}| old_id {self.old_id}'
+        return f'id:{self.id} | {self.name}| old_id {self.old_id}'
 
     class Meta:
+        ordering = ('order_num',)
         verbose_name = "Подкатегория"
         verbose_name_plural = "Подкатегории"
 

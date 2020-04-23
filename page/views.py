@@ -183,7 +183,12 @@ def manufacturers_cat(request,slug):
 def category(request, category_slug):
     all_categories = Category.objects.filter(is_active=True)
     category = Category.objects.get(name_slug=category_slug)
-    items_qs = Item.objects.filter(category=category)
+    # remove_items = Item.objects.filter(category_id=21)
+    # print(remove_items)
+    # for item in remove_items:
+    #     item.category_id=10
+    #     item.save()
+    items_qs = Item.objects.filter(category=category,is_active=True)
     items = items_qs
     manufactors = category.get_all_manufactors()
     qs_filtered = False
@@ -240,7 +245,7 @@ def category(request, category_slug):
         items_paginator = Paginator(items, int(count))
         param_count = count
     else:
-        items_paginator = Paginator(items, 12)
+        items_paginator = Paginator(items, 18)
 
     print('items_paginator',items_paginator)
     try:
@@ -256,7 +261,7 @@ def subcategory(request, category_slug, subcategory_slug):
     all_categories = Category.objects.filter(is_active=True)
     category = Category.objects.get(name_slug=category_slug)
     subcategory = SubCategory.objects.get(name_slug=subcategory_slug)
-    items_qs = Item.objects.filter(subcategory=subcategory)
+    items_qs = Item.objects.filter(subcategory=subcategory,is_active=True)
     items = items_qs
     manufactors = subcategory.get_all_manufactors()
    # manufactors = subcategory.manufactor_set.all()
@@ -312,7 +317,7 @@ def subcategory(request, category_slug, subcategory_slug):
         items_paginator = Paginator(items, int(count))
         param_count = count
     else:
-        items_paginator = Paginator(items, 12)
+        items_paginator = Paginator(items, 18)
 
     print('items_paginator', items_paginator)
     try:
