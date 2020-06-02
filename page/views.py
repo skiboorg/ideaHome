@@ -3,6 +3,11 @@ from item.models import *
 from openpyxl import load_workbook
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+# from bs4 import BeautifulSoup
+# import requests
+# import urllib.request
+# from django.core.files.base import ContentFile
+
 def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     return render(request, 'page/index.html', locals())
@@ -159,6 +164,44 @@ def itemm(request):
     return render(request, 'page/about.html', locals())
 
 def contacts(request):
+    # from bs4 import BeautifulSoup
+    # urls = ['https://decor-dizayn.ru/catalog/tsvetnaya-lepnina/tsvetniye_plintusy-/',
+    #
+    #
+    #
+    #         ]
+    # for url in urls:
+    #     req = requests.get(url)
+    #     soup = BeautifulSoup(req.content, 'html.parser')
+    #     all_cards = soup.find_all("div", class_="sec_card")
+    #     for card in all_cards:
+    #         # print(card)
+    #         # print(card.find('div', class_="card_price").text.strip().split(' ')[0].split('.')[0])
+    #         img = card.find('a', class_="sec_crad-pic")['href']
+    #         name = card.find('a', class_="card_name").text.strip()
+    #         art = card.find('div', class_="card_art").text.strip().split(' ')[1]
+    #         description = card.find('div', class_="card_prop").decode_contents()
+    #         price = int(card.find('div', class_="card_price").find('s').text.strip().replace(' руб.','').split('.')[0].replace(' ',''))
+    #         print(price)
+    #         item = Item.objects.create(category_id=3,
+    #                                    subcategory_id=54,
+    #                                    manufactor_id=20,
+    #                                    name=name,
+    #                                    price=price,
+    #                                    article=art,
+    #                                    description=description)
+    #         # urllib.request.urlretrieve(f'https://decor-dizayn.ru/{img}', f'D:/temp/dicir/{art}.jpg')
+    #
+    #         # content = urllib.request.urlretrieve(f'https://decor-dizayn.ru{img}')
+    #         try:
+    #             response = requests.get(f'https://decor-dizayn.ru{img}')
+    #             item_img = ItemImage()
+    #             item_img.item=item
+    #             item_img.image.save(f'{art}.jpg',ContentFile(response.content),save=True)
+    #             item_img.save()
+    #         except:
+    #             print('error')
+
     return render(request, 'page/contacts.html', locals())
 
 
@@ -190,7 +233,7 @@ def category(request, category_slug):
     #     item.save()
     items_qs = Item.objects.filter(category=category,is_active=True)
     items = items_qs
-    manufactors = category.get_all_manufactors()
+    # manufactors = category.get_all_manufactors()
     qs_filtered = False
     search_res = False
     count = request.GET.get('count')

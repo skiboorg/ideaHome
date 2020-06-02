@@ -96,7 +96,7 @@
                             </div>
                             <div class="item-info-price-quantity">
                                 <p onclick="delQt()">-</p><input id="quantity" readonly type="number" value="1" min="1"><p class="mr-10" onclick="addQt()">+</p>
-                                <span>Итого: <span id="total_price">560</span> <i class="fa fa-rub"></i></span>
+                                <span>Итого: <span id="total_price">{{ item.price }}</span> <i class="fa fa-rub"></i></span>
                             </div>
                             <div class="item-info-price-buttons">
                                 <span class="btn btn-green" onclick="add_to_cart()">в корзину</span>
