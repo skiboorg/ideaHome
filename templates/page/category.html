@@ -20,7 +20,7 @@
         <section class="catalog">
             <div class="container">
                 <div class="catalog-wrapper">
-                    <div class="catalog-menu">
+                    <div class="catalog-menu catalog-menu-main">
                         {% for cat in all_categories %}
                             {% if cat.subcategory.all.exists %}
                             <button id="{{ cat.name_slug }}" class="accordion" >{{ cat.name }}
@@ -97,7 +97,7 @@
                                     {% if item.discount > 0 %}
                                         <span class="catalog-item-discount">- {{ item.discount }}%</span>
                                     {% endif %}
-                                    <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
+{#                                    <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>#}
                                     <a class="catalog-item-image" href="{{ item.get_absolute_url }}">
                                         <img src="{{ item.get_small_image }}" alt="{{ item.name }}">
                                     </a>

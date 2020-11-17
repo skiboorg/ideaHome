@@ -5,6 +5,7 @@
   &-wrapper
     display: grid
     grid-template-columns: 2fr 1fr
+    grid-gap: 20px
 
 
   &-video
@@ -13,6 +14,8 @@
       border: none
       border-radius: 10px
   &-slider
+    &-mob
+      display: none
     &-item
       display: flex
       align-items: center
@@ -29,3 +32,11 @@
           opacity: 1
 
 
+@media (max-width: 800px)
+  .reviews
+    &-wrapper
+      grid-template-columns: 1fr
+    &-slider
+      display: none
+      &-mob
+        display: block

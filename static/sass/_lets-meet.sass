@@ -39,10 +39,6 @@
     top: -15px
     z-index: -1
 
-@media (max-width: 1366px)
-  .quote::after
-    content: ''
-
 .lets-meet-about
   display: inline-block
   margin-left: 330px
@@ -65,3 +61,25 @@
       z-index: -1
   span:last-child
     font: 16px 'MuseoSansCyrl-300',sans-serif
+@media (max-width: 800px)
+  .lets-meet
+    padding: 60px 0
+  .lets-meet-inner
+    p.info-text
+      width: unset
+      &:last-child
+        margin-bottom: 20px
+  .quote
+    width: unset
+    margin-bottom: 40px
+    p
+      width: unset
+  .lets-meet-about
+    margin-left: 0
+
+
+@media (max-width: 1366px)
+  .quote::after
+    content: ''
+
+

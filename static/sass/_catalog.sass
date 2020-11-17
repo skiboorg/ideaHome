@@ -27,8 +27,12 @@
   width: 100%
   z-index: 99
   &.mobile-catalog
+
     height: 0
     overflow: hidden
+    &.mobileCatalogActive
+      margin-bottom: 10px
+      height: auto
   &-link
     font: 16px 'P22UndergroundCYPro-Demi',sans-serif
     background: #ffffff
@@ -38,6 +42,12 @@
     border-bottom: 1px solid $border-color
     &:hover
       color: $color-red
+
+@media (max-width: 800px)
+  .catalog-wrapper
+    display: block
+  .catalog-menu-main
+    display: none
 .accordion
   font: 16px 'P22UndergroundCYPro-Demi',sans-serif
   background: #ffffff

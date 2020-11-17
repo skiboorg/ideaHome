@@ -1,7 +1,8 @@
 .why-we
   &-wrapper
     display: grid
-    grid-template-columns: repeat(auto-fill,minmax(33%,1fr))
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr))
+    grid-gap: 20px
   &-item
     display: flex
     flex-direction: column
@@ -81,6 +82,19 @@
         &:last-child
           margin-bottom: 0
 
+@media (max-width: 800px)
+  .features
+    h3
+      margin-bottom: 40px
+    ul
+      &::after
+        content: none
+      li
+        margin-bottom: 25px !important
+        &::after
+          content: none !important
+
+
 .dont-risk
   padding: 120px 0
   background: $section-bg-grey
@@ -103,3 +117,7 @@
   &-right
     img
       border-radius: 10px
+
+@media (max-width: 800px)
+  .dont-risk
+    padding: 60px 0

@@ -121,3 +121,16 @@
     transform: rotate(360deg)
   
 
+@media (max-width: 800px)
+  .main-cart-item
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+    grid-gap: 10px
+    &-price
+      font-size: 12px
+    &-name
+      span
+        font-size: 12px
+  .main-cart__buttons
+    & .btn
+      &:first-child
+        margin-bottom: 10px

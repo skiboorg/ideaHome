@@ -172,7 +172,7 @@
                 <h3 class="text-center">Посмотрите реальные отзывы</h3>
                 <div class="reviews-wrapper">
                     <div class="reviews-video">
-                        <iframe id="youtube" width="590" height="460" src="https://www.youtube.com/embed/RYDpE0SgXOw" frameborder="0" allowfullscreen></iframe>
+                        <iframe id="youtube" width="100%" height="460" src="https://www.youtube.com/embed/RYDpE0SgXOw" frameborder="0" allowfullscreen></iframe>
 
                     </div>
                     <div class="reviews-slider">
@@ -190,11 +190,22 @@
                             <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
                         </div>
                     </div>
-                    <div class="slider-arrows">
-                        <div class="up-arrow">
-                            <a href="">d</a>
+                     <div class="reviews-slider-mob">
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
+                        </div>
+                        <div class="reviews-slider-item" style="background: url(https://img.youtube.com/vi/YPQFh28BdP4/default.jpg);background-size: cover " >
+                            <img src="img/play-btn.png" alt="" draggable="false" onclick="changeVideo('YPQFh28BdP4');">
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -216,7 +227,7 @@
 var slider1 = tns({
         container: '.offer-slider',
         items: 1,
-        autoplay: false,
+        autoplay: true,
         "autoHeight": true,
         nav: false,
         controls:false,
@@ -226,7 +237,7 @@ var slider1 = tns({
     var slider2 = tns({
         container: '.offer-partners-slider',
 
-        autoplay: false,
+        autoplay: true,
         gutter:20,
         nav: false,
         controls:false,
@@ -262,10 +273,24 @@ var slider1 = tns({
         items: 3,
         axis: 'vertical' ,
         gutter:15,
-        autoplay: false,
+        autoplay: true,
+        autoplayTimeout:2000,
         nav: false,
         controls:false,
         mouseDrag:true,
+
+    });
+
+     var slider4 = tns({
+        container: '.reviews-slider-mob',
+        items: 2,
+        //axis: 'vertical' ,
+        gutter:5,
+        autoplay: true,
+        nav: false,
+        controls:true,
+        mouseDrag:true,
+
     });
 </script>
 {% endblock %}

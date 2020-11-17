@@ -4,7 +4,7 @@ import random
 def check_profile(request):
     num1 = random.randint(0, 9)
     num2 = random.randint(0, 9)
-    all_cat = Category.objects.all()
+    # all_cat = Category.objects.all()
     if request.user.is_authenticated:
         print('user')
         wl = Wishlist.objects.filter(client=request.user)

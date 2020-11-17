@@ -63,6 +63,8 @@ var app = new Vue({
         cartTotal:0,
         cartItemsNum:0,
         cartNotEmpty : false,
+        sidePanelActive:false,
+        mobileCatalogActive:false,
         headerCartItems: [
         ]
     },

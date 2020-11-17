@@ -3,11 +3,11 @@
     <div class="container">
         <div class="header-top">
 
-            <div class="mobile-menu-toggle">
-                <span><i class="fa fa-list"></i></span>
-            </div>
-            <div class="header-top_logo">
 
+            <div class="header-top_logo">
+                <div class="mobile-menu-toggle" @click="sidePanelActive=true">
+                    <span><i class="fa fa-list"></i></span>
+                </div>
                 <p class="header-top_logo-name"><a href="/"><span>идеи</span> для дома</a></p>
                 <div class="header-top_logo-info mobile-hide-800">
                     <p>Декоративные и отделочные материалы по Челябинской области</p>
@@ -51,12 +51,12 @@
                         </div>
 
                     </div>
-                            <div v-else class="header-cart">
- <p>Корзина пуста</p>
-</div>
+                    <div v-else class="header-cart">
+                        <p>Корзина пуста</p>
+                    </div>
                 </div>
 
-                <a href=""><i class="fa fa-heart"></i></a>
+
             </div>
             <div class="header-top_callback mobile-hide-800">
                 <p>8 351 215 55 07</p>
@@ -64,46 +64,35 @@
             </div>
         </div><!-- //header-top-->
     </div><!-- //container-->
-    <div class="side-panel">
+    <div class="side-panel" :class="{'panelActive':sidePanelActive}">
 
         <div class="side-panel-top">
-            <span class="side-panel-top-toggle"><i class="fa fa-times"></i></span>
+            <span class="side-panel-top-toggle" @click="sidePanelActive=false"><i class="fa fa-times"></i></span>
             <p class="side-panel-top-logo">идеи для дома</p>
         </div>
 
 
         <div class="side-panel-menu">
-            <a href=""><p class="side-panel-menu-item">Каталог материалов</p></a>
-            <div class="catalog-menu mobile-catalog">
+            <p @click=" mobileCatalogActive ? mobileCatalogActive=false : mobileCatalogActive=true"class="side-panel-menu-item">Каталог материалов</p>
+            <div class="catalog-menu mobile-catalog" :class="{'mobileCatalogActive':mobileCatalogActive}">
+                {% for category in all_categories %}
+                    {% if category.subcategory.all.exists %}
+                    <button class="accordion">{{ category.name }}</button>
+                    <div class="panel">
+                        <ul class="panel-list">
+                            {% for subcategory in category.subcategory.all %}
+                                {% if subcategory.is_active %}
+                                    <li class="panel-list-item"><a href="{% url 'subcategory' subcategory.category.name_slug subcategory.name_slug %}">{{ subcategory.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
 
-                <button class="accordion">3D панели</button>
-                <div class="panel">
-                    <ul class="panel-list">
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                    </ul>
-                </div>
-                <a class="catalog-menu-link" href="#">ССылка</a>
-                <button class="accordion">Section 2</button>
-                <div class="panel">
-                    <ul class="panel-list">
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                    {% else %}
+                         <a class="catalog-menu-link" href="{% url 'category' category.name_slug %}">{{ category.name }}</a>
+                    {% endif %}
 
-                <button class="accordion">Section 3</button>
-                <div class="panel">
-                    <ul class="panel-list">
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                        <li class="panel-list-item"><a href="">Искусственный декоративный камень</a></li>
-                    </ul>
-                </div>
-                <a class="catalog-menu-link" href="#">ССылка</a>
-
+                {% endfor %}
 
             </div><!--//catalog-menu-->
             <a href="{% url 'delivery' %}"><p class="side-panel-menu-item">Доставка</p></a>
@@ -114,28 +103,28 @@
             <a href="{% url 'about' %}"><p class="side-panel-menu-item">О нас</p></a>
         </div>
     </div>
-   <div class="main-nav mobile-hide-800">
-    <div class="container">
-        <ul class="nav">
-            <li><a class="nav-item" href="{% url 'catalog' %}"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
-            </li>
-            <li><a class="nav-item" href="{% url 'delivery' %}">Доставка</a></li>
-            <li><a class="nav-item" href="{% url 'manufacturers' %}">Производители</a></li>
-            <li><a class="nav-item" href="#">Партнерам</a></li>
-            <li><a class="nav-item" href="#">Статьи</a></li>
-            <li><a class="nav-item" href="{% url 'contacts' %}">Контакты</a></li>
-            <li><a class="nav-item" href="#">О нас</a></li>
-            <li class="have-sub-menu"><a class="nav-item" href="#">О нас</a>
-                        <ul class="nav-sub-menu">
-                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
-                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
-                            <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
-                        </ul>
-                    </li>
-        </ul>
+    <div class="main-nav mobile-hide-800">
+        <div class="container">
+            <ul class="nav">
+                <li><a class="nav-item" href="{% url 'catalog' %}"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
+                </li>
+                <li><a class="nav-item" href="{% url 'delivery' %}">Доставка</a></li>
+                <li><a class="nav-item" href="{% url 'manufacturers' %}">Производители</a></li>
+                <li><a class="nav-item" href="#">Партнерам</a></li>
+                <li><a class="nav-item" href="#">Статьи</a></li>
+                <li><a class="nav-item" href="{% url 'contacts' %}">Контакты</a></li>
+                <li><a class="nav-item" href="#">О нас</a></li>
+                <li class="have-sub-menu"><a class="nav-item" href="#">О нас</a>
+                    <ul class="nav-sub-menu">
+                        <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                        <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                        <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-    </div><!-- //container-->
-</div><!-- //header-menu-->
+        </div><!-- //container-->
+    </div><!-- //header-menu-->
 </header>
 
 

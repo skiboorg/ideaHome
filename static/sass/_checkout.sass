@@ -7,7 +7,7 @@
     grid-template-columns: 3fr 1fr
     grid-gap: 20px
 
-.checkout-form
+
 
 .checkout-total
   &-cart-info
@@ -23,3 +23,11 @@
     &-summ
       font: 25px 'P22UndergroundCYPro-Demi', sans-serif
       color: $text-color
+
+@media (max-width: 800px)
+  .checkout-wrapper
+    grid-template-columns: 1fr
+  .checkout-form
+    order: 2
+  .checkout-total
+    order: 1
