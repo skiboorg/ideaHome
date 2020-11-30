@@ -2,59 +2,65 @@
 {% load static %}
 {% block content %}
 
- <div class="main">
-    <div class="breadcrumbs bg-grey">
-        <div class="container ">
-            <ul>
-                <li><a href="/">Главная</a></li>
+    <div class="main">
+        <div class="breadcrumbs bg-grey">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
 
-                <li><span>Контакты</span></li>
-            </ul>
+                    <li><span>Контакты</span></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <section class="contacts">
-        <div class="container">
-            <div class="section-header"><h1>Контакты</h1></div>
-            <div class="contacts-wrapper">
-                <div class="contacts-form">
-                    <div class="shadow-box">
-                        <div class="shadow-box-inner">
-                            <h5 class="mb-40">Заказать звонок</h5>
+        <section class="contacts">
+            <div class="container">
+                <div class="section-header"><h1>Контакты</h1></div>
+                <div class="contacts-wrapper">
+                    <div class="contacts-form">
+                        <div class="shadow-box">
+                            <div class="shadow-box-inner">
+                                <h5 class="mb-40">Заказать звонок</h5>
 
-                            <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
-                            <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
-                            <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
+                                <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
+                                <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
+                                <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
 
-                            <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
+                                <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
 
-                            <input style="display: none" name="agree" type="checkbox">
+                                <input style="display: none" name="agree" type="checkbox">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="contacts-info">
-                    <p class="mb-20"><strong>Вы можете задать вопросы по телефону 8 982 333  78 88<br>или заказать обратный звонок.</strong></p>
-                    <p class="mb-20"><strong>Адреса наших магазинов:</strong> </p>
+                    <div class="contacts-info">
+                        <p class="mb-20"><strong>Вы можете задать вопросы по телефону 8 982 333  78 88<br>или заказать обратный звонок.</strong></p>
+                        <p class="mb-20"><strong>Адреса наших магазинов:</strong> </p>
 
-                    <div class="contacts-info-group mb-40">
-                        <p class="contacts-info-group-name"><strong>ТК "ЧЕЛСИ"</strong></p>
-                        <p class="contacts-info-group-address">Троицкий тракт, 21, корпус 2 / сектор 16</p>
-                        <p class="contacts-info-group-phone">+7 (351) 215 55 07 8 908 583 40 15</p>
+                        <div class="contacts-info-group mb-40">
+                            <p class="contacts-info-group-name"><strong>ТК "Chelsi"</strong></p>
+                            <p class="contacts-info-group-address">Троицкий тракт, 21, корпус 2 / сектор 16</p>
+                            <p class="contacts-info-group-phone">+7 (351) 215 55 07 8 908 583 40 15</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2283.096006410626!2d61.38365231624721!3d55.09408298038232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43c58db1cfaefbd9%3A0x36d4ff55531b4271!2z0KfQtdC70KHQuA!5e0!3m2!1sru!2sru!4v1606734696274!5m2!1sru!2sru" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                        <div class="contacts-info-group mb-40">
+                            <p class="contacts-info-group-name"><strong>ТК "Chelsi" Новоградский</strong></p>
+                            <p class="contacts-info-group-address">Новоградский проспект, 64, chelsi174.ru</p>
+                            <p class="contacts-info-group-phone">+7 (351) 222 88 88 (доб.1520) 8 951 782 92 74</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2278.213378131671!2d61.25986962698622!3d55.179537378718834!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43c593bdfa02e4c7%3A0x27db61e2f47ed224!2z4puJINCd0L7QstC-0LPRgNCw0LTRgdC60LjQuSDQv9GA0L7RgdC_0LXQutGCLCA2NCwg0KfQtdC70Y_QsdC40L3RgdC6LCDQp9C10LvRj9Cx0LjQvdGB0LrQsNGPINC-0LHQuy4sIDQ1NDAyMQ!5e0!3m2!1sru!2sru!4v1606734650653!5m2!1sru!2sru" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+
+
                     </div>
-                    <div class="contacts-info-group mb-40">
-                        <p class="contacts-info-group-name"><strong>ТК "ЧЕЛСИ" 2</strong></p>
-                        <p class="contacts-info-group-address">Новоградский проспект, 64, chelsi174.ru</p>
-                        <p class="contacts-info-group-phone">+7 (351) 222 88 88 (доб.1520) 8 951 782 92 74</p>
-                    </div>
-
-
                 </div>
-            </div>
 
-        </div><!--//container-->
+            </div><!--//container-->
 
-    </section>
-</div><!--//main-->
+        </section>
+    </div><!--//main-->
 
+
+{% endblock %}
+{% block js %}
+    {{ block.super }}
 
 {% endblock %}
 

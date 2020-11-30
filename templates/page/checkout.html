@@ -29,14 +29,14 @@
                          <div class="form-row mb-20">
                             <label class="form-control label">Телефон <sup class="form-control-required">*</sup></label>
                             <input id="tel" required type="tel"
-                                   pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}"
                                    class="form-control input" name="phone" >
                         </div>
                          <div class="form-row mb-20">
                             <label class="form-control label">Выберите вариант доставки товара <sup class="form-control-required">*</sup></label>
                              <select name="delivery" class="form-control input">
-                                 <option value="1">Самовывоз</option>
-                                 <option value="1">Доставка</option>
+                                 <option value="1">Пункт выдачи Троицкий</option>
+                                 <option value="2">Пункт выдачи Новоградский</option>
+                                 <option value="3">Доставка</option>
                              </select>
                         </div>
                          <div class="form-row mb-40">
@@ -67,6 +67,6 @@
     </div><!--//main-->
 {% endblock %}
 {% block js %}
-    {{ block.super }}
+
 
 {% endblock %}

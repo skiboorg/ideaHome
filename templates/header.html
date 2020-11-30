@@ -11,13 +11,14 @@
                 <p class="header-top_logo-name"><a href="/"><span>идеи</span> для дома</a></p>
                 <div class="header-top_logo-info mobile-hide-800">
                     <p>Декоративные и отделочные материалы по Челябинской области</p>
-                    <span>Адреса всех магазинов</span>
+                    <span><a href="{% url 'contacts' %}">Адреса всех магазинов</a></span>
                 </div>
             </div>
             <div class="header-top_search-form mobile-hide-800">
-                <form>
+                <form action="{% url 'search' %}" method="post">{% csrf_token %}
                     <div class="form-row">
-                        <input type="text" class="form-control input" placeholder="Поиск по сайту">
+                        <input type="text" name="query"  class="form-control input" placeholder="Поиск по сайту">
+                        <input type="submit" hidden="true" />
                     </div>
 
                 </form>
@@ -60,7 +61,7 @@
             </div>
             <div class="header-top_callback mobile-hide-800">
                 <p>8 351 215 55 07</p>
-                <span>обратный звонок</span>
+                <span @click="showModal = true">обратный звонок</span>
             </div>
         </div><!-- //header-top-->
     </div><!-- //container-->
@@ -108,17 +109,16 @@
             <ul class="nav">
                 <li><a class="nav-item" href="{% url 'catalog' %}"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
                 </li>
-                <li><a class="nav-item" href="{% url 'delivery' %}">Доставка</a></li>
+                <li><a class="nav-item" href="{% url 'sale' %}">Акции</a></li>
                 <li><a class="nav-item" href="{% url 'manufacturers' %}">Производители</a></li>
                 <li><a class="nav-item" href="#">Партнерам</a></li>
-                <li><a class="nav-item" href="#">Статьи</a></li>
                 <li><a class="nav-item" href="{% url 'contacts' %}">Контакты</a></li>
-                <li><a class="nav-item" href="#">О нас</a></li>
-                <li class="have-sub-menu"><a class="nav-item" href="#">О нас</a>
+
+                <li class="have-sub-menu"><a class="nav-item" href="#">Информация</a>
                     <ul class="nav-sub-menu">
-                        <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
-                        <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
-                        <li class="nav-sub-menu-item"><a href="">Lorem ipsum dolor.</a></li>
+                        <li class="nav-sub-menu-item"><a href="{% url 'delivery' %}">Доставка</a></li>
+                        <li class="nav-sub-menu-item"><a href="{% url 'about' %}">О нас</a></li>
+                        <li class="nav-sub-menu-item"><a href="#">Статьи</a></li>
                     </ul>
                 </li>
             </ul>

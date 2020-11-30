@@ -515,8 +515,12 @@ section {
   color: #9ea1a3;
   margin-left: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
-
+.header-top_logo-info span a{
+  color: inherit;
+}
 .header-top_logo-info span::before {
   position: absolute;
   font-family: 'FontAwesome';
@@ -918,9 +922,9 @@ section {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 50px;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
 }
 
 .contacts-info-group-name {
@@ -2139,8 +2143,11 @@ section {
 
 .manufactors-item p {
   font: 15px 'P22UndergroundCYPro-Book',sans-serif;
+  color: #000000;
 }
-
+.ymap-container {
+  height: 100%;
+}
 .about {
   background: #f5f6f7;
   margin: 0;

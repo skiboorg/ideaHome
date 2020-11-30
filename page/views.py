@@ -13,6 +13,39 @@ def index(request):
     return render(request, 'page/index.html', locals())
 
 
+def search(request):
+    print(request.POST)
+    breadcrumb_item = f'Результаты поиска по запросу: {request.POST.get("query")}'
+    items = Item.objects.filter(name_lower__contains=request.POST.get("query").lower())
+    return render(request, 'page/items_page.html', locals())
+
+def sale(request):
+    breadcrumb_item = f'Товары со скидками'
+    items = Item.objects.filter(discount__gt=0)
+    return render(request, 'page/items_page.html', locals())
+
+def manufactor(request,manufactor_slug):
+    manufactor = Manufactor.objects.get(name_slug=manufactor_slug)
+    breadcrumb_item = f'Товары производителя: {manufactor.name}'
+    items = Item.objects.filter(manufactor=manufactor)
+    count = request.GET.get('count')
+    page = request.GET.get('page')
+    if count:
+        items_paginator = Paginator(items, int(count))
+        param_count = count
+    else:
+        items_paginator = Paginator(items, 18)
+
+    print('items_paginator', items_paginator)
+    try:
+        items = items_paginator.get_page(page)
+    except PageNotAnInteger:
+        items = items_paginator.page(1)
+    except EmptyPage:
+        items = items_paginator.page(items_paginator.num_pages)
+    return render(request, 'page/items_page.html', locals())
+
+
 def about(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     return render(request, 'page/about.html', locals())
@@ -227,6 +260,7 @@ def manufacturers_cat(request,slug):
 def category(request, category_slug):
     all_categories = Category.objects.filter(is_active=True)
     category = Category.objects.get(name_slug=category_slug)
+
     # remove_items = Item.objects.filter(category_id=21)
     # print(remove_items)
     # for item in remove_items:
@@ -234,7 +268,7 @@ def category(request, category_slug):
     #     item.save()
     items_qs = Item.objects.filter(category=category,is_active=True)
     items = items_qs
-    # manufactors = category.get_all_manufactors()
+    manufactors = category.manufactor.all()
     qs_filtered = False
     search_res = False
     count = request.GET.get('count')
@@ -307,7 +341,7 @@ def subcategory(request, category_slug, subcategory_slug):
     subcategory = SubCategory.objects.get(name_slug=subcategory_slug)
     items_qs = Item.objects.filter(subcategory=subcategory,is_active=True)
     items = items_qs
-    manufactors = subcategory.get_all_manufactors()
+    manufactors = subcategory.manufactor.all()
    # manufactors = subcategory.manufactor_set.all()
     qs_filtered = False
     search_res = False
@@ -381,6 +415,13 @@ def item_page(request,category_slug,item_slug,subcategory_slug=None):
 
 
     item = get_object_or_404(Item, name_slug=item_slug)
+    item.views += 1
+    item.save()
+
+    if subcategory_slug:
+        recomended_items = Item.objects.filter(subcategory=subcategory,views__gt=10).order_by('-views')
+    else:
+        recomended_items = Item.objects.filter(category=category, views__gt=20).order_by('-views')
 
     filter_qs(1,None,{'dsf':'sada'})
     return render(request, 'page/item.html', locals())

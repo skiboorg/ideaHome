@@ -19,10 +19,10 @@
                 <div class="manufactors-wrapper">
                     {% for manufactor in all_manufacturers %}
                     <div class="manufactors-item">
-                        <a href="">
+                        <a href="{% url 'manufactor' manufactor.name_slug %}">
                             <div class="manufactors-item-inner">
                                 <img src="{{ manufactor.image.url }}" alt="">
-                                <p>{{ manufactor.name }}</p>
+                                <p class="manufactors-item__name">{{ manufactor.name }}</p>
                             </div>
                         </a>
                     </div><!--//manufactors-item-->

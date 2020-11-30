@@ -55,18 +55,24 @@ Vue.component('main-cart-item', {
         }
     }
 })
+ Vue.component("modal", {
+        template: "#modal-template"
+      });
 
 var app = new Vue({
     delimiters: ['[[', ']]'],
     el: '#app',
     data: {
+        coords: [54.82896654088406, 39.831893822753904],
         cartTotal:0,
         cartItemsNum:0,
         cartNotEmpty : false,
         sidePanelActive:false,
         mobileCatalogActive:false,
         headerCartItems: [
-        ]
+        ],
+        showModal: false
+
     },
 
     methods:{

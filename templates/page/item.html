@@ -7,7 +7,7 @@
         <div class="container ">
             <ul>
                 <li><a href="/">Главная</a></li>
-                <li><a href="#">Каталог товаров</a></li>
+                <li><a href="{% url 'catalog' %}">Каталог товаров</a></li>
                 <li><a href="{% url 'category' category.name_slug %}">{{ category.name }}</a></li>
                 {% if subcategory %}
                     <li><a href="{% url 'subcategory' category.name_slug subcategory.name_slug%}">{{ subcategory.name }}</a></li>
@@ -78,7 +78,7 @@
                         <ul class="item-info-attributes">
 
                             <li class="item-info-attributes-item"><p>Артикул:</p><span>{{ item.article }}</span></li>
-                            <li class="item-info-attributes-item"><p>Ед. измерения:</p><span>3,4кг</span></li>
+                            <li class="item-info-attributes-item"><p>Ед. измерения:</p><span>{{ item.units }}</span></li>
                             <li class="item-info-attributes-item"><p>Производитель:</p><span>{{ item.manufactor.name }}</span></li>
 
 
@@ -135,54 +135,48 @@
             <div class="recent-items">
                 <h3>Рекомендуемые товары</h3>
                    <div class="catalog-items-list">
-                        <div class="catalog-item">
-                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
-                            <a class="catalog-item-image" href="#">
-                              <img src="img/item-temp.jpg" alt="">
-                            </a>
-                            <a class="catalog-item-info" href="#">
-                                <p>Lorem ipsum dolor.</p>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
-                            </a>
-                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
-                            <a href="#" class="btn catalog-item-btn">в корзину</a>
-                        </div><!--//catalog-item-->
-                         <div class="catalog-item">
-                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
-                            <a class="catalog-item-image" href="#">
-                              <img src="img/item-temp.jpg" alt="">
-                            </a>
-                            <a class="catalog-item-info" href="#">
-                                <p>Lorem ipsum dolor.</p>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
-                            </a>
-                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
-                            <a href="#" class="btn catalog-item-btn">в корзину</a>
-                        </div><!--//catalog-item-->
-                         <div class="catalog-item">
-                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
-                            <a class="catalog-item-image" href="#">
-                              <img src="img/item-temp.jpg" alt="">
-                            </a>
-                            <a class="catalog-item-info" href="#">
-                                <p>Lorem ipsum dolor.</p>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
-                            </a>
-                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
-                            <a href="#" class="btn catalog-item-btn">в корзину</a>
-                        </div><!--//catalog-item-->
-                         <div class="catalog-item">
-                            <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>
-                            <a class="catalog-item-image" href="#">
-                              <img src="img/item-temp.jpg" alt="">
-                            </a>
-                            <a class="catalog-item-info" href="#">
-                                <p>Lorem ipsum dolor.</p>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi dolore explicabo magnam, provident totam.</span>
-                            </a>
-                            <p class="catalog-item-price">5000 <i class="fa fa-rub"></i></p>
-                            <span class="btn catalog-item-btn" onclick="add_to_cart()">в корзину</span>
-                        </div><!--//catalog-item-->
+                       {% for item in recomended_items %}
+                           {% if forloop.counter < 5 %}
+                           <div class="catalog-item">
+                                    {% if item.discount > 0 %}
+                                        <span class="catalog-item-discount">- {{ item.discount }}%</span>
+                                    {% endif %}
+{#                                    <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>#}
+                                    <a class="catalog-item-image" href="{{ item.get_absolute_url }}">
+                                        <img src="{{ item.get_small_image }}" alt="{{ item.name }}">
+                                    </a>
+                                    <a class="catalog-item-info" href="{{ item.get_absolute_url }}">
+                                        <p>{{ item.name }}</p>
+
+                                        <span>Артикул: {{ item.article }}</span>
+                                        <span>Ед. измерения: {{ item.units }}</span>
+                                        <span>Производитель: {{ item.manufactor.name }}</span>
+
+                                    </a>
+                                    <div class="item-info-price-wrapper">
+                                        {% if item.discount > 0 %}
+                                            <p class="current-price"><span id="current_price">{{ item.discount_value }}</span> <i class="fa fa-rub"></i></p>
+                                            <p class="old-price">{{ item.price }} <i class="fa fa-rub"></i></p>
+                                        {% else %}
+                                            <p class="current-price"><span id="current_price">{{ item.price }}</span> <i class="fa fa-rub"></i></p>
+
+                                        {% endif %}
+                                    </div>
+                                {% if item.id in cart_items_ids %}
+                                      <button id="add_btn_{{ item.id }}" data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.discount_value }}" data-image="{{ item.itemimage_set.first.image_small }}" @click="addItem" class="btn catalog-item-btn" disabled="disabled">в корзине</button>
+
+                                    {% else %}
+                                       <button id="add_btn_{{ item.id }}" data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.discount_value }}" data-image="{{ item.itemimage_set.first.image_small }}" @click="addItem" class="btn catalog-item-btn">в корзину</button>
+
+                                {% endif %}
+                                    {#                            <p class="catalog-item-price">{{ item.price }} <i class="fa fa-rub"></i></p>#}
+                                         {% if request.user.is_superuser %}
+                                <a target="_blank" style="font-weight: bold;color: red" href="/admin/item/item/{{ item.id }}/change/">редакировать</a>
+                                {% endif %}
+                                </div><!--//catalog-item-->
+                           {% endif %}
+                       {% endfor %}
+
                     </div><!--//catalog-items-list-->
             </div>
 

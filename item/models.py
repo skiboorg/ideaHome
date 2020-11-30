@@ -22,11 +22,43 @@ def format_number(num):
         return num
 
 
+class Manufactor(models.Model):
+    name = models.CharField('Название производителя', max_length=255, blank=True, null=True)
+    name_slug = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField('Лого', upload_to='images/catalog/manufacturers/', blank=True)
+    page_h1 = models.CharField('Тег H1', max_length=255, blank=True, null=True)
+    page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
+    page_description = models.CharField('Description страницы', max_length=255, blank=True, null=True)
+    page_keywords = models.TextField('Keywords', blank=True, null=True)
+    description = RichTextUploadingField('Описание на странице', blank=True, null=True)
+    old_id = models.IntegerField(blank=True, null=True)
+    views = models.IntegerField(default=0)
+    is_active = models.BooleanField('Отображается,', default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        slug = slugify(self.name)
+        if not self.name_slug:
+            testSlug = Manufactor.objects.filter(name_slug=slug)
+            slugRandom = ''
+            if testSlug:
+                slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
+            self.name_slug = slug + slugRandom
+        super(Manufactor, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = "Производитель"
+        verbose_name_plural = "Производители"
 
 class Category(models.Model):
     name = models.CharField('Название категории', max_length=255, blank=True, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField('Изображение категории', upload_to='images/catalog/categories/', blank=True)
+    manufactor = models.ManyToManyField(Manufactor,blank=True,verbose_name='Производители',related_name='cat_manufactors')
     page_h1 = models.CharField('Тег H1', max_length=255, blank=True, null=True)
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
     page_description = models.CharField('Description страницы', max_length=255, blank=True, null=True)
@@ -61,6 +93,7 @@ class Category(models.Model):
                 all_manufactors.append(item.manufactor)
         # for i in all_manufactors:
         #     result = list(chain(result, i))
+
         return all_manufactors
 
     def __str__(self):
@@ -78,6 +111,8 @@ class SubCategory(models.Model):
     name = models.CharField('Название подкатегории', max_length=255, blank=True, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
     page_h1 = models.CharField('Тег H1', max_length=255, blank=True, null=True)
+    manufactor = models.ManyToManyField(Manufactor, blank=True, verbose_name='Производители',
+                                        related_name='subcat_manufactors')
     page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
     page_description = models.CharField('Description страницы', max_length=255, blank=True, null=True)
     page_keywords = models.TextField('Keywords', blank=True, null=True)
@@ -98,6 +133,8 @@ class SubCategory(models.Model):
                 all_manufactors.append(item.manufactor)
         # for i in all_manufactors:
         #     result = list(chain(result, i))
+        for i in all_manufactors:
+            self.manufactor.add(i)
         return all_manufactors
 
     def save(self, *args, **kwargs):
@@ -123,37 +160,7 @@ class SubCategory(models.Model):
         verbose_name = "Подкатегория"
         verbose_name_plural = "Подкатегории"
 
-class Manufactor(models.Model):
-    name = models.CharField('Название производителя', max_length=255, blank=True, null=True)
-    name_slug = models.CharField(max_length=255, blank=True, null=True)
-    image = models.ImageField('Лого', upload_to='images/catalog/manufacturers/', blank=True)
-    page_h1 = models.CharField('Тег H1', max_length=255, blank=True, null=True)
-    page_title = models.CharField('Title страницы', max_length=255, blank=True, null=True)
-    page_description = models.CharField('Description страницы', max_length=255, blank=True, null=True)
-    page_keywords = models.TextField('Keywords', blank=True, null=True)
-    description = RichTextUploadingField('Описание на странице', blank=True, null=True)
-    old_id = models.IntegerField(blank=True, null=True)
-    views = models.IntegerField(default=0)
-    is_active = models.BooleanField('Отображается,', default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        slug = slugify(self.name)
-        if not self.name_slug:
-            testSlug = Manufactor.objects.filter(name_slug=slug)
-            slugRandom = ''
-            if testSlug:
-                slugRandom = '-' + ''.join(choices(string.ascii_lowercase + string.digits, k=2))
-            self.name_slug = slug + slugRandom
-        super(Manufactor, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return f'{self.name}'
-
-    class Meta:
-        verbose_name = "Производитель"
-        verbose_name_plural = "Производители"
 
 class Tag(models.Model):
     category = models.ForeignKey(Category, blank=True, null=True,on_delete=models.SET_NULL, verbose_name='Относится к категории')

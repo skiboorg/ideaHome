@@ -49,7 +49,7 @@
 
             <div class="footer-top-phones text-right">
                 <p>+7 (351) 215-55-07</p>
-                <a href="javascript: void(0)" onclick="toggleModal('callback-modal')" class="btn ">Перезвоните мне</a>
+                <a @click.prevent="showModal = true" class="btn ">Перезвоните мне</a>
             </div>
 
 
@@ -60,3 +60,20 @@
 
     </div>
 </footer>
+
+<script type="text/x-template" id="modal-template">
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-container">
+
+            {% include 'page/_cb-form.html' %}
+            </div>
+          </div>
+        </div>
+      </transition>
+    </script>
+<modal v-if="showModal" @close="showModal = false">
+
+
+      </modal>

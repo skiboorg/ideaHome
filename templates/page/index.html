@@ -99,7 +99,7 @@
                     </div><!--//why-we-item-->
                     <div class="why-we-item">
                         <img src="http://placehold.it/300" alt="">
-                        <h4>Бесплатная доставка</h4>
+                        <h4>Гарантия качества</h4>
                         <p>Привезём всё что нужно <span>в день вашего обращения</span></p>
                     </div><!--//why-we-item-->
                 </div>
@@ -133,21 +133,7 @@
                             <li>Монолитная конструкция<br> абсолютно без швов</li>
                         </ul>
                     </div>
-                    <div class="shadow-box">
-                        <div class="shadow-box-inner">
-                            <h5 class="mb-40">Хотите узнать подробнее
-                                <span>или убедиться в качестве?</span>
-                            </h5>
-
-                            <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
-                            <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
-                            <a   class="btn mb-40" onclick="sendForm('form')">Перезвоните мне</a>
-
-                            <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
-
-                            <input style="display: none" name="agree" type="checkbox">
-                        </div>
-                    </div>
+                    {% include 'page/_cb-form.html' %}
                 </div>
             </div>
 
