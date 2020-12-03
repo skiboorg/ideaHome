@@ -56,13 +56,13 @@
 {#                            </form>#}
 {##}
 {#                        </div><!--//catalog-items-filter-->#}
-                        <div class="catalog-items-list">
-                            {% for item in items %}
-                                <div class="catalog-item">
+                       <div class="catalog-item">
                                     {% if item.discount > 0 %}
                                         <span class="catalog-item-discount">- {{ item.discount }}%</span>
                                     {% endif %}
-{#                                    <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>#}
+                                    <a  href="#" class="catalog-item-fav-btn "
+                                    @click.prevent="addInFav"></span>
+                                    <i data-id="{{ item.id }}" class="fa fa-heart-o"></i></a>
                                     <a class="catalog-item-image" href="{{ item.get_absolute_url }}">
                                         <img src="{{ item.get_small_image }}" alt="{{ item.name }}">
                                     </a>
@@ -95,8 +95,6 @@
                                 <a target="_blank" style="font-weight: bold;color: red" href="/admin/item/item/{{ item.id }}/change/">редакировать</a>
                                 {% endif %}
                                 </div><!--//catalog-item-->
-                            {% endfor %}
-                        </div><!--//catalog-items-list-->
                          <nav id="items_paginator" class="shop-pagination" aria-label="Shop navigation">
                                 <ul class="pagination ">
                                 {% if items.has_previous %}

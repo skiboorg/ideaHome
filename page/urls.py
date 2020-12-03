@@ -20,6 +20,8 @@ urlpatterns = [
     path('category/<category_slug>/<subcategory_slug>/<item_slug>', views.item_page, name='item_page'),
     path('search/', views.search, name='search'),
     path('sale/', views.sale, name='sale'),
+    path('login/', views.login, name='login'),
+    path('register/', views.register, name='register'),
     path('manufactor/<manufactor_slug>', views.manufactor, name='manufactor'),
 
     # path('subcategory/<subcat_slug>/', views.subcategory, name='subcategory'),

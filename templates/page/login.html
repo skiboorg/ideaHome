@@ -1,0 +1,42 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="main">
+        <div class="breadcrumbs bg-grey">
+            <div class="container ">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+
+                    <li><span>Вход</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="about ">
+            <div class="container">
+                <div style="    max-width: 500px;
+    margin: 0 auto;" class="shadow-box">
+                    <div class="shadow-box-inner">
+
+                        <form action="{%  url 'log_in' %}" method="post">{% csrf_token %}
+                            <input class="form-control input mb-10" required name="email" type="email" placeholder="Ваш e-mail">
+                            <input type="password" name="password" required  class="form-control input masked-phone mb-30" placeholder="Ваш пароль"  />
+                            {% if login_error %}
+                                <p style="color: red;font-weight: bold;text-align: center">Проверьте введенные данные</p>
+                            {% endif %}
+                            <button type="submit"  class="btn mb-40">Войти</button>
+
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div><!--//container-->
+
+        </section>
+    </div><!--//main-->
+
+{% endblock %}
+
+

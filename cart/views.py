@@ -500,3 +500,17 @@ def get_cart(request):
     elif guest:
         all_cart_items = get_all_items(guest=guest)
     return JsonResponse(all_cart_items, safe=False)
+
+def add_to_fav(request):
+    body = json.loads(request.body)
+    return_dict = {}
+    print(body)
+    item_id = int(body.get('item_id'))
+    try:
+         Wishlist.objects.get(item_id=item_id).delete()
+         return_dict['result'] = 'deleted'
+    except:
+        Wishlist.objects.create(client=request.user, item_id=item_id)
+        return_dict['result'] = 'added'
+
+    return JsonResponse(return_dict)

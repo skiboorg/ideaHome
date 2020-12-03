@@ -99,7 +99,9 @@
                                     {% if item.discount > 0 %}
                                         <span class="catalog-item-discount">- {{ item.discount }}%</span>
                                     {% endif %}
-{#                                    <a href="#" class="catalog-item-fav-btn "><i class="fa fa-heart-o"></i></a>#}
+                                    <a  href="#" class="catalog-item-fav-btn "
+                                    @click.prevent="addInFav"></span>
+                                    <i data-id="{{ item.id }}" class="fa {% if item.id in wishlist_ids %}fa-heart{% else %}fa-heart-o{% endif %}"></i></a>
                                     <a class="catalog-item-image" href="{{ item.get_absolute_url }}">
                                         <img src="{{ item.get_small_image }}" alt="{{ item.name }}">
                                     </a>

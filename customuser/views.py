@@ -15,21 +15,21 @@ def create_password():
 
 def account(request):
     if request.user.is_authenticated:
-        return render(request, 'customuser/account.html', locals())
+        return render(request, 'lk/account.html', locals())
     else:
         return HttpResponseRedirect('/')
 
 def orders(request):
     if request.user.is_authenticated:
         orders = Order.objects.filter(client=request.user)
-        return render(request, 'customuser/orders.html', locals())
+        return render(request, 'lk/orders.html', locals())
     else:
         return HttpResponseRedirect('/')
 
 def order(request, order_code):
     if request.user.is_authenticated:
         order = Order.objects.get(order_code=order_code)
-        return render(request, 'customuser/order.html', locals())
+        return render(request, 'lk/order.html', locals())
     else:
         return HttpResponseRedirect('/')
 
@@ -43,18 +43,19 @@ def account_edit(request):
             form.save()
             client.profile_ok = True
             client.save(force_update=True)
-
-        return render(request, 'customuser/account_edit.html', locals())
+            print(form.errors)
+        return render(request, 'lk/account_edit.html', locals())
     else:
+
         form = UpdateForm(instance=client)
-        return render(request, 'customuser/account_edit.html', locals())
+        return render(request, 'lk/account_edit.html', locals())
 
 
 def wishlist(request):
     if request.user.is_authenticated:
         wish_list = Wishlist.objects.filter(client=request.user)
 
-        return render(request, 'customuser/wishlist.html', locals())
+        return render(request, 'lk/wishlist.html', locals())
     else:
         return HttpResponseRedirect('/')
 
@@ -92,58 +93,41 @@ def log_in(request):
     user = authenticate(email=email, password=password)
     print(user)
     if user is not None:
-        if user.is_active:
-            login(request, user)
-            return_dict['result'] = 'success'
-            return JsonResponse(return_dict)
-        else:
-            return_dict['result'] = 'inactive'
-            return JsonResponse(return_dict)
+        login(request, user)
+        return_dict['result'] = 'success'
+        return HttpResponseRedirect('/')
+
     else:
+        login_error = True
         return_dict['result'] = 'invalid'
-        return JsonResponse(return_dict)
-    return_dict['result'] = 'denied'
-    return JsonResponse(return_dict)
+        return HttpResponseRedirect('/login')
+
 
 
 def signup(request):
     return_dict = {}
     if request.method == 'POST':
-        n1 = int(request.POST.get('n1'))
-        n2 = int(request.POST.get('n2'))
-        answer = int(request.POST.get('answer'))
-        if n1 + n2 == answer:
-            print(request.POST)
-            email = request.POST.get('email')
-            name = request.POST.get('name')
-            phone = request.POST.get('phone')
-            password1 = request.POST.get('password1')
-            password2 = request.POST.get('password2')
-            data = {'email': email, 'name': name, 'phone': phone, 'password2': password2, 'password1': password1}
-            form = SignUpForm(data=data)
-            if form.is_valid():
-                user = form.save(commit=False)
-                user.is_active = True
-                user.save()
-                print('User registred')
-                msg_html = render_to_string('email/register.html', {'login': email, 'password': password1})
-                send_mail('Регистрация на сайте LAKSHMI888', None, 'info@lakshmi888.ru', [email],
-                          fail_silently=False, html_message=msg_html)
-                print('Email sent to {} with pass {}'.format(email,password1))
-                login(request, user)
 
-
-                return_dict['result'] = 'success'
-                return JsonResponse(return_dict)
-            else:
-                return_dict['result'] = form.errors
-                print(return_dict)
-                return JsonResponse(return_dict)
+        email = request.POST.get('email')
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        data = {'email': email, 'name': name, 'phone': phone, 'password2': password2, 'password1': password1}
+        form = SignUpForm(data=data)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = True
+            user.save()
+            print('User registred')
+            # msg_html = render_to_string('email/register.html', {'login': email, 'password': password1})
+            # send_mail('Регистрация на сайте LAKSHMI888', None, 'info@lakshmi888.ru', [email],
+            #           fail_silently=False, html_message=msg_html)
+            # print('Email sent to {} with pass {}'.format(email,password1))
+            login(request, user)
+            return HttpResponseRedirect('/')
         else:
-            return_dict['result'] = 'bad'
-            return JsonResponse(return_dict)
+            error = form.errors
+            print(form.errors)
+            return render(request, 'page/register.html', locals())
 
-    else:
-            form = SignUpForm()
-    return_dict['result'] = 'not post'
-    return JsonResponse(return_dict)

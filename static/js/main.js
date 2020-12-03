@@ -69,6 +69,9 @@ var app = new Vue({
         cartNotEmpty : false,
         sidePanelActive:false,
         mobileCatalogActive:false,
+        loginModal:false,
+        menuOpen:false,
+        registerModal:false,
         headerCartItems: [
         ],
         showModal: false
@@ -160,7 +163,38 @@ var app = new Vue({
                 backgroundColor: "linear-gradient(to right, #f55f63, #be353b)",
                 className: "info",
             }).showToast();
-        }
+        },
+        addInFav:function (event) {
+            console.log('addinfav',event.target.classList.contains('fa-heart-o'))
+
+            let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                body = {item_id:event.target.getAttribute('data-id')},
+                text=''
+
+
+            console.log(body)
+            fetch(`/cart/add_to_fav/`, {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": csrfmiddlewaretoken },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+
+                      console.log(res)
+                       event.target.classList.toggle('item-in-fav')
+                    if (res['result']==='deleted'){text='Товар удален из избранного'}
+                    if (res['result']==='added'){text='Товар добавлен в избранное'}
+
+                    Toastify({
+                        duration: 1000,
+                        close: true,
+                        text: text,
+                        backgroundColor: "linear-gradient(to right, #f55f63, #be353b)",
+                        className: "info",
+                    }).showToast();
+                })
+        },
     },
     watch: {
         headerCartItems: function (val) {

@@ -1,7 +1,7 @@
 import json
 from .views import get_all_items
 from .models import Cart, Guest
-
+from order.models import Wishlist
 def format_number(num):
     if num % 1 == 0:
         return int(num)
@@ -13,6 +13,11 @@ def format_number(num):
 
 def items_in_cart(request):
     if request.user.is_authenticated:
+        wl = Wishlist.objects.filter(client=request.user)
+        wishlist_ids = []
+        for i in wl:
+            wishlist_ids.append(i.item.id)
+        print('wishlist_ids', wishlist_ids)
         all_items_in_cart = Cart.objects.filter(client_id=request.user.id)
         cart_items_ids = []
         for x in all_items_in_cart:

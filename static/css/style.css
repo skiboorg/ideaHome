@@ -3064,6 +3064,16 @@ sup {
     -ms-flex-pack: center;
     justify-content: center;
   }
+  .item-wrapper{
+    grid-template-columns: 1fr;
+  }
+  .item-info-group{
+    grid-template-columns: 1fr;
+  }
+  table{
+
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 425px) {

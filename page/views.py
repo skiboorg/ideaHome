@@ -19,6 +19,10 @@ def search(request):
     items = Item.objects.filter(name_lower__contains=request.POST.get("query").lower())
     return render(request, 'page/items_page.html', locals())
 
+def register(request):
+    return render(request, 'page/register.html', locals())
+def login(request):
+    return render(request, 'page/login.html', locals())
 def sale(request):
     breadcrumb_item = f'Товары со скидками'
     items = Item.objects.filter(discount__gt=0)
