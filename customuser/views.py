@@ -54,7 +54,9 @@ def account_edit(request):
 def wishlist(request):
     if request.user.is_authenticated:
         wish_list = Wishlist.objects.filter(client=request.user)
-
+        items=[]
+        for i in wish_list:
+            items.append(i.item)
         return render(request, 'lk/wishlist.html', locals())
     else:
         return HttpResponseRedirect('/')

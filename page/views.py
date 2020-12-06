@@ -14,31 +14,40 @@ def index(request):
 
 
 def search(request):
+    all_categories = Category.objects.filter(is_active=True)
     print(request.POST)
     breadcrumb_item = f'Результаты поиска по запросу: {request.POST.get("query")}'
     items = Item.objects.filter(name_lower__contains=request.POST.get("query").lower())
     return render(request, 'page/items_page.html', locals())
 
 def register(request):
+    all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/register.html', locals())
 def login(request):
+    all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/login.html', locals())
 def sale(request):
+    all_categories = Category.objects.filter(is_active=True)
     breadcrumb_item = f'Товары со скидками'
     items = Item.objects.filter(discount__gt=0)
     return render(request, 'page/items_page.html', locals())
 
 def manufactor(request,manufactor_slug):
+    all_categories = Category.objects.filter(is_active=True)
     manufactor = Manufactor.objects.get(name_slug=manufactor_slug)
+
     breadcrumb_item = f'Товары производителя: {manufactor.name}'
-    items = Item.objects.filter(manufactor=manufactor)
+    breadcrumb_return = 'Производители'
+    breadcrumb_return_url = '/manufacturers/'
+    items_temp = Item.objects.filter(manufactor=manufactor)
+    print('items_temp',items_temp)
     count = request.GET.get('count')
     page = request.GET.get('page')
     if count:
-        items_paginator = Paginator(items, int(count))
+        items_paginator = Paginator(items_temp, int(count))
         param_count = count
     else:
-        items_paginator = Paginator(items, 18)
+        items_paginator = Paginator(items_temp, 12)
 
     print('items_paginator', items_paginator)
     try:
@@ -239,15 +248,17 @@ def contacts(request):
     #             item_img.save()
     #         except:
     #             print('error')
-
+    all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/contacts.html', locals())
 
 
 def delivery(request):
+    all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/delivery.html', locals())
 
 
 def manufacturers(request):
+    all_categories = Category.objects.filter(is_active=True)
     all_manufacturers = Manufactor.objects.all()
     return render(request, 'page/manufacturers.html', locals())
 
@@ -257,6 +268,7 @@ def catalog(request):
 
 
 def manufacturers_cat(request,slug):
+    all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/manufacturers.html', locals())
 
 
@@ -416,7 +428,7 @@ def item_page(request,category_slug,item_slug,subcategory_slug=None):
     if subcategory_slug:
         subcategory = get_object_or_404(SubCategory, name_slug=subcategory_slug)
     category = get_object_or_404(Category, name_slug=category_slug)
-
+    all_categories = Category.objects.filter(is_active=True)
 
     item = get_object_or_404(Item, name_slug=item_slug)
     item.views += 1
@@ -436,5 +448,5 @@ def filter_qs(qs,*args,**kwargs):
     print(**kwargs)
 
 def checkout(request):
-
+    all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/checkout.html', locals())
