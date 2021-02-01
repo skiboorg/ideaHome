@@ -27,20 +27,21 @@
                         </div>
                         <div class="offer-banner-items">
                             <div class="offer-slider">
+                            {% for banner in banners %}
                                 <div class="offer-banner-item">
-                                    <img src="{% static 'img/bg.png' %}" alt="">
+                                    <img src="{{ banner.image.url }}" alt="">
                                     <div class="offer-banner-item-text">
-                                        <h3><span>Сэкономьте до 520%</span> на покупке любого материала за счет налаженного производства</h3>
-                                        <a href="#" class="btn">подробнее</a>
-                                    </div>
-                                </div><!--// offer-banner-item-->
+                                        {% if banner.text %}
+                                            <h3>{{ banner.text }}</h3>
+                                        {% endif %}
 
-                                <div class="offer-banner-item">
-                                    <img src="{% static 'img/bg.png' %}" alt="">
-                                    <div class="offer-banner-item-text">
-                                        <h3><span>Сэкономьте до 50%</span> на покупке любого материала за счет налаженного производства</h3>
+                                        {% if banner.btn_text %}
+                                            <a href="{{ banner.btn_url }}" class="btn">{{ banner.btn_text }}</a>
+                                        {% endif %}
+
                                     </div>
                                 </div><!--// offer-banner-item-->
+                            {% endfor %}
                             </div>
 
 

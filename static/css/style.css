@@ -573,7 +573,6 @@ section {
 }
 
 .header-top_callback span {
-  margin-left: 25px;
   font: 12px 'P22UndergroundCYPro-Book',sans-serif;
   color: #90b95c;
   cursor: pointer;
@@ -1563,7 +1562,9 @@ section {
   margin: 0;
   padding-bottom: 115px;
 }
-
+.catalog-banner{
+  margin-bottom: 30px;
+}
 .catalog-wrapper {
   display: grid;
   grid-template-columns: 1fr 3fr;

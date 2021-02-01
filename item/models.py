@@ -21,6 +21,21 @@ def format_number(num):
     else:
         return num
 
+class Banner(models.Model):
+    image = models.ImageField('Баннер', upload_to='images/banners/', blank=False,null=True)
+    text = models.CharField('Текст', max_length=255, blank=True, null=True)
+    btn_text = models.CharField('Текст на кнопке', max_length=255, blank=True, null=True)
+    btn_url = models.CharField('Ссылка на кнопке', max_length=255, blank=True, null=True)
+    is_active = models.BooleanField('Отображается', default=True)
+    at_home_page = models.BooleanField('На главной', default=True)
+    at_sale_page = models.BooleanField('На акциях', default=True)
+
+    def __str__(self):
+        return f'Баннер {self.id}'
+
+    class Meta:
+        verbose_name = "Баннер"
+        verbose_name_plural = "Баннеры"
 
 class Manufactor(models.Model):
     name = models.CharField('Название производителя', max_length=255, blank=True, null=True)

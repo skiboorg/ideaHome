@@ -10,6 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
+    banners = Banner.objects.filter(at_home_page=True, is_active=True)
     return render(request, 'page/index.html', locals())
 
 
@@ -30,6 +31,8 @@ def sale(request):
     all_categories = Category.objects.filter(is_active=True)
     breadcrumb_item = f'Товары со скидками'
     items = Item.objects.filter(discount__gt=0)
+    banners = Banner.objects.filter(at_sale_page=True,is_active=True)
+    show_banner = True
     return render(request, 'page/items_page.html', locals())
 
 def manufactor(request,manufactor_slug):
