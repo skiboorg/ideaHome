@@ -2144,7 +2144,7 @@ section {
   border-radius: 5px;
   width: 180px;
   height: 100px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .manufactors-item p {
