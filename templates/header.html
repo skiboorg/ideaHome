@@ -110,7 +110,7 @@
             </div><!--//catalog-menu-->
             <a href="{% url 'delivery' %}"><p class="side-panel-menu-item">Доставка</p></a>
             <a href="{% url 'manufacturers' %}"><p class="side-panel-menu-item">Производители</p></a>
-            <a href=""><p class="side-panel-menu-item">Партнерам</p></a>
+            <a href="{% url 'partner' %}"><p class="side-panel-menu-item">Партнерам</p></a>
             <a href=""><p class="side-panel-menu-item">Статьи</p></a>
             <a href="{% url 'contacts' %}"><p class="side-panel-menu-item">Контакты</p></a>
             <a href="{% url 'about' %}"><p class="side-panel-menu-item">О нас</p></a>
@@ -123,7 +123,7 @@
                 </li>
                 <li><a class="nav-item" href="{% url 'sale' %}">Акции</a></li>
                 <li><a class="nav-item" href="{% url 'manufacturers' %}">Производители</a></li>
-                <li><a class="nav-item" href="#">Партнерам</a></li>
+                <li><a class="nav-item" href="{% url 'partner' %}">Партнерам</a></li>
                 <li><a class="nav-item" href="{% url 'contacts' %}">Контакты</a></li>
 
                 <li class="have-sub-menu"><a class="nav-item" href="#">Информация</a>

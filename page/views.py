@@ -21,6 +21,9 @@ def search(request):
     items = Item.objects.filter(name_lower__contains=request.POST.get("query").lower())
     return render(request, 'page/items_page.html', locals())
 
+def partner(request):
+    all_categories = Category.objects.filter(is_active=True)
+    return render(request, 'page/partner.html', locals())
 def register(request):
     all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/register.html', locals())
