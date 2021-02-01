@@ -344,9 +344,6 @@ class ItemImage(models.Model):
         image.save(BASE_DIR + '/' + small_name, 'JPEG', quality=100)
         self.image_small = '/' + small_name
 
-
-
-
         super(ItemImage, self).save(*args, **kwargs)
 
 

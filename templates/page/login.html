@@ -6,7 +6,7 @@
         <div class="breadcrumbs bg-grey">
             <div class="container ">
                 <ul>
-                    <li><a href="#">Главная</a></li>
+                    <li><a href="/">Главная</a></li>
 
                     <li><span>Вход</span></li>
                 </ul>
@@ -25,6 +25,7 @@
                                 <p style="color: red;font-weight: bold;text-align: center">Проверьте введенные данные</p>
                             {% endif %}
                             <button type="submit"  class="btn mb-40">Войти</button>
+                        <p class="text-center">Нет аккаунта? <a class="color-red" href="{% url 'register' %}">Регистрация</a></p>
 
                         </form>
 

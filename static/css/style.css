@@ -301,7 +301,7 @@ strong {
   position: absolute;
   width: 100%;
   height: 3px;
-  background: #90b95c;
+  background: #d83138;
   bottom: 2px;
   left: 0;
   z-index: -1;
@@ -487,7 +487,7 @@ section {
 
 .header-top_logo-name a {
   font: 18px 'P22UndergroundCYPro-Demi', sans-serif;
-  color: #90b95c;
+  color: #d83138;
   text-transform: uppercase;
 }
 
@@ -574,10 +574,10 @@ section {
 
 .header-top_callback span {
   font: 12px 'P22UndergroundCYPro-Book',sans-serif;
-  color: #90b95c;
+  color: #d83138;
   cursor: pointer;
   text-decoration: underline;
-  text-underline-color: #90b95c;
+  text-underline-color: #d83138;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -802,7 +802,7 @@ section {
   -ms-flex-pack: center;
   justify-content: center;
   border-radius: 50%;
-  background: #90b95c;
+  background: #d83138;
 }
 
 .header-cart-toggle-num.empty::after {
@@ -1053,7 +1053,7 @@ section {
 }
 
 .offer-wrapper {
-  border-bottom: 3px solid #90b95c;
+  border-bottom: 3px solid #d83138;
 }
 
 .offer-banner {
@@ -1465,7 +1465,7 @@ section {
   content: '';
   width: 40px;
   height: 2px;
-  background: #90b95c;
+  background: #d83138;
   top: 11px;
   left: -65px;
 }
@@ -1500,7 +1500,7 @@ section {
   position: absolute;
   width: 100%;
   height: 2px;
-  background: #90b95c;
+  background: #d83138;
   bottom: 4px;
   left: 0;
   z-index: -1;
@@ -1845,11 +1845,11 @@ section {
 }
 
 .tab button:hover {
-  color: #90b95c;
+  color: #d83138;
 }
 
 .tab .tab-active {
-  color: #90b95c;
+  color: #d83138;
 }
 
 .tab .tab-active.delivery-button {
@@ -2359,13 +2359,13 @@ section {
 }
 
 .item-info-presence.present {
-  color: #90b95c;
+  color: #d83138;
 }
 
 .item-info-presence.present::before {
   font-family: FontAwesome;
   content: '\f05d';
-  color: #90b95c;
+  color: #d83138;
   margin-right: 10px;
 }
 
@@ -2486,7 +2486,7 @@ section {
   border: none;
   text-align: center;
   font: 16px 'P22UndergroundCYPro-Demi',sans-serif;
-  color: #90b95c;
+  color: #d83138;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -2795,14 +2795,14 @@ section {
 }
 
 .btn-green {
-  background: #90b95c;
+  background: #d83138;
 }
 
 .btn-green::after {
   position: absolute;
   content: '';
-  -webkit-box-shadow: 0px 6px 10px 6px #90b95c;
-  box-shadow: 0px 6px 10px 6px #90b95c;
+  -webkit-box-shadow: 0px 6px 10px 6px #d83138;
+  box-shadow: 0px 6px 10px 6px #d83138;
   bottom: 11px;
   left: 15px;
   right: 15px;
@@ -2815,21 +2815,21 @@ section {
   -webkit-transition: all .1s linear;
   -o-transition: all .1s linear;
   transition: all .1s linear;
-  background: #90b95c;
+  background: #d83138;
 }
 
 .btn-green:hover::after {
   -webkit-transition: all .1s linear;
   -o-transition: all .1s linear;
   transition: all .1s linear;
-  -webkit-box-shadow: 0px 3px 10px 6px #90b95c;
-  box-shadow: 0px 3px 10px 6px #90b95c;
+  -webkit-box-shadow: 0px 3px 10px 6px #d83138;
+  box-shadow: 0px 3px 10px 6px #d83138;
 }
 
 .btn-outline {
-  border: 1px solid #90b95c;
+  border: 1px solid #d83138;
   background: #ffffff;
-  color: #90b95c;
+  color: #d83138;
 }
 
 .btn-outline::after {
@@ -2850,7 +2850,7 @@ section {
   -o-transition: all .1s linear;
   transition: all .1s linear;
   background: #ffffff;
-  color: #90b95c;
+  color: #d83138;
 }
 
 .btn-outline:hover::after {
