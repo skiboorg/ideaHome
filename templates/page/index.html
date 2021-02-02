@@ -49,33 +49,17 @@
 
                         </div>
 
-                    </div><!-- //offer-slider-->
+                    </div><!-- //offer-slider110x55-->
                     <div class="offer-partners">
                         <div class="offer-partners-slider">
+                            {% for item in all_manufacturers %}
                             <div class="offer-partners-item">
                                 <a href="">
-                                    <img src="http://placehold.it/110x55" alt="">
+                                    <img src="{{ item.image.url }}" alt="">
                                 </a>
 
                             </div><!-- //offer-partners-item-->
-                            <div class="offer-partners-item">
-                                <img src="http://placehold.it/110x55" alt="">
-                            </div><!-- //offer-partners-item-->
-                            <div class="offer-partners-item">
-                                <img src="http://placehold.it/110x55" alt="">
-                            </div><!-- //offer-partners-item-->
-                            <div class="offer-partners-item">
-                                <img src="http://placehold.it/110x55" alt="">
-                            </div><!-- //offer-partners-item-->
-                            <div class="offer-partners-item">
-                                <img src="http://placehold.it/110x55" alt="">
-                            </div><!-- //offer-partners-item-->
-                            <div class="offer-partners-item">
-                                <img src="http://placehold.it/110x55" alt="">
-                            </div><!-- //offer-partners-item-->
-                            <div class="offer-partners-item">
-                                <img src="http://placehold.it/110x55" alt="">
-                            </div><!-- //offer-partners-item-->
+                           {% endfor %}
                         </div>
 
 
