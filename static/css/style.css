@@ -1246,7 +1246,9 @@ section {
   height: 55px;
   object-fit: contain;
 }
-
+.features-slider{
+  height: 100%;
+}
 .why-we-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

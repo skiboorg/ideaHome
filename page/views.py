@@ -11,6 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     banners = Banner.objects.filter(at_home_page=True, is_active=True)
+    banners2 = Banner.objects.filter(at_home_page2=True, is_active=True)
     all_manufacturers = Manufactor.objects.all()
     return render(request, 'page/index.html', locals())
 

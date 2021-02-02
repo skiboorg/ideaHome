@@ -54,7 +54,7 @@
                         <div class="offer-partners-slider">
                             {% for item in all_manufacturers %}
                             <div class="offer-partners-item">
-                                <a href="">
+                                <a href="{% url 'manufactor' item.name_slug %}">
                                     <img src="{{ item.image.url }}" alt="">
                                 </a>
 
@@ -109,14 +109,31 @@
         <section class="features">
             <div class="container">
                 <div class="features-wrapper">
-                    <div class="features-left">
-                        <h3>Европейское качество</h3>
-                        <ul>
-                            <li>Звукоизоляций от соседей</li>
-                            <li>Идеальная геометрия и простой монтаж</li>
-                            <li>Окраска в любой цвет под ваш интерьер</li>
-                            <li>Монолитная конструкция<br> абсолютно без швов</li>
-                        </ul>
+                    <div style="flex-basis: 65%" class="features-left">
+                        <div  class="features-slider">
+                            {% for banner in banners2 %}
+                                <div style="height: 472px; margin-top: 65px;" class="offer-banner-item">
+                                    <img src="{{ banner.image.url }}" alt="">
+                                    <div class="offer-banner-item-text">
+                                        {% if banner.text %}
+                                            <h3>{{ banner.text }}</h3>
+                                        {% endif %}
+
+                                        {% if banner.btn_text %}
+                                            <a href="{{ banner.btn_url }}" class="btn">{{ banner.btn_text }}</a>
+                                        {% endif %}
+
+                                    </div>
+                                </div><!--// offer-banner-item-->
+                            {% endfor %}
+                        </div>
+{#                        <h3>Европейское качество</h3>#}
+{#                        <ul>#}
+{#                            <li>Звукоизоляций от соседей</li>#}
+{#                            <li>Идеальная геометрия и простой монтаж</li>#}
+{#                            <li>Окраска в любой цвет под ваш интерьер</li>#}
+{#                            <li>Монолитная конструкция<br> абсолютно без швов</li>#}
+{#                        </ul>#}
                     </div>
                     {% include 'page/_cb-form.html' %}
                 </div>
@@ -188,7 +205,19 @@
 
 {% block js %}
     {{ block.super }}
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+        <script>
+            var slider1 = tns({
+                container: '.features-slider',
+                items: 1,
+                autoplay: true,
+                "autoHeight": false,
+                nav: false,
+                controls:false,
+                mouseDrag:true,
+            });
+        </script>
     <script>
     function changeVideo(videoId) {
         var ytString = "https://www.youtube.com/embed/" + videoId;

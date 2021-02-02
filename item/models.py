@@ -24,11 +24,13 @@ def format_number(num):
 class Banner(models.Model):
     image = models.ImageField('Баннер', upload_to='images/banners/', blank=False,null=True)
     text = models.CharField('Текст', max_length=255, blank=True, null=True)
+    title = models.CharField('Заголовок', max_length=255, blank=True, null=True)
     btn_text = models.CharField('Текст на кнопке', max_length=255, blank=True, null=True)
     btn_url = models.CharField('Ссылка на кнопке', max_length=255, blank=True, null=True)
     is_active = models.BooleanField('Отображается', default=True)
-    at_home_page = models.BooleanField('На главной', default=True)
-    at_sale_page = models.BooleanField('На акциях', default=True)
+    at_home_page = models.BooleanField('На главной', default=False)
+    at_home_page2 = models.BooleanField('На главной (баннер2)', default=False)
+    at_sale_page = models.BooleanField('На акциях', default=False)
 
     def __str__(self):
         return f'Баннер {self.id}'
