@@ -109,11 +109,11 @@
         <section class="features">
             <div class="container">
                 <div class="features-wrapper">
-                    <div style="flex-basis: 65%" class="features-left">
+                    <div  class="features-left">
                         <div  class="features-slider">
                             {% for banner in banners2 %}
                                 <div style="height: 472px; margin-top: 65px;" class="offer-banner-item">
-                                    <img src="{{ banner.image.url }}" alt="">
+                                    <img style="object-fit: contain" src="{{ banner.image.url }}" alt="">
                                     <div class="offer-banner-item-text">
                                         {% if banner.text %}
                                             <h3>{{ banner.text }}</h3>

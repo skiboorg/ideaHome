@@ -432,7 +432,9 @@ section {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-
+.features-left {
+    flex-basis: 65%;
+  }
 .breadcrumbs ul li a {
   font-size: 15px;
   color: #000000;
@@ -494,8 +496,7 @@ section {
   text-transform: uppercase;
   line-height: 18px;
   display: inline-block;
-    border: 1px solid;
-    padding: 2px;
+
     margin-right: 10px;
 }
 
@@ -3138,10 +3139,21 @@ sup {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 500px) {
   .offer-partners {
     padding: 35px 0;
   }
+  .features-left {
+    flex-basis: 100% !important;
+    margin-bottom: 20px;
+  }
+  .features .shadow-box {
+    margin: 0 auto;
+  }
+  .dont-risk-right{
+    flex-basis: 100%
+  }
+
 }
 .blog-post-item{
   margin-bottom: 40px;
