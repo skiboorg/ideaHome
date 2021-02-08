@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from item.models import *
+from blog.models import *
 #from openpyxl import load_workbook
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -12,8 +13,27 @@ def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     banners = Banner.objects.filter(at_home_page=True, is_active=True)
     banners2 = Banner.objects.filter(at_home_page2=True, is_active=True)
+    banners3 = Banner.objects.filter(at_home_page3=True, is_active=True)
     all_manufacturers = Manufactor.objects.all()
     return render(request, 'page/index.html', locals())
+
+def allPosts(request):
+    postactive = 'active'
+    canonical_url = 'posts/'
+    pageTitle = ''
+    pageDescription = ''
+    pageKeywords = ''
+    allPost = BlogPost.objects.filter(is_active=True)
+    return render(request, 'page/posts.html', locals())
+
+def showPost(request,slug):
+    canonical_url = request.get_full_path()
+    postactive = 'active'
+    post = get_object_or_404(BlogPost, name_slug=slug)
+    pageTitle = post.page_title
+    pageDescription = post.page_description
+    canonical_url = f'posts/{post.name_slug}/'
+    return render(request, 'page/post.html', locals())
 
 
 def search(request):

@@ -445,7 +445,7 @@ section {
 
 .breadcrumbs ul li span {
   color: #d83138;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .mobile-hide-800 {
@@ -485,10 +485,18 @@ section {
   flex-basis: 30%;
 }
 
+.header-top_logo-name  {
+  width: 85px;
+}
 .header-top_logo-name a {
   font: 18px 'P22UndergroundCYPro-Demi', sans-serif;
-  color: #d83138;
+  color: #000000;
   text-transform: uppercase;
+  line-height: 18px;
+  display: inline-block;
+    border: 1px solid;
+    padding: 2px;
+    margin-right: 10px;
 }
 
 .header-top_logo-name a span {
@@ -573,7 +581,7 @@ section {
 }
 
 .header-top_callback span {
-  font: 12px 'P22UndergroundCYPro-Book',sans-serif;
+  font: 10px 'P22UndergroundCYPro-Book',sans-serif;
   color: #d83138;
   cursor: pointer;
   text-decoration: underline;
@@ -1083,9 +1091,11 @@ section {
 }
 
 .offer-banner-item-text {
-  top: 0;
-  position: absolute;
-  padding: 35px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    padding: 35px;
+    bottom: 0;
 }
 
 .offer-banner-item-text h3 {
@@ -1415,6 +1425,9 @@ section {
   margin-bottom: 65px;
 }
 
+.dont-risk-right {
+  flex-basis: 50%;
+}
 .dont-risk-right img {
   border-radius: 10px;
 }
@@ -2138,6 +2151,7 @@ section {
   grid-gap: 20px;
 
 }
+
 
 .manufactors-item {
   text-align: center;
@@ -3128,4 +3142,26 @@ sup {
   .offer-partners {
     padding: 35px 0;
   }
+}
+.blog-post-item{
+  margin-bottom: 40px;
+}
+.blog-post-item a{
+  color: inherit;
+
+}
+
+.blog-post-item img{
+  margin-bottom: 20px;
+
+}
+.blog-post-item h4{
+  margin-bottom: 20px;
+  font-size: 20px;
+
+}
+.blog-post-item-link{
+  color: #d83138 !important;
+  border-bottom: 1px dashed #d83138;
+  text-transform: uppercase;
 }

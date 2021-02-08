@@ -150,7 +150,24 @@
                         <a   class="btn mb-40" href="#" >Адреса салонов</a>
                     </div>
                     <div class="dont-risk-right">
-                        <img src="http://placehold.it/650x370" alt="">
+                        <div  class="dont-risk-slider">
+                            {% for banner in banners2 %}
+                                <div style="height: 472px; margin-top: 65px;" class="offer-banner-item">
+                                    <img src="{{ banner.image.url }}" alt="">
+                                    <div class="offer-banner-item-text">
+                                        {% if banner.text %}
+                                            <h3>{{ banner.text }}</h3>
+                                        {% endif %}
+
+                                        {% if banner.btn_text %}
+                                            <a href="{{ banner.btn_url }}" class="btn">{{ banner.btn_text }}</a>
+                                        {% endif %}
+
+                                    </div>
+                                </div><!--// offer-banner-item-->
+                            {% endfor %}
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -208,8 +225,17 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
         <script>
-            var slider1 = tns({
+            var slider11 = tns({
                 container: '.features-slider',
+                items: 1,
+                autoplay: true,
+                "autoHeight": false,
+                nav: false,
+                controls:false,
+                mouseDrag:true,
+            });
+             var slider21 = tns({
+                container: '.dont-risk-slider',
                 items: 1,
                 autoplay: true,
                 "autoHeight": false,
@@ -233,6 +259,8 @@ var slider1 = tns({
         controls:false,
         mouseDrag:true,
     });
+
+
 
     var slider2 = tns({
         container: '.offer-partners-slider',

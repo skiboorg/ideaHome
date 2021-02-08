@@ -1,0 +1,60 @@
+{% extends  'basic.html' %}
+{% load static %}
+
+{% block title %}
+   {{ pageTitle }}
+{% endblock %}
+
+{% block keywords %}
+    {{ pageKeywords }}
+{% endblock %}
+
+{% block description %}
+    {{ pageDescription }}
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+
+
+{% block content %}
+    {% include 'header.html' %}
+    <div class="main">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li ><span>Полезные статьи</span> </li>
+            </ul>
+        </div>
+    </div><!--// breadcrumbs-->
+
+    <section class="blog">
+        <div class="container">
+        <div class="section-header"><h1>Полезные статьи</h1></div>
+
+            <div class="blog-posts-wrapper">
+                {% for post in allPost %}
+                <div class="blog-post-item">
+                    <a href="{% url 'showpost' post.name_slug %}"><img class="mb30" src="{{ post.image.url }}" alt=""></a>
+                    <h4 class="mb-20"><a href="{% url 'showpost' post.name_slug %}">{{ post.name }}</a></h4>
+                    <p >{{ post.short_description }} | <a class="blog-post-item-link" href="{% url 'showpost' post.name_slug %}">подробнее</a></p>
+                </div><!--// blog-post-item-->
+                {% endfor %}
+            </div><!--// blog-posts-wrapper-->
+        </div>
+
+
+    </section><!--// blog-->
+</div><!-- // main -->
+{% endblock %}
+
+{% block js %}
+
+    {{ block.super }}
+
+
+
+{% endblock %}

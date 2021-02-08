@@ -21,8 +21,11 @@
                     <div class="manufactors-item">
                         <a href="{% url 'category' cat.name_slug %}">
                             <div class="manufactors-item-inner">
-                                <img src="{{ cat.image.url }}" alt="">
+
+                                    <img src="{{ cat.image.url }}" alt="">
                                 <p>{{ cat.name }}</p>
+
+
                             </div>
                         </a>
                     </div><!--//manufactors-item-->

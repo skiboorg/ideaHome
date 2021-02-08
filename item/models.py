@@ -22,6 +22,7 @@ def format_number(num):
         return num
 
 class Banner(models.Model):
+    num = models.IntegerField(default=10)
     image = models.ImageField('Баннер', upload_to='images/banners/', blank=False,null=True)
     text = models.CharField('Текст', max_length=255, blank=True, null=True)
     title = models.CharField('Заголовок', max_length=255, blank=True, null=True)
@@ -30,12 +31,14 @@ class Banner(models.Model):
     is_active = models.BooleanField('Отображается', default=True)
     at_home_page = models.BooleanField('На главной', default=False)
     at_home_page2 = models.BooleanField('На главной (баннер2)', default=False)
+    at_home_page3 = models.BooleanField('На главной (баннер3)', default=False)
     at_sale_page = models.BooleanField('На акциях', default=False)
 
     def __str__(self):
         return f'Баннер {self.id}'
 
     class Meta:
+        ordering = ('num',)
         verbose_name = "Баннер"
         verbose_name_plural = "Баннеры"
 
@@ -72,6 +75,7 @@ class Manufactor(models.Model):
         verbose_name_plural = "Производители"
 
 class Category(models.Model):
+    num = models.IntegerField(default=10)
     name = models.CharField('Название категории', max_length=255, blank=True, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField('Изображение категории', upload_to='images/catalog/categories/', blank=True)

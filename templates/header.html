@@ -111,7 +111,7 @@
             <a href="{% url 'delivery' %}"><p class="side-panel-menu-item">Доставка</p></a>
             <a href="{% url 'manufacturers' %}"><p class="side-panel-menu-item">Производители</p></a>
             <a href="{% url 'partner' %}"><p class="side-panel-menu-item">Партнерам</p></a>
-            <a href=""><p class="side-panel-menu-item">Статьи</p></a>
+            <a href="{% url 'allposts' %}"><p class="side-panel-menu-item">Статьи</p></a>
             <a href="{% url 'contacts' %}"><p class="side-panel-menu-item">Контакты</p></a>
             <a href="{% url 'about' %}"><p class="side-panel-menu-item">О нас</p></a>
         </div>
@@ -130,7 +130,7 @@
                     <ul class="nav-sub-menu">
                         <li class="nav-sub-menu-item"><a href="{% url 'delivery' %}">Доставка</a></li>
                         <li class="nav-sub-menu-item"><a href="{% url 'about' %}">О нас</a></li>
-                        <li class="nav-sub-menu-item"><a href="#">Статьи</a></li>
+                        <li class="nav-sub-menu-item"><a href="{% url 'allposts' %}">Статьи</a></li>
                     </ul>
                 </li>
             </ul>

@@ -1,0 +1,66 @@
+{% extends  'basic.html' %}
+{% load static %}
+
+{% block title %}
+   {{ pageTitle }}
+{% endblock %}
+
+{% block keywords %}
+    {{ pageKeywords }}
+{% endblock %}
+
+{% block description %}
+    {{ pageDescription }}
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+
+
+{% block content %}
+    {% include 'header.html' %}
+    <div class="main">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'allposts' %}">Полезные статьи</a></li>
+                <li ><span>{{ post.name }}</span> </li>
+            </ul>
+        </div>
+    </div><!--// breadcrumbs-->
+
+
+
+
+            <section class="container blog-post mb-50">
+ <h1 class="section-header">{{ post.name }}</h1>
+           <div class="blog-posts-wrapper">
+                <div class="blog-post-image mb-20">
+                    <img src="{{ post.image.url }}" alt="">
+               </div>
+               <div class="blog-post-text">
+                    {{ post.description | safe }}
+               </div>
+
+           </div>
+            </section>
+
+
+
+
+
+
+
+</div><!-- // main -->
+{% endblock %}
+
+{% block js %}
+
+    {{ block.super }}
+
+
+
+{% endblock %}

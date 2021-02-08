@@ -24,7 +24,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('partner/', views.partner, name='partner'),
     path('manufactor/<manufactor_slug>', views.manufactor, name='manufactor'),
-
+    path('posts/', views.allPosts, name='allposts'),
+    path('posts/<slug>/', views.showPost, name='showpost'),
     # path('subcategory/<subcat_slug>/', views.subcategory, name='subcategory'),
 
 
