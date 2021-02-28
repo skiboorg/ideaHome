@@ -483,18 +483,15 @@ section {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -ms-flex-preferred-size: 30%;
-  flex-basis: 30%;
+  -ms-flex-preferred-size: 35%;
+  flex-basis: 35%;
 }
 
 .header-top_logo-name  {
   width: 85px;
 }
-.header-top_logo-name a {
-  font: 18px 'P22UndergroundCYPro-Demi', sans-serif;
-  color: #000000;
-  text-transform: uppercase;
-  line-height: 18px;
+.header-top_logo a {
+
   display: inline-block;
 
     margin-right: 10px;

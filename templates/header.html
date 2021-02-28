@@ -8,7 +8,9 @@
                 <div class="mobile-menu-toggle" @click="sidePanelActive=true">
                     <span><i class="fa fa-list"></i></span>
                 </div>
-                <p class="header-top_logo-name"><a href="/"><span>идеи</span> для дома</a></p>
+               <a href="/">
+                   <img src="{% static 'img/logo.png' %}" alt="">
+               </a>
                 <div class="header-top_logo-info mobile-hide-800">
                     <p>Декоративные и отделочные материалы по Челябинской области</p>
                     <span><a href="{% url 'contacts' %}">Адреса всех магазинов</a></span>
