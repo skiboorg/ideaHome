@@ -2927,8 +2927,8 @@ sup {
   }
 
   .header-top_logo {
-    -ms-flex-preferred-size: 15%;
-    flex-basis: 15%;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
   }
 
   .header-top_icons {
