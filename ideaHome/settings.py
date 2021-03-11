@@ -24,7 +24,7 @@ EMAIL_HOST_PASSWORD = settings.YA_PASSWORD
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'nikita.ideahome74@yandex.ru'
+DEFAULT_FROM_EMAIL = 'info@ideahome74.ru'
 
 
 CKEDITOR_CONFIGS = {

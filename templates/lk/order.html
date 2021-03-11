@@ -6,21 +6,22 @@
 <!DOCTYPE html>
 
 
-<div class="container main-container headerOffset">
-      <div class="row">
-        <div class="breadcrumbDiv col-lg-12">
-            <ul class="breadcrumb">
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                <li><a href="{% url 'account' %}">ЛИЧНЫЙ КАБИНЕТ</a></li>
+<div class="main">
+ <div class="breadcrumbs bg-grey mb-40">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="{% url 'account' %}">ЛИЧНЫЙ КАБИНЕТ</a></li>
                  <li><a href="{% url 'orders' %}">ВАШИ ЗАКАЗЫ</a></li>
-                <li class="active">ЗАКАЗ #{{ order.id }} ID:{{ order.order_code }}</li>
-            </ul>
+                    <li><span>ЗАКАЗ #{{ order.id }} ID:{{ order.order_code }}</span></li>
+                </ul>
+            </div>
         </div>
-    </div>
 
 
 
-    <div class="row">
+
+    <div class="container">
         <div class="col-lg-9 col-md-9 col-sm-7">
 
             <div class="row userInfo">
@@ -29,7 +30,7 @@
                 <div class="statusContent">
 
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 mb-40">
                         <div class=" statusTop">
                             <p><strong>Статус заказа:</strong> {% if order.status %}{{ order.status.name }}{% else %}Обработка{% endif %}</p>
 
@@ -39,12 +40,9 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12 clearfix">
+                    <div class="col-sm-12 clearfix mb-40">
                         <div class="order-box">
-                            <div class="order-box-header">
 
-                                В заказе
-                            </div>
 
 
                             <div class="order-box-content">
@@ -54,18 +52,14 @@
                                         {% for item in order.itemsinorder_set.all %}
                                         <tr class="cartProduct">
                                             <td class="cartProductThumb" style="width:20%">
-                                                <div><a href="{% url 'item_page' item.item.name_slug %}"> <img alt="img"
-                                                        {% for image in item.item.itemimage_set.all %}
-                                                            {% if image.is_main %}
-                                                               src="{{ image.image_small }}
-                                                            {% endif %}
-                                                        {% endfor %}">
+                                                <div><a href="#"> <img alt="img"
+                                                        src="{{ item.item.get_small_image }}">
                                                 </a>
                                                 </div>
                                             </td>
                                             <td style="width:40%">
                                                 <div class="miniCartDescription">
-                                                    <h4><a href="{% url 'item_page' item.item.name_slug %}"> {{ item.item.name }} </a></h4>
+                                                    <h4><a href="№"> {{ item.item.name }} </a></h4>
 
                                                     {% if item.item.discount > 0 %}
 

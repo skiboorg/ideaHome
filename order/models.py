@@ -17,49 +17,19 @@ class Wishlist(models.Model):
         verbose_name_plural = "Закладки клиентов"
 
 
-class OrderStatus(models.Model):
-    name = models.CharField('Статус для заказа', max_length=100, blank=False)
 
-    def __str__(self):
-        return '%s' % self.name
-
-    class Meta:
-        verbose_name = "Статус для заказа"
-        verbose_name_plural = "Статусы для заказов"
-
-class OrderPayment(models.Model):
-    name = models.CharField('Вариант оплаты заказа', max_length=100, blank=False)
-
-    def __str__(self):
-        return '%s' % self.name
-
-    class Meta:
-        verbose_name = "Вариант оплаты заказа"
-        verbose_name_plural = "Варианты оплаты заказов"
-
-class OrderShipping(models.Model):
-    name = models.CharField('Вариант доставки заказа', max_length=100, blank=False)
-
-    def __str__(self):
-        return '%s' % self.name
-
-    class Meta:
-        verbose_name = "Вариант доставки заказа"
-        verbose_name_plural = "Варианты доставки заказов"
 
 class Order(models.Model):
     client = models.ForeignKey(User, blank=True, null=True, default=None, on_delete=models.CASCADE,
                                verbose_name='Заказ клиента')
-    guest = models.ForeignKey(Guest, blank=True, null=True, default=None, on_delete=models.CASCADE,
-                              verbose_name='Заказ гостя')
+    fio = models.CharField('ФИО', max_length=255, blank=True, null=True)
+    email = models.CharField('Email', max_length=255, blank=True, null=True)
+    phone = models.CharField('Телефон', max_length=255, blank=True, null=True)
+    delivery = models.CharField('Тип доставки', max_length=255, blank=True, null=True)
+    comment = models.TextField('Комментарий', blank=True, null=True)
+
     promo_code = models.ForeignKey(PromoCode, blank=True, null=True, default=None, on_delete=models.SET_NULL,
                               verbose_name='Использованный промо-код')
-    status = models.ForeignKey(OrderStatus, blank=True, null=True, default=None, on_delete=models.SET_NULL,
-                              verbose_name='Статус заказа')
-    payment = models.ForeignKey(OrderPayment, blank=True, null=True, default=None, on_delete=models.SET_NULL,
-                               verbose_name='Оплата заказа')
-    shipping = models.ForeignKey(OrderShipping, blank=True, null=True, default=None, on_delete=models.SET_NULL,
-                                verbose_name='Доставка заказа')
     total_price = models.IntegerField('Общая стоимость заказа', default=0)
     total_price_with_code = models.DecimalField('Общая стоимость заказа с учетом промо-кода', decimal_places=2,
                                                 max_digits=10, default=0)
@@ -71,20 +41,7 @@ class Order(models.Model):
 
 
     def __str__(self):
-        if self.client:
-            if self.promo_code:
-                return 'Заказ № %s. Создан : %s  . Клиент: %s . Сумма заказа : %s' % (
-                self.id, self.created_at.strftime('%d-%m-%Y'), self.client.email, self.total_price_with_code)
-            else:
-                return 'Заказ № %s. Создан : %s  . Клиент: %s . Сумма заказа : %s' % (
-                self.id, self.created_at.strftime('%d-%m-%Y'), self.client.email, self.total_price)
-        if self.guest:
-            if self.promo_code:
-                return 'Заказ № %s. Создан : %s  . Гость: %s . Сумма заказа : %s' % (
-                self.id, self.created_at.strftime('%d-%m-%Y'), self.guest.email, self.total_price_with_code)
-            else:
-                return 'Заказ № %s. Создан : %s  . Гость: %s . Сумма заказа : %s' % (
-                self.id, self.created_at.strftime('%d-%m-%Y'), self.guest.email, self.total_price)
+        return 'Заказ № %s. Создан : %s  . Сумма заказа : %s' % (self.id, self.created_at.strftime('%d-%m-%Y'),  self.total_price)
 
 
     class Meta:
@@ -102,8 +59,6 @@ class Order(models.Model):
             self.total_price_with_code = self.total_price - (self.total_price * self.promo_code.promo_discount / 100)
         else:
             self.total_price_with_code = self.total_price
-
-
         super(Order, self).save(*args, **kwargs)
 
 

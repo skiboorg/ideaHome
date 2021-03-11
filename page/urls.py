@@ -27,7 +27,7 @@ urlpatterns = [
     path('posts/', views.allPosts, name='allposts'),
     path('posts/<slug>/', views.showPost, name='showpost'),
     path('send_cb', views.send_cb, name='send_cb'),
-
+    path('order/<order_code>', views.order, name='order'),
     # path('subcategory/<subcat_slug>/', views.subcategory, name='subcategory'),
 
 

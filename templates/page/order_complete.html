@@ -1,0 +1,91 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class=" main">
+   <div class="breadcrumbs bg-grey mb-40">
+            <div class="container ">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+
+                    <li><span>Вход</span></li>
+                </ul>
+            </div>
+        </div>
+    <!--/.row-->
+
+<section>
+    <div class="container">
+        <div class="section-header text-center">
+
+                    <h1>Спасибо за Ваш заказ.</h1>
+
+
+                </div>
+    <p class=" text-center "> <b>Вся информация о заказе и его статусе оправлена Вам на указанный адрес электронной почты.</b> </p>
+    <p class=" text-center mb-40"><b>С Вами свяжется наш менеджер для уточнения заказа.</b> </p>
+         <div class="cartContent ">
+                        <table style="width:100%" class="cartTable cartTableBorder">
+                            <tbody>
+
+                            <tr class="CartProduct  cartTableHeader">
+                                <td colspan="2"> Вы заказали</td>
+
+
+                                <td style="width:15%"></td>
+                            </tr>
+                               {% for item in order.itemsinorder_set.all %}
+
+                                     <tr class="CartProduct">
+                                <td class="CartProductThumb">
+
+                                       <div> <img style="width: 250px;" alt="img"
+
+                                                               src="{{ item.item.get_small_image }}">
+
+
+                                                </div>
+                                </td>
+                                <td>
+                                    <div class="CartDescription">
+                                         <h4><a href="#"> {{ item.item.name }} </a></h4>
+
+
+                                       {% if item.item.discount > 0 %}
+
+                                                        <div class="price" style="padding-bottom: 5px;">
+                                                         <span style="font-size: 20px;">
+                                                             <span>{{ item.item.discount_value }} &#8381;</span>
+                                                             <span class="old-price">{{ item.item.price }} &#8381;</span>
+                                                         </span>
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="price" style="padding-bottom: 5px;"><span style="font-size: 20px;">{{ item.item.price }} &#8381;</span></div>
+                                                    {% endif %}
+                                    </div>
+                                </td>
+
+
+                                <td class="price">{{ item.total_price }} &#8381;</td>
+                            </tr>
+
+                                        {% endfor %}
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+    </div>
+</section>
+
+</div>
+
+
+
+
+
+{% endblock %}

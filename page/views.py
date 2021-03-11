@@ -7,14 +7,28 @@ from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib import messages
+from order.models import *
+from cart.models import Cart
+from django.http import Http404
+
+def order(request, order_code):
+    try:
+        order = Order.objects.get(order_code=order_code)
+    except:
+        order=None
+
+    if order:
+        return render(request, 'page/order_complete.html', locals())
+    else:
+        raise Http404
 
 def send_cb(request):
     print(request.POST)
-    # msg_html = render_to_string('email/test.html', {'name': request.POST.get('name'),
-    #                                                 'phone': request.POST.get('phone')}
-    #                             )
-    # send_mail('Форма обратного звонка', None, 'nikita.ideahome74@yandex.ru', ('dimon.skiborg@gmail.com',),
-    #           fail_silently=False, html_message=msg_html)
+    msg_html = render_to_string('email/test.html', {'name': request.POST.get('name'),
+                                                    'phone': request.POST.get('phone')}
+                                )
+    send_mail('Форма обратного звонка', None, 'info@ideahome74.ru', ('ideahome@mail.ru',),
+              fail_silently=False, html_message=msg_html)
     messages.add_message(request, messages.INFO, 'Hello world.')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 def index(request):
@@ -99,191 +113,10 @@ def about(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     return render(request, 'page/about.html', locals())
 
-# def cats(request):
-#     wb = load_workbook(filename='C:/Users/ххх/PycharmProjects/ideaHome/cats.xlsx')
-#     sheet = wb.active
-#
-#     max_row = sheet.max_row
-#
-#     max_column = sheet.max_column
-#     for i in range(1, max_row + 1):
-#         # worksheet.write('A{}'.format(row), cat_id)
-#         # worksheet.write('B{}'.format(row), cat_name)
-#         # worksheet.write('C{}'.format(row), cat_parent_id)
-#         # worksheet.write('D{}'.format(row), cat_description)
-#         # worksheet.write('E{}'.format(row), cat_img)
-#         # worksheet.write('F{}'.format(row), cat_title)
-#         # worksheet.write('G{}'.format(row), cat_keywords)
-#         # worksheet.write('H{}'.format(row), cat_meta_description)
-#         old_id=sheet.cell(row=i, column=1).value
-#         cat_name=sheet.cell(row=i, column=2).value
-#         cat_parent_id=sheet.cell(row=i, column=3).value
-#         try:
-#             cat_description=sheet.cell(row=i, column=4).value.replace('_x000D_','')
-#         except:
-#             cat_description = sheet.cell(row=i, column=4).value
-#         cat_img=sheet.cell(row=i, column=5).value
-#         cat_title=sheet.cell(row=i, column=6).value
-#         cat_keywords=sheet.cell(row=i, column=7).value
-#         cat_meta_description=sheet.cell(row=i, column=8).value
-#         # if cat_parent_id ==0:
-#         #     Category.objects.create(old_id=old_id,name=cat_name,description=cat_description,image='images/catalog/categories/'+cat_img,
-#         #                             page_title=cat_title,page_description=cat_meta_description,page_keywords=cat_keywords)
-#         if cat_parent_id != 0:
-#             cat = Category.objects.get(old_id=cat_parent_id)
-#             SubCategory.objects.create(old_id=old_id, name=cat_name, description=cat_description, category=cat,
-#                                     page_title=cat_title, page_description=cat_meta_description,
-#                                     page_keywords=cat_keywords)
-#     return render(request, 'page/about.html', locals())
-#
-#
-#
-# def manuf(request):
-#     wb = load_workbook(filename='C:/Users/ххх/PycharmProjects/ideaHome/manuf.xlsx')
-#     sheet = wb.active
-#
-#     max_row = sheet.max_row
-#
-#     max_column = sheet.max_column
-#     for i in range(1, max_row + 1):
-#         # worksheet.write('A{}'.format(row), cat_id)
-#         # worksheet.write('B{}'.format(row), cat_name)
-#         # worksheet.write('C{}'.format(row), cat_img)
-#         # worksheet.write('D{}'.format(row), cat_title)
-#         # worksheet.write('E{}'.format(row), cat_keywords)
-#         # worksheet.write('F{}'.format(row), cat_meta_description)
-#         old_id=sheet.cell(row=i, column=1).value
-#         name=sheet.cell(row=i, column=2).value
-#         img=sheet.cell(row=i, column=3).value
-#         cat_title=sheet.cell(row=i, column=4).value
-#         cat_keywords=sheet.cell(row=i, column=5).value
-#         cat_meta_description=sheet.cell(row=i, column=6).value
-#
-#         Manufactor.objects.create(old_id=old_id, name=name, image='images/catalog/manufacturers/'+img,
-#                                     page_title=cat_title, page_description=cat_meta_description,
-#                                     page_keywords=cat_keywords)
-#     return render(request, 'page/about.html', locals())
-#
-# def itemm(request):
-#     wb = load_workbook(filename='C:/Users/ххх/PycharmProjects/ideaHome/items.xlsx')
-#     sheet = wb.active
-#
-#     max_row = sheet.max_row
-#
-#     max_column = sheet.max_column
-#     for i in range(1, max_row + 1):
-#         # worksheet.write('A{}'.format(row), item_id)
-#         # worksheet.write('B{}'.format(row), item_cat_id)
-#         # worksheet.write('C{}'.format(row), item_name)
-#         # worksheet.write('D{}'.format(row), item_articul)
-#         # worksheet.write('E{}'.format(row), item_description)
-#         # worksheet.write('F{}'.format(row), item_manufactor)
-#         # worksheet.write('G{}'.format(row), item_unit)
-#         # worksheet.write('H{}'.format(row), item_price)
-#         # worksheet.write('I{}'.format(row), item_img_main)
-#         # worksheet.write('J{}'.format(row), item_img_add)
-#         # worksheet.write('K{}'.format(row), item_title)
-#         # worksheet.write('L{}'.format(row), item_keywords)
-#         # worksheet.write('M{}'.format(row), item_meta_description)
-#         old_id=sheet.cell(row=i, column=1).value
-#         item_cat_id=sheet.cell(row=i, column=2).value
-#         item_name=sheet.cell(row=i, column=3).value
-#         item_articul=sheet.cell(row=i, column=4).value
-#         try:
-#             item_description = sheet.cell(row=i, column=5).value.replace('_x000D_', '')
-#         except:
-#             item_description = sheet.cell(row=i, column=5).value
-#         item_manufactor = sheet.cell(row=i, column=6).value
-#         item_unit = sheet.cell(row=i, column=7).value
-#         item_price = sheet.cell(row=i, column=8).value
-#         item_img_main = sheet.cell(row=i, column=9).value
-#         item_img_add = sheet.cell(row=i, column=10).value
-#         item_title = sheet.cell(row=i, column=11).value
-#         item_keywords = sheet.cell(row=i, column=12).value
-#         item_meta_description = sheet.cell(row=i, column=13).value
-#         cat= None
-#         subcat = None
-#
-#
-#         try:
-#             cat = Category.objects.get(old_id=item_cat_id)
-#
-#         except:
-#             subcat = SubCategory.objects.get(old_id=item_cat_id)
-#
-#
-#         try:
-#             manufactor = Manufactor.objects.get(old_id=item_manufactor)
-#         except:
-#             manufactor=None
-#         print(manufactor)
-#         print(old_id)
-#         if item_img_main:
-#             item_first_big_img= item_img_main.split('|')[0]
-#             item_first_small_img = item_img_main.split('|')[2]
-#         else:
-#             item_first_big_img = None
-#             item_first_small_img = None
-#         item = None
-#         if cat:
-#             item = Item.objects.create(manufactor=manufactor,category=cat, name=item_name,price=item_price,article=item_articul,
-#                                        units=item_unit,old_id=old_id,description=item_description,
-#                                        page_title=item_title,page_description=item_meta_description,page_keywords=item_keywords)
-#         if subcat:
-#             catt = subcat.category
-#             item = Item.objects.create(manufactor=manufactor,category=catt, subcategory=subcat, name=item_name, price=item_price, article=item_articul,
-#                                        units=item_unit, old_id=old_id, description=item_description,
-#                                        page_title=item_title, page_description=item_meta_description,
-#                                        page_keywords=item_keywords)
-#         if item_img_main:
-#             ItemImage.objects.create(item=item,image='images/catalog/items/'+item_first_big_img,image_small='/media/images/catalog/items/'+item_first_small_img)
-#         if item_img_add:
-#             for img in item_img_add.splitlines():
-#                 item_big_img = item_img_main.split('|')[0]
-#                 item_small_img = item_img_main.split('|')[1]
-#                 ItemImage.objects.create(item=item, image='images/catalog/items/'+item_big_img, image_small='/media/images/catalog/items/'+item_small_img)
-#
-#
-#     return render(request, 'page/about.html', locals())
+
 
 def contacts(request):
-    # from bs4 import BeautifulSoup
-    # urls = ['https://decor-dizayn.ru/catalog/tsvetnaya-lepnina/tsvetniye_plintusy-/',
-    #
-    #
-    #
-    #         ]
-    # for url in urls:
-    #     req = requests.get(url)
-    #     soup = BeautifulSoup(req.content, 'html.parser')
-    #     all_cards = soup.find_all("div", class_="sec_card")
-    #     for card in all_cards:
-    #         # print(card)
-    #         # print(card.find('div', class_="card_price").text.strip().split(' ')[0].split('.')[0])
-    #         img = card.find('a', class_="sec_crad-pic")['href']
-    #         name = card.find('a', class_="card_name").text.strip()
-    #         art = card.find('div', class_="card_art").text.strip().split(' ')[1]
-    #         description = card.find('div', class_="card_prop").decode_contents()
-    #         price = int(card.find('div', class_="card_price").find('s').text.strip().replace(' руб.','').split('.')[0].replace(' ',''))
-    #         print(price)
-    #         item = Item.objects.create(category_id=3,
-    #                                    subcategory_id=54,
-    #                                    manufactor_id=20,
-    #                                    name=name,
-    #                                    price=price,
-    #                                    article=art,
-    #                                    description=description)
-    #         # urllib.request.urlretrieve(f'https://decor-dizayn.ru/{img}', f'D:/temp/dicir/{art}.jpg')
-    #
-    #         # content = urllib.request.urlretrieve(f'https://decor-dizayn.ru{img}')
-    #         try:
-    #             response = requests.get(f'https://decor-dizayn.ru{img}')
-    #             item_img = ItemImage()
-    #             item_img.item=item
-    #             item_img.image.save(f'{art}.jpg',ContentFile(response.content),save=True)
-    #             item_img.save()
-    #         except:
-    #             print('error')
+
     all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/contacts.html', locals())
 
@@ -483,6 +316,53 @@ def filter_qs(qs,*args,**kwargs):
     print(qs)
     print(**kwargs)
 
+def create_password():
+    from random import choices
+    import string
+    password = ''.join(choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=8))
+    return password
+
 def checkout(request):
+    if request.POST:
+        order_code = create_password()
+        order = Order.objects.create(order_code=order_code,
+                                     delivery=request.POST.get('delivery'),
+                                     fio=request.POST.get('fio'),
+                                     email=request.POST.get('email'),
+                                     phone=request.POST.get('phone'),
+                                     comment=request.POST.get('comment'),
+                                     )
+        if request.user.is_authenticated:
+            all_cart_items = Cart.objects.filter(client_id=request.user.id)
+            order.client = request.user
+            order.save()
+        else:
+            s_key = request.session.session_key
+            guest = Guest.objects.get(session=s_key)
+            all_cart_items = Cart.objects.filter(guest_id=guest.id)
+
+
+        for item in all_cart_items:
+            ItemsInOrder.objects.create(order_id=order.id, item_id=item.item.id, number=item.number,
+                                        current_price=item.item.price)
+            item.item.buys = item.item.buys + 1
+            item.item.save(force_update=True)
+        all_cart_items.delete()
+
+
+        msg_html = render_to_string('email/order.html', {'order_id': order.id,
+                                                        'fio': request.POST.get('fio'),
+                                                        'email': request.POST.get('email'),
+                                                        'phone': request.POST.get('phone'),
+                                                        'delivery': request.POST.get('delivery'),
+                                                        'comment': request.POST.get('comment')
+                                                         }
+                                    )
+        send_mail('Новый заказ', None, 'info@ideahome74.ru', ('ideahome@mail.ru',),
+                  fail_silently=False, html_message=msg_html)
+        return HttpResponseRedirect('/order/{}'.format(order.order_code))
+
+
+
     all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/checkout.html', locals())

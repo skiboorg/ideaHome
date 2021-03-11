@@ -20,7 +20,7 @@
                 <div class="cart-items">
                     <div class="cart-items__item cart-grid block-w-r4">
                         <p class="cart-items__item-name lk-order text-bold cart-header">№ ЗАКАЗА</p>
-                        <p class="cart-items__item-name lk-order text-bold cart-header">ID ЗАКАЗА</p>
+                        <p class="cart-items__item-name lk-order text-bold cart-header">КОД ЗАКАЗА</p>
                         <p class="cart-items__item-price text-bold cart-header">СУММА</p>
                         <p class="cart-items__item-total text-bold cart-header">ДАТА</p>
                         <p class="cart-items__item-action text-bold cart-header">СТАТУС</p>
@@ -32,7 +32,8 @@
                                             № {{ order.id }}
                                         </div>
                                         <div class="cart-items__item-name lk-order">
-                                            ID:{{ order.order_code }}
+                                            <a href="{% url 'order' order.order_code %}">{{ order.order_code }}</a>
+
                                         </div>
                                         <div class="cart-items__item-price ">{% if order.total_price_with_code %}
                                             {{ order.total_price_with_code }}Р
