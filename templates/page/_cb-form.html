@@ -1,15 +1,17 @@
 <div class="shadow-box">
-                        <div class="shadow-box-inner">
-                            <h5 class="mb-40">Хотите узнать подробнее
-                                <span>или убедиться в качестве?</span>
-                            </h5>
+    <div class="shadow-box-inner">
+        <h5 class="mb-40">Хотите узнать подробнее
+            <span>или убедиться в качестве?</span>
+        </h5>
+        <form action="{% url 'send_cb' %}" method="post">{% csrf_token %}
+              <input class="form-control input mb-10" type="text" id="form_name" name="name" placeholder="Как к Вам обращаться?">
+        <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" name="phone" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
+        <button type="submit" class="btn mb-40">Перезвоните мне</button>
 
-                            <input class="form-control input mb-10" type="text" id="form_name" placeholder="Как к Вам обращаться?">
-                            <input type="tel" id="form_phone"  class="form-control input masked-phone mb-30" placeholder="Ваш сотовый номер" data-phonemask="+7(___)___-__-__" />
-                            <a   class="btn mb-40" onclick="app.showModal=false">Перезвоните мне</a>
+        <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
 
-                            <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
+        <input style="display: none" name="agree" type="checkbox">
+        </form>
 
-                            <input style="display: none" name="agree" type="checkbox">
-                        </div>
-                    </div>
+    </div>
+</div>

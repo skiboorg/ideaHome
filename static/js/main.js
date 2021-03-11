@@ -59,6 +59,10 @@ Vue.component('main-cart-item', {
         template: "#modal-template"
       });
 
+Vue.component("modalsuc", {
+    template: "#modalSuc-template"
+  });
+
 var app = new Vue({
     delimiters: ['[[', ']]'],
     el: '#app',
@@ -74,7 +78,8 @@ var app = new Vue({
         registerModal:false,
         headerCartItems: [
         ],
-        showModal: false
+        showModal: false,
+        showModalSuc: false
 
     },
 

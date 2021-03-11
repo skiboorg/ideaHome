@@ -12,12 +12,18 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/modal.css' %}">
-
+<meta name="yandex-verification" content="cc4ef3d17280544f" />
 </head>
 <body>
 <div id="app">
 <form id="dummy_form" class="not-visible">{% csrf_token %}</form>
 {% include 'header.html' %}
+    <modalsuc v-if="showModalSuc">
+
+
+</modalsuc>
+
+
 {% block content %}
 {% endblock %}
 {% include 'footer.html' %}
@@ -33,6 +39,9 @@
 
 
 <script>
+{% if messages %}
+app.showModalSuc = true
+{% endif %}
 
     function getCart() {
         let csrfmiddlewaretoken = document.getElementsByName('csrfmiddlewaretoken')[0].value

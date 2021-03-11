@@ -1,5 +1,5 @@
 import os
-
+import settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,7 +19,12 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 AUTH_USER_MODEL = 'customuser.User'
 ALLOWED_HOSTS = ['*']
 
-
+EMAIL_HOST_USER = settings.YA_USER
+EMAIL_HOST_PASSWORD = settings.YA_PASSWORD
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'nikita.ideahome74@yandex.ru'
 
 
 CKEDITOR_CONFIGS = {

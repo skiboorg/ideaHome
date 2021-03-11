@@ -433,7 +433,7 @@ section {
   flex-wrap: wrap;
 }
 .features-left {
-    flex-basis: 65%;
+    flex-basis: 45%;
   }
 .breadcrumbs ul li a {
   font-size: 15px;
@@ -1316,6 +1316,7 @@ section {
 
 .features .shadow-box {
   margin-top: 65px;
+  flex-basis: 45%;
 }
 
 .features-left h3 {

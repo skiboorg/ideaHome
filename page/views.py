@@ -3,12 +3,20 @@ from item.models import *
 from blog.models import *
 #from openpyxl import load_workbook
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.contrib import messages
 
-# from bs4 import BeautifulSoup
-# import requests
-# import urllib.request
-# from django.core.files.base import ContentFile
-
+def send_cb(request):
+    print(request.POST)
+    # msg_html = render_to_string('email/test.html', {'name': request.POST.get('name'),
+    #                                                 'phone': request.POST.get('phone')}
+    #                             )
+    # send_mail('Форма обратного звонка', None, 'nikita.ideahome74@yandex.ru', ('dimon.skiborg@gmail.com',),
+    #           fail_silently=False, html_message=msg_html)
+    messages.add_message(request, messages.INFO, 'Hello world.')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
     banners = Banner.objects.filter(at_home_page=True, is_active=True)
