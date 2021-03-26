@@ -18,17 +18,14 @@
 
                         <table style="border-collapse: collapse; width: 650px; font-size: 18px;margin-top: 30px;" >
                             <tr>
-                                <td style="padding: 3px; border: 1px solid #999; text-align: center; background: #f5f5f5;"><strong>Новый заказ ID {{ order_id }}</strong></td>
+                                <td style="padding: 3px; border: 1px solid #999; text-align: center; background: #f5f5f5;"><strong>Заказ создан</strong></td>
                             </tr>
                             <tr>
                                 <td style="padding: 3px; border: 1px solid #999;">
-                                    <strong>От</strong> : {{ fio }}<br>
-                                    <strong>Email</strong> : {{ email }}<br>
-                                    <strong>Номер телефона</strong> : {{ phone }}<br>
-                                    <strong>Тип доставки</strong> : {{ delivery }}<br>
-                                    <strong>Комменарий</strong> : {{ comment }}<br>
+                                    Статус заказа Вы можете посмотреть по <a target="_blank" href="https://ideahome74.ru/order/{{ order_code }}">ссылке</a>
+
+                                    
                                 </td>
-                                <td>Ссылка на <a target="_blank" href="https://ideahome74.ru/admin/order/order/{{ order_id }}/change/">заказ №{{ order_id }}</a>  </td>
                             </tr>
                         </table>
                     </td>

@@ -10,6 +10,7 @@ from django.contrib import messages
 from order.models import *
 from cart.models import Cart
 from django.http import Http404
+import settings
 
 def order(request, order_code):
     try:
@@ -27,7 +28,7 @@ def send_cb(request):
     msg_html = render_to_string('email/test.html', {'name': request.POST.get('name'),
                                                     'phone': request.POST.get('phone')}
                                 )
-    send_mail('Форма обратного звонка', None, 'info@ideahome74.ru', ('ideahome@mail.ru',),
+    send_mail('Форма обратного звонка', None, 'info@ideahome74.ru', (settings.MAIL_TO,),
               fail_silently=False, html_message=msg_html)
     messages.add_message(request, messages.INFO, 'Hello world.')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
@@ -356,10 +357,12 @@ def checkout(request):
                                                         'phone': request.POST.get('phone'),
                                                         'delivery': request.POST.get('delivery'),
                                                         'comment': request.POST.get('comment')
-                                                         }
-                                    )
-        send_mail('Новый заказ', None, 'info@ideahome74.ru', ('ideahome@mail.ru',),
+                                                         })
+        msg_html_client = render_to_string('email/order_client.html', {'order_code': order_code})
+        send_mail('Новый заказ', None, 'info@ideahome74.ru', (settings.MAIL_TO,),
                   fail_silently=False, html_message=msg_html)
+        send_mail('Заказ создан', None, 'info@ideahome74.ru', (request.POST.get('email'),),
+                  fail_silently=False, html_message=msg_html_client)
         return HttpResponseRedirect('/order/{}'.format(order.order_code))
 
 
