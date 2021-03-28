@@ -30,6 +30,7 @@
                          <div class="form-row mb-20">
                             <label class="form-control label">Телефон <sup class="form-control-required">*</sup></label>
                             <input id="tel" required type="tel"
+                                   v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']"
                                    class="form-control input" name="phone"
                             value="{% if request.user.is_authenticated %}{{ request.user.phone }}{% endif %}">
                         </div>
