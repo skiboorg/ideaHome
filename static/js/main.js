@@ -71,6 +71,7 @@ var app = new Vue({
         cartTotal:0,
         cartItemsNum:0,
         cartNotEmpty : false,
+        modalPhone:null,
         sidePanelActive:false,
         mobileCatalogActive:false,
         loginModal:false,
