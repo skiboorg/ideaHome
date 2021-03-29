@@ -25,12 +25,13 @@ def order(request, order_code):
 
 def send_cb(request):
     print(request.POST)
-    msg_html = render_to_string('email/test.html', {'name': request.POST.get('name'),
-                                                    'phone': request.POST.get('phone')}
-                                )
-    send_mail('Форма обратного звонка', None, 'info@ideahome74.ru', (settings.MAIL_TO,),
-              fail_silently=False, html_message=msg_html)
-    messages.add_message(request, messages.INFO, 'Hello world.')
+    if request.POST.get('name') != '' and request.POST.get('phone') != '':
+        msg_html = render_to_string('email/test.html', {'name': request.POST.get('name'),
+                                                        'phone': request.POST.get('phone')}
+                                    )
+        send_mail('Форма обратного звонка', None, 'info@ideahome74.ru', (settings.MAIL_TO,),
+                  fail_silently=False, html_message=msg_html)
+        messages.add_message(request, messages.INFO, 'Hello world.')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 def index(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
