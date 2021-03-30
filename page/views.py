@@ -25,10 +25,11 @@ def order(request, order_code):
 
 def send_cb(request):
     print(request.POST)
-    if request.POST.get('name') != '' and request.POST.get('phone') != '':
+    if not request.POST.get('agree') and not request.POST.get('comment') and len(request.POST.get('name')) > 3 and len(request.POST.get('phone')) == 18:
         msg_html = render_to_string('email/test.html', {'name': request.POST.get('name'),
                                                         'phone': request.POST.get('phone')}
                                     )
+
         send_mail('Форма обратного звонка', None, 'info@ideahome74.ru', (settings.MAIL_TO,),
                   fail_silently=False, html_message=msg_html)
         messages.add_message(request, messages.INFO, 'Hello world.')
