@@ -7,8 +7,8 @@
               <input class="form-control input mb-10" required type="text" id="form_name" name="name" placeholder="Как к Вам обращаться?">
         <input id="form_phone" required class="form-control input masked-phone mb-30" name="phone"
                 placeholder="Ваш сотовый номер" v-maska="['+7 (###) ##-##-##', '+7 (###) ###-##-##']" />
-            <input type="checkbox" name="agree">
-            <textarea name="comment"></textarea>
+            <input style="display: none" type="checkbox" name="agree">
+            <textarea style="display: none" name="comment"></textarea>
         <button type="submit" class="btn mb-40">Перезвоните мне</button>
 
         <p class="form-agreed-text">Нажимая на кнопку, вы принимаете <a href="#">условия передачи данных</a></p>
