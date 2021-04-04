@@ -11,6 +11,7 @@ from order.models import *
 from cart.models import Cart
 from django.http import Http404
 import settings
+from django.http import HttpResponse
 
 def order(request, order_code):
     try:
@@ -40,6 +41,9 @@ def index(request):
     banners2 = Banner.objects.filter(at_home_page2=True, is_active=True)
     banners3 = Banner.objects.filter(at_home_page3=True, is_active=True)
     all_manufacturers = Manufactor.objects.all()
+    pageTitle = 'Идеи для дома - декоративные и отделочные материалы в Челябинске'
+    pageDescription = 'Идеи для дома - надежный поставщик отделочных материалов и декоративных элементов. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'Декоративные и отделочные материалы'
     return render(request, 'page/index.html', locals())
 
 def allPosts(request):
@@ -49,6 +53,10 @@ def allPosts(request):
     pageDescription = ''
     pageKeywords = ''
     allPost = BlogPost.objects.filter(is_active=True)
+    pageTitle = 'Статьи | Идеи для дома'
+    pageDescription = 'Полезные статьи на сайте интернет-магазина Идеи для дома. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'Статьи'
+
     return render(request, 'page/posts.html', locals())
 
 def showPost(request,slug):
@@ -83,12 +91,17 @@ def sale(request):
     items = Item.objects.filter(discount__gt=0)
     banners = Banner.objects.filter(at_sale_page=True,is_active=True)
     show_banner = True
+    pageTitle = 'Акции | Идеи для дома'
+    pageDescription = 'Акции интернет-магазина Идеи для дома. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'Акции'
     return render(request, 'page/items_page.html', locals())
 
 def manufactor(request,manufactor_slug):
     all_categories = Category.objects.filter(is_active=True)
-    manufactor = Manufactor.objects.get(name_slug=manufactor_slug)
-
+    manufactor = get_object_or_404(Manufactor, name_slug=manufactor_slug)
+    pageTitle = f'{manufactor.name} – купить продукцию в Челябинске по низким ценам '
+    pageDescription = f'Купить продукцию {manufactor.name} в интернет-магазине Идеи для Дома с доставкой по Челябинску и области. Низкие цены, большой ассортимент декоративных и отделочных материалов. Звоните: ☎ +7 (982) 333-78-88'
+    pageH1 = manufactor.name
     breadcrumb_item = f'Товары производителя: {manufactor.name}'
     breadcrumb_return = 'Производители'
     breadcrumb_return_url = '/manufacturers/'
@@ -114,41 +127,51 @@ def manufactor(request,manufactor_slug):
 
 def about(request):
     all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
+    pageTitle = 'О компании | Идеи для дома'
+    pageDescription = 'Компания Идеи для дома представлена на рынке отделочных материалов с 2007 года. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'О компании'
     return render(request, 'page/about.html', locals())
 
 
 
 def contacts(request):
-
     all_categories = Category.objects.filter(is_active=True)
+    pageTitle = 'Контакты компании Идеи для дома | Как доехать'
+    pageDescription = 'Адреса, телефоны и реквизиты компании Идеи для дома. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'Контакты'
     return render(request, 'page/contacts.html', locals())
 
 
 def delivery(request):
     all_categories = Category.objects.filter(is_active=True)
+    pageTitle = 'Условия доставки | Интернет-магазин Идеи для дома'
+    pageDescription = 'Условия доставки отделочных материалов и декоративых элементов по Челябинску и области.  ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'Доставка'
     return render(request, 'page/delivery.html', locals())
 
 
 def manufacturers(request):
     all_categories = Category.objects.filter(is_active=True)
     all_manufacturers = Manufactor.objects.all()
+    pageTitle = 'Производители | Идеи для дома'
+    pageDescription = 'Наши поставщики. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'Производители'
     return render(request, 'page/manufacturers.html', locals())
 
 def catalog(request):
     all_categories = Category.objects.all()
+    pageTitle = 'Каталог | Идеи для дома'
+    pageDescription = 'Каталог интернет-магазина Идеи для дома. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageH1 = 'Каталог'
     return render(request, 'page/catalog.html', locals())
-
-
-def manufacturers_cat(request,slug):
-    all_categories = Category.objects.filter(is_active=True)
-    return render(request, 'page/manufacturers.html', locals())
-
 
 
 def category(request, category_slug):
     all_categories = Category.objects.filter(is_active=True)
-    category = Category.objects.get(name_slug=category_slug)
-
+    category = get_object_or_404(Category, name_slug=category_slug)
+    pageTitle = f'{category.name} – купить в Челябинске, цены в интернет-магазине «Идеи для дома» '
+    pageDescription = f'Предлагаем купить {category.name} с доставкой по Челябинску и области. Большой ассортимент декоративных и отделочных материалов. Низкие цены в интернет-магазине Идеи для дома. Звоните: ☎ +7 (982) 333-78-88'
+    pageH1 = category.name
     # remove_items = Item.objects.filter(category_id=21)
     # print(remove_items)
     # for item in remove_items:
@@ -225,8 +248,12 @@ def category(request, category_slug):
 
 def subcategory(request, category_slug, subcategory_slug):
     all_categories = Category.objects.filter(is_active=True)
-    category = Category.objects.get(name_slug=category_slug)
-    subcategory = SubCategory.objects.get(name_slug=subcategory_slug)
+
+    category = get_object_or_404(Category, name_slug=category_slug)
+    subcategory = get_object_or_404(SubCategory, name_slug=subcategory_slug)
+    pageTitle = f'{subcategory.name} – купить в Челябинске, цены в интернет-магазине «Идеи для дома» '
+    pageDescription = f'Предлагаем купить {subcategory.name} с доставкой по Челябинску и области. Большой ассортимент декоративных и отделочных материалов. Низкие цены в интернет-магазине Идеи для дома. Звоните: ☎ +7 (982) 333-78-88'
+    pageH1 = subcategory.name
     items_qs = Item.objects.filter(subcategory=subcategory,is_active=True)
     items = items_qs
     manufactors = subcategory.manufactor.all()
@@ -303,6 +330,14 @@ def item_page(request,category_slug,item_slug,subcategory_slug=None):
     all_categories = Category.objects.filter(is_active=True)
 
     item = get_object_or_404(Item, name_slug=item_slug)
+    article=''
+    if item.article:
+        article = item.article
+
+    pageTitle = f'{item.name} {article} – купить в Челябинске | Цена в интернет-магазине Идеи для дома'
+    pageDescription = f'{item.name} {article} в интернет-магазине Идеи для дома. Купить с доставкой по Челябинску и области. ☎ Звоните: +7 (982) 333-78-88'
+    pageH1 = item.name +' '+ article
+
     item.views += 1
     item.save()
 
@@ -371,3 +406,29 @@ def checkout(request):
 
     all_categories = Category.objects.filter(is_active=True)
     return render(request, 'page/checkout.html', locals())
+
+def robots(request):
+    robotsTxt = """User-agent: *
+Disallow:/admin/
+Disallow:/media/
+Disallow:/static/
+Disallow:/mc/
+Disallow:/*?*id=
+
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.css
+Allow: /*.js
+Allow: /*.webp
+
+Sitemap: https://www.ideahome74.ru/sitemap.xml 
+    """
+    return HttpResponse(robotsTxt, content_type="text/plain")
+
+
+def customhandler404(request, exception, template_name='404.html'):
+    is404 = True
+    pageTitle = '404 - Такой страницы не существует'
+    return render(request, '404.html', locals(),None,status=404)
