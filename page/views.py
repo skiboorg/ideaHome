@@ -41,8 +41,8 @@ def index(request):
     banners2 = Banner.objects.filter(at_home_page2=True, is_active=True)
     banners3 = Banner.objects.filter(at_home_page3=True, is_active=True)
     all_manufacturers = Manufactor.objects.all()
-    pageTitle = 'Идеи для дома - декоративные и отделочные материалы в Челябинске'
-    pageDescription = 'Идеи для дома - надежный поставщик отделочных материалов и декоративных элементов. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageTitle = 'Интернет-магазин декоративных и отделочных материалов'
+    pageDescription = 'Купить декоративные и отделочные материалы в Челябинске - интернет-магазин Идеи для дома'
     pageH1 = 'Декоративные и отделочные материалы'
     return render(request, 'page/index.html', locals())
 
@@ -160,8 +160,8 @@ def manufacturers(request):
 
 def catalog(request):
     all_categories = Category.objects.all()
-    pageTitle = 'Каталог | Идеи для дома'
-    pageDescription = 'Каталог интернет-магазина Идеи для дома. ✅ Низкие цены. ✅ Большой выбор. ✅ Оперативная доставка по Челябниску и области. ☎ Наш телефон: +7 (982) 333-78-88'
+    pageTitle = 'Каталог декоративных материалов'
+    pageDescription = 'Каталог декоративных и отделочных материалов представленный в интернет-магазине Идеи для дома'
     pageH1 = 'Каталог'
     return render(request, 'page/catalog.html', locals())
 
@@ -169,8 +169,8 @@ def catalog(request):
 def category(request, category_slug):
     all_categories = Category.objects.filter(is_active=True)
     category = get_object_or_404(Category, name_slug=category_slug)
-    pageTitle = f'{category.name} – купить в Челябинске, цены в интернет-магазине «Идеи для дома» '
-    pageDescription = f'Предлагаем купить {category.name} с доставкой по Челябинску и области. Большой ассортимент декоративных и отделочных материалов. Низкие цены в интернет-магазине Идеи для дома. Звоните: ☎ +7 (982) 333-78-88'
+    pageTitle = f'Купить {category.name} в Челябинске по низким ценам - Интернет-магазин Идеи для дома '
+    pageDescription = f'Заказать {category.name} в Челябинске по доступным ценам - интернет-магазин Идеи для дома'
     pageH1 = category.name
     # remove_items = Item.objects.filter(category_id=21)
     # print(remove_items)
