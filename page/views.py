@@ -102,6 +102,7 @@ def manufactor(request,manufactor_slug):
     pageTitle = f'{manufactor.name} – купить продукцию в Челябинске по низким ценам '
     pageDescription = f'Купить продукцию {manufactor.name} в интернет-магазине Идеи для Дома с доставкой по Челябинску и области. Низкие цены, большой ассортимент декоративных и отделочных материалов. Звоните: ☎ +7 (982) 333-78-88'
     pageH1 = manufactor.name
+    pageText = manufactor.description
     breadcrumb_item = f'Товары производителя: {manufactor.name}'
     breadcrumb_return = 'Производители'
     breadcrumb_return_url = '/manufacturers/'

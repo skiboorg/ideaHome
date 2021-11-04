@@ -84,6 +84,14 @@
                             {% include 'page/_item-card.html' %}
                         {% endfor %}
                     </div>
+                {% if pageText %}
+                    <div class="mb-40">
+                     <div class="section-header">   <p>О производителе</p></div>
+
+                     {{ pageText | safe }}
+                    </div>
+
+                {% endif %}
                     <nav id="items_paginator" class="shop-pagination" aria-label="Shop navigation">
                         <ul class="pagination ">
                             {% if items.has_previous %}
