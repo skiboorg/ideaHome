@@ -36,7 +36,7 @@ def send_cb(request):
         messages.add_message(request, messages.INFO, 'Hello world.')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 def index(request):
-    all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True)
+    all_categories = Category.objects.filter(is_active=True, is_in_index_catalog=True).order_by('num')
     banners = Banner.objects.filter(at_home_page=True, is_active=True)
     banners2 = Banner.objects.filter(at_home_page2=True, is_active=True)
     banners3 = Banner.objects.filter(at_home_page3=True, is_active=True)
@@ -160,7 +160,7 @@ def manufacturers(request):
     return render(request, 'page/manufacturers.html', locals())
 
 def catalog(request):
-    all_categories = Category.objects.all()
+    all_categories = Category.objects.filter(is_active=True)
     pageTitle = 'Каталог декоративных материалов'
     pageDescription = 'Каталог декоративных и отделочных материалов представленный в интернет-магазине Идеи для дома'
     pageH1 = 'Каталог'
@@ -180,7 +180,7 @@ def category(request, category_slug):
     #     item.save()
     items_qs = Item.objects.filter(category=category,is_active=True)
     items = items_qs
-    manufactors = category.manufactor.all()
+    manufactors = category.manufactor.all().order_by('-views')
     qs_filtered = False
     search_res = False
     count = request.GET.get('count')

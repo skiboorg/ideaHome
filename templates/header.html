@@ -12,7 +12,7 @@
                    <img src="{% static 'img/logo.png' %}" alt="">
                </a>
                 <div class="header-top_logo-info mobile-hide-800">
-                    <p>Декоративные и отделочные материалы по Челябинской области</p>
+                    <p>Декоративные и отделочные материалы по Челябинску и Челябинской области</p>
                     <span><a href="{% url 'contacts' %}">Адреса всех магазинов</a></span>
                 </div>
             </div>
@@ -88,7 +88,7 @@
 
 
         <div class="side-panel-menu">
-            <p @click=" mobileCatalogActive ? mobileCatalogActive=false : mobileCatalogActive=true"class="side-panel-menu-item">Каталог материалов</p>
+            <p @click=" mobileCatalogActive ? mobileCatalogActive=false : mobileCatalogActive=true"class="side-panel-menu-item">Каталог товаров</p>
             <div class="catalog-menu mobile-catalog" :class="{'mobileCatalogActive':mobileCatalogActive}">
                 {% for category in all_categories %}
                     {% if category.subcategory.all.exists %}
@@ -121,9 +121,9 @@
     <div class="main-nav mobile-hide-800">
         <div class="container">
             <ul class="nav">
-                <li><a class="nav-item" href="{% url 'catalog' %}"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог материалов</a>
+                <li><a class="nav-item" href="{% url 'catalog' %}"><i style="margin-right: 20px" class="fa fa-list"></i>Каталог товаров</a>
                 </li>
-                <li><a class="nav-item" href="{% url 'sale' %}">Акции</a></li>
+{#                <li><a class="nav-item" href="{% url 'sale' %}">Акции</a></li>#}
                 <li><a class="nav-item" href="{% url 'manufacturers' %}">Производители</a></li>
                 <li><a class="nav-item" href="{% url 'partner' %}">Партнерам</a></li>
                 <li><a class="nav-item" href="{% url 'contacts' %}">Контакты</a></li>
